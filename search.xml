@@ -48,6 +48,8 @@
 </ol>
   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. rainmeter(浏览器) # 主题</span><br><span class="line">2. 致美化主题: welfare(可选)</span><br><span class="line">3. winstep nexus(浏览器)</span><br><span class="line">4. wallpaper engine(steam购买 19/CNY)</span><br><span class="line">5. TranslucentTB(微软商店下载)</span><br></pre></td></tr></table></figure>
 
+<span id="more"></span>
+
 <ol start="2">
 <li><p>sop: </p>
  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 下载rainmeter并安装</span><br><span class="line">2. 下载welfare,并安装</span><br><span class="line">3. 打开rainmeter设置, 加载welfare主题</span><br><span class="line">4. 下载steam并购买wallpaper engine, 选择自己喜欢的壁纸</span><br><span class="line">5. 下载winstep nexus并安装且运行, 进行对应设置</span><br><span class="line">6. 下载TranslucentTB并运行</span><br></pre></td></tr></table></figure></li>
@@ -65,6 +67,7 @@
 </li>
 </ol>
 </blockquote>
+<p><a href="https://gitee.com/MeverikC/mfikc-blog/releases/tag/v1.0">桌面美化工具</a></p>
 <h3 id="1-rainmeter"><a href="#1-rainmeter" class="headerlink" title="1. rainmeter"></a>1. rainmeter</h3><ol>
 <li><p><a href="https://www.rainmeter.net/">下载地址</a> </p>
  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.rainmeter.net/</span><br></pre></td></tr></table></figure>
