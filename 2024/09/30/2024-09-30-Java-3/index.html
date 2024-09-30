@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="问题:使用Dockerfile build镜像的时候第一步的FROM全部超时, 环境都加载不了肯定就没办法运行程序了 解决:1. 手动下载所需的环境镜像 我使用的是python:3.12.3-alpine , 需要在科学上网的机器上下载该镜像  1docker pull python:3.12.3-alpine   导出该镜像  1docker save -o python-3.12.3-alpi">
+  <meta name="description" content="标准关键字 abstract - 用于声明抽象类或方法。抽象类不能被实例化，而抽象方法没有实现。 assert - 用于断言，在开发阶段帮助检查假设条件是否为真。 boolean - 基本数据类型，表示真或假的值。 break - 用于终止循环或 switch 语句。 byte - 基本数据类型，8位有符号整数。 case - 用于 switch 语句中的分支。 catch - 与 try 结合使">
 <meta property="og:type" content="article">
-<meta property="og:title" content="docker镜像挂了之后的解决方法">
-<meta property="og:url" content="http://example.com/2024/09/29/docker%E9%95%9C%E5%83%8F%E6%8C%82%E4%BA%86%E4%B9%8B%E5%90%8E%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:title" content="Java-3">
+<meta property="og:url" content="http://example.com/2024/09/30/2024-09-30-Java-3/index.html">
 <meta property="og:site_name" content="MFIKC">
-<meta property="og:description" content="问题:使用Dockerfile build镜像的时候第一步的FROM全部超时, 环境都加载不了肯定就没办法运行程序了 解决:1. 手动下载所需的环境镜像 我使用的是python:3.12.3-alpine , 需要在科学上网的机器上下载该镜像  1docker pull python:3.12.3-alpine   导出该镜像  1docker save -o python-3.12.3-alpi">
+<meta property="og:description" content="标准关键字 abstract - 用于声明抽象类或方法。抽象类不能被实例化，而抽象方法没有实现。 assert - 用于断言，在开发阶段帮助检查假设条件是否为真。 boolean - 基本数据类型，表示真或假的值。 break - 用于终止循环或 switch 语句。 byte - 基本数据类型，8位有符号整数。 case - 用于 switch 语句中的分支。 catch - 与 try 结合使">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-09-29T07:01:44.294Z">
-<meta property="article:modified_time" content="2024-09-29T07:01:47.520Z">
+<meta property="article:published_time" content="2024-09-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-09-30T02:30:47.141Z">
 <meta property="article:author" content="MeverikC">
-<meta property="article:tag" content="前端,后端,运维">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2024/09/29/docker%E9%95%9C%E5%83%8F%E6%8C%82%E4%BA%86%E4%B9%8B%E5%90%8E%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
+<link rel="canonical" href="http://example.com/2024/09/30/2024-09-30-Java-3/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>docker镜像挂了之后的解决方法 | MFIKC</title>
+  <title>Java-3 | MFIKC</title>
   
 
 
@@ -179,7 +179,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/29/docker%E9%95%9C%E5%83%8F%E6%8C%82%E4%BA%86%E4%B9%8B%E5%90%8E%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/30/2024-09-30-Java-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -192,7 +192,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          docker镜像挂了之后的解决方法
+          Java-3
         </h1>
 
         <div class="post-meta">
@@ -203,7 +203,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2024-09-29 15:01:44 / 修改时间：15:01:47" itemprop="dateCreated datePublished" datetime="2024-09-29T15:01:44+08:00">2024-09-29</time>
+              <time title="创建时间：2024-09-30 00:00:00 / 修改时间：10:30:47" itemprop="dateCreated datePublished" datetime="2024-09-30T00:00:00+08:00">2024-09-30</time>
             </span>
 
           
@@ -217,29 +217,62 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h2><p>使用Dockerfile build镜像的时候第一步的FROM全部超时, 环境都加载不了肯定就没办法运行程序了</p>
-<h2 id="解决"><a href="#解决" class="headerlink" title="解决:"></a>解决:</h2><h3 id="1-手动下载所需的环境镜像"><a href="#1-手动下载所需的环境镜像" class="headerlink" title="1. 手动下载所需的环境镜像"></a>1. 手动下载所需的环境镜像</h3><ol>
-<li>我使用的是<code>python:3.12.3-alpine</code> , 需要在科学上网的机器上下载该镜像</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull python:3.12.3-alpine</span><br></pre></td></tr></table></figure>
+        <h3 id="标准关键字"><a href="#标准关键字" class="headerlink" title="标准关键字"></a>标准关键字</h3><ul>
+<li><strong>abstract</strong> - 用于声明抽象类或方法。抽象类不能被实例化，而抽象方法没有实现。</li>
+<li><strong>assert</strong> - 用于断言，在开发阶段帮助检查假设条件是否为真。</li>
+<li><strong>boolean</strong> - 基本数据类型，表示真或假的值。</li>
+<li><strong>break</strong> - 用于终止循环或 <code>switch</code> 语句。</li>
+<li><strong>byte</strong> - 基本数据类型，8位有符号整数。</li>
+<li><strong>case</strong> - 用于 <code>switch</code> 语句中的分支。</li>
+<li><strong>catch</strong> - 与 <code>try</code> 结合使用来捕获异常。</li>
+<li><strong>char</strong> - 基本数据类型，单个16位Unicode字符。</li>
+<li><strong>class</strong> - 定义一个新类。</li>
+<li><strong>continue</strong> - 跳过当前循环体剩余部分并继续下一次迭代。</li>
+<li><strong>default</strong> - 在 <code>switch</code> 语句中提供默认情况；在接口中定义默认方法。</li>
+<li><strong>do</strong> - 开始一个 <code>do-while</code> 循环。</li>
+<li><strong>double</strong> - 基本数据类型，双精度浮点数。</li>
+<li><strong>else</strong> - 与 <code>if</code> 一起使用，当 <code>if</code> 条件不成立时执行的代码块。</li>
+<li><strong>enum</strong> - 定义枚举类型。</li>
+<li><strong>extends</strong> - 表示一个类继承另一个类或一个接口扩展另一个接口。</li>
+<li><strong>final</strong> - 用于声明不可修改的变量、不可继承的类或不可重写的方法。</li>
+<li><strong>finally</strong> - 与 <code>try-catch</code> 结构一起使用，确保某些代码无论是否有异常抛出都会被执行。</li>
+<li><strong>float</strong> - 基本数据类型，单精度浮点数。</li>
+<li><strong>for</strong> - 用于创建循环。</li>
+<li><strong>if</strong> - 用于条件判断。</li>
+<li><strong>implements</strong> - 表示一个类实现了某个接口。</li>
+<li><strong>import</strong> - 导入其他包中的类或静态成员。</li>
+<li><strong>instanceof</strong> - 检查对象是否属于特定类型。</li>
+<li><strong>int</strong> - 基本数据类型，32位有符号整数。</li>
+<li><strong>interface</strong> - 定义一个接口。</li>
+<li><strong>long</strong> - 基本数据类型，64位有符号整数。</li>
+<li><strong>native</strong> - 表示该方法用其他语言实现。</li>
+<li><strong>new</strong> - 创建一个新的对象实例。</li>
+<li><strong>package</strong> - 定义一个包。</li>
+<li><strong>private</strong> - 访问修饰符，限制对类、方法或变量的访问。</li>
+<li><strong>protected</strong> - 访问修饰符，允许子类或同一包内的类访问。</li>
+<li><strong>public</strong> - 访问修饰符，不限制访问。</li>
+<li><strong>return</strong> - 从方法返回值。</li>
+<li><strong>short</strong> - 基本数据类型，16位有符号整数。</li>
+<li><strong>static</strong> - 定义静态变量或方法，它们属于类而不是类的实例。</li>
+<li><strong>strictfp</strong> - 确保浮点运算遵循IEEE 754标准。</li>
+<li><strong>super</strong> - 引用当前对象的父类。</li>
+<li><strong>switch</strong> - 用于多路分支选择。</li>
+<li><strong>synchronized</strong> - 用于控制多线程对共享资源的访问。</li>
+<li><strong>this</strong> - 引用当前对象的实例。</li>
+<li><strong>throw</strong> - 抛出一个异常。</li>
+<li><strong>throws</strong> - 声明方法可能抛出的异常。</li>
+<li><strong>transient</strong> - 标记不应被序列化的变量。</li>
+<li><strong>try</strong> - 尝试执行一段可能会抛出异常的代码。</li>
+<li><strong>void</strong> - 表示方法不返回任何值。</li>
+<li><strong>volatile</strong> - 确保变量的修改对所有线程可见。</li>
+<li><strong>while</strong> - 用于创建循环。</li>
+</ul>
+<h3 id="预留关键字（不常用）"><a href="#预留关键字（不常用）" class="headerlink" title="预留关键字（不常用）"></a>预留关键字（不常用）</h3><ul>
+<li><strong>const</strong> - 保留字，但未使用。</li>
+<li><strong>goto</strong> - 保留字，但未使用。</li>
+</ul>
+<p>这些关键字是构成 Java 语言的基础，每个都有其特定的功能和用途。在编写 Java 代码时，了解这些关键字及其用法是非常重要的。</p>
 
-<ol start="2">
-<li>导出该镜像</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker save -o python-3.12.3-alpine.tar python:3.12.3-alpine</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li><p>把<code>python-3.12.3-alpine.tar</code>上传到云服务器</p>
-</li>
-<li><p>加载镜像</p>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker load -i python-3.12.3-alpine.tar</span><br><span class="line">docker images</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>这是就可以正常构建了, 因为docker在本地有镜像是会默认使用本地的, 本地没有镜像时才会访问docker hub</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd zuanboot</span><br><span class="line">docker build -t zuanboot .</span><br><span class="line">docker run -d --name zuanboot -v $(pwd):/app -p 8900:58000 zuanboot:latest</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -247,6 +280,10 @@
     
 
       <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          </div>
 
         
 
@@ -254,12 +291,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2024/09/29/2024-09-29-Java-1/" rel="prev" title="Java-1">
-      <i class="fa fa-chevron-left"></i> Java-1
+    <a href="/2024/09/29/docker%E9%95%9C%E5%83%8F%E6%8C%82%E4%BA%86%E4%B9%8B%E5%90%8E%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" rel="prev" title="docker镜像挂了之后的解决方法">
+      <i class="fa fa-chevron-left"></i> docker镜像挂了之后的解决方法
     </a></div>
       <div class="post-nav-item">
-    <a href="/2024/09/30/2024-09-30-Java-3/" rel="next" title="Java-3">
-      Java-3 <i class="fa fa-chevron-right"></i>
+    <a href="/2024/09/30/2024-09-30-Java-2/" rel="next" title="Java-2">
+      Java-2 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -319,7 +356,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-text">问题:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3"><span class="nav-text">解决:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%89%8B%E5%8A%A8%E4%B8%8B%E8%BD%BD%E6%89%80%E9%9C%80%E7%9A%84%E7%8E%AF%E5%A2%83%E9%95%9C%E5%83%8F"><span class="nav-text">1. 手动下载所需的环境镜像</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-text">标准关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E7%95%99%E5%85%B3%E9%94%AE%E5%AD%97%EF%BC%88%E4%B8%8D%E5%B8%B8%E7%94%A8%EF%BC%89"><span class="nav-text">预留关键字（不常用）</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -20,20 +20,18 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="问题:使用Dockerfile build镜像的时候第一步的FROM全部超时, 环境都加载不了肯定就没办法运行程序了 解决:1. 手动下载所需的环境镜像 我使用的是python:3.12.3-alpine , 需要在科学上网的机器上下载该镜像  1docker pull python:3.12.3-alpine   导出该镜像  1docker save -o python-3.12.3-alpi">
-<meta property="og:type" content="article">
-<meta property="og:title" content="docker镜像挂了之后的解决方法">
-<meta property="og:url" content="http://example.com/2024/09/29/docker%E9%95%9C%E5%83%8F%E6%8C%82%E4%BA%86%E4%B9%8B%E5%90%8E%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/index.html">
+  <meta name="description" content="记录个人学习记录及一些电脑操作问题, 后续会持续更新, 敬请关注">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MFIKC">
+<meta property="og:url" content="http://example.com/tags/Java/index.html">
 <meta property="og:site_name" content="MFIKC">
-<meta property="og:description" content="问题:使用Dockerfile build镜像的时候第一步的FROM全部超时, 环境都加载不了肯定就没办法运行程序了 解决:1. 手动下载所需的环境镜像 我使用的是python:3.12.3-alpine , 需要在科学上网的机器上下载该镜像  1docker pull python:3.12.3-alpine   导出该镜像  1docker save -o python-3.12.3-alpi">
+<meta property="og:description" content="记录个人学习记录及一些电脑操作问题, 后续会持续更新, 敬请关注">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-09-29T07:01:44.294Z">
-<meta property="article:modified_time" content="2024-09-29T07:01:47.520Z">
 <meta property="article:author" content="MeverikC">
 <meta property="article:tag" content="前端,后端,运维">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2024/09/29/docker%E9%95%9C%E5%83%8F%E6%8C%82%E4%BA%86%E4%B9%8B%E5%90%8E%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
+<link rel="canonical" href="http://example.com/tags/Java/">
 
 
 <script id="page-configurations">
@@ -41,12 +39,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : true,
+    isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>docker镜像挂了之后的解决方法 | MFIKC</title>
+  <title>标签: Java | MFIKC</title>
   
 
 
@@ -172,101 +170,91 @@
         <div class="content-wrap">
           
 
-          <div class="content post posts-expand">
+          <div class="content tag">
             
 
-    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/29/docker%E9%95%9C%E5%83%8F%E6%8C%82%E4%BA%86%E4%B9%8B%E5%90%8E%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="MeverikC">
-      <meta itemprop="description" content="记录个人学习记录及一些电脑操作问题, 后续会持续更新, 敬请关注">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MFIKC">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          docker镜像挂了之后的解决方法
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2024-09-29 15:01:44 / 修改时间：15:01:47" itemprop="dateCreated datePublished" datetime="2024-09-29T15:01:44+08:00">2024-09-29</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+  
+  <div class="post-block">
+    <div class="posts-collapse">
+      <div class="collection-title">
+        <h2 class="collection-header">Java
+          <small>标签</small>
+        </h2>
+      </div>
 
       
-        <h2 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h2><p>使用Dockerfile build镜像的时候第一步的FROM全部超时, 环境都加载不了肯定就没办法运行程序了</p>
-<h2 id="解决"><a href="#解决" class="headerlink" title="解决:"></a>解决:</h2><h3 id="1-手动下载所需的环境镜像"><a href="#1-手动下载所需的环境镜像" class="headerlink" title="1. 手动下载所需的环境镜像"></a>1. 手动下载所需的环境镜像</h3><ol>
-<li>我使用的是<code>python:3.12.3-alpine</code> , 需要在科学上网的机器上下载该镜像</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull python:3.12.3-alpine</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>导出该镜像</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker save -o python-3.12.3-alpine.tar python:3.12.3-alpine</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li><p>把<code>python-3.12.3-alpine.tar</code>上传到云服务器</p>
-</li>
-<li><p>加载镜像</p>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker load -i python-3.12.3-alpine.tar</span><br><span class="line">docker images</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>这是就可以正常构建了, 因为docker在本地有镜像是会默认使用本地的, 本地没有镜像时才会访问docker hub</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd zuanboot</span><br><span class="line">docker build -t zuanboot .</span><br><span class="line">docker run -d --name zuanboot -v $(pwd):/app -p 8900:58000 zuanboot:latest</span><br></pre></td></tr></table></figure>
+    <div class="collection-year">
+      <span class="collection-header">2024</span>
     </div>
 
-    
-    
-    
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-      <footer class="post-footer">
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2024-09-30T00:00:00+08:00"
+              content="2024-09-30">
+          09-30
+        </time>
+      </div>
 
-        
+      <div class="post-title">
+          <a class="post-title-link" href="/2024/09/30/2024-09-30-Java-2/" itemprop="url">
+            <span itemprop="name">Java-2</span>
+          </a>
+      </div>
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2024/09/29/2024-09-29-Java-1/" rel="prev" title="Java-1">
-      <i class="fa fa-chevron-left"></i> Java-1
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2024/09/30/2024-09-30-Java-3/" rel="next" title="Java-3">
-      Java-3 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+    </header>
   </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2024-09-30T00:00:00+08:00"
+              content="2024-09-30">
+          09-30
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/2024/09/30/2024-09-30-Java-3/" itemprop="url">
+            <span itemprop="name">Java-3</span>
+          </a>
+      </div>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2024-09-29T00:00:00+08:00"
+              content="2024-09-29">
+          09-29
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/2024/09/29/2024-09-29-Java-1/" itemprop="url">
+            <span itemprop="name">Java-1</span>
+          </a>
+      </div>
+
+    </header>
+  </article>
+
+    </div>
+  </div>
   
   
+  
+
   
 
 
@@ -319,7 +307,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-text">问题:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3"><span class="nav-text">解决:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%89%8B%E5%8A%A8%E4%B8%8B%E8%BD%BD%E6%89%80%E9%9C%80%E7%9A%84%E7%8E%AF%E5%A2%83%E9%95%9C%E5%83%8F"><span class="nav-text">1. 手动下载所需的环境镜像</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

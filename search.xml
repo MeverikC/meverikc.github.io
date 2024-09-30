@@ -20,31 +20,602 @@
       </tags>
   </entry>
   <entry>
-    <title>docker镜像挂了之后的解决方法</title>
-    <url>/2024/09/29/docker%E9%95%9C%E5%83%8F%E6%8C%82%E4%BA%86%E4%B9%8B%E5%90%8E%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h2><p>使用Dockerfile build镜像的时候第一步的FROM全部超时, 环境都加载不了肯定就没办法运行程序了</p>
-<h2 id="解决"><a href="#解决" class="headerlink" title="解决:"></a>解决:</h2><h3 id="1-手动下载所需的环境镜像"><a href="#1-手动下载所需的环境镜像" class="headerlink" title="1. 手动下载所需的环境镜像"></a>1. 手动下载所需的环境镜像</h3><ol>
-<li>我使用的是<code>python:3.12.3-alpine</code> , 需要在科学上网的机器上下载该镜像</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull python:3.12.3-alpine</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>导出该镜像</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker save -o python-3.12.3-alpine.tar python:3.12.3-alpine</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li><p>把<code>python-3.12.3-alpine.tar</code>上传到云服务器</p>
+    <title>Java-1</title>
+    <url>/2024/09/29/2024-09-29-Java-1/</url>
+    <content><![CDATA[<h2 id="计算机语言的历史及Java的历史地位"><a href="#计算机语言的历史及Java的历史地位" class="headerlink" title="计算机语言的历史及Java的历史地位"></a>计算机语言的历史及Java的历史地位</h2><h3 id="第一代语言"><a href="#第一代语言" class="headerlink" title="第一代语言"></a>第一代语言</h3><ul>
+<li><strong>打孔机 - 纯机器语言</strong></li>
+</ul>
+<h3 id="第二代语言"><a href="#第二代语言" class="headerlink" title="第二代语言"></a>第二代语言</h3><ul>
+<li><strong>汇编</strong></li>
+</ul>
+<h3 id="第三代语言"><a href="#第三代语言" class="headerlink" title="第三代语言"></a>第三代语言</h3><ul>
+<li><strong>C、Pascal、Fortran</strong>：面向过程的语言</li>
+<li>**C++**：面向过程&#x2F;面向对象</li>
+<li><strong>Java</strong>：跨平台的纯面向对象语言</li>
+<li><strong>.NET</strong>：跨语言的平台</li>
+</ul>
+<h2 id="Java自身的发展史"><a href="#Java自身的发展史" class="headerlink" title="Java自身的发展史"></a>Java自身的发展史</h2><h3 id="起源与初期发展"><a href="#起源与初期发展" class="headerlink" title="起源与初期发展"></a>起源与初期发展</h3><p>Java的开发始于1991年，由James Gosling领导的Sun Microsystems团队提出，最初的名字为“Oak”，目的是用于消费电子设备中的嵌入式系统。1995年，Java 1.0正式发布，并成为面向互联网和企业级应用开发的编程语言。</p>
+<h3 id="关键版本演变"><a href="#关键版本演变" class="headerlink" title="关键版本演变"></a>关键版本演变</h3><ul>
+<li>**Java 1.0 (1995)**：Java初次发布，具备“编写一次，随处运行”的核心理念。</li>
+<li>**Java 2 (1998)**：引入了三大平台版本：J2SE（标准版）、J2EE（企业版）、J2ME（移动版），增强了面向企业和移动设备的开发。</li>
+<li>**Java 5 (2004)**：引入泛型、枚举、增强型for循环等语言特性，极大提升了语言的灵活性与表达力。</li>
+<li>**Java 8 (2014)**：最具革命性的一次更新，引入了Lambda表达式、Streams API等新特性，极大提升了并发和函数式编程的支持。</li>
+<li><strong>Java 9及以后</strong>：Java 9推出模块化系统（Project Jigsaw），Java 10引入局部变量类型推断，Java 11成为长期支持版（LTS）。</li>
+</ul>
+<h3 id="Oracle收购与开源"><a href="#Oracle收购与开源" class="headerlink" title="Oracle收购与开源"></a>Oracle收购与开源</h3><p>2010年，Oracle收购了Sun Microsystems，并接管了Java的发展。Java逐步转向开源社区驱动，Java SE平台下的OpenJDK成为Java的官方参考实现。</p>
+<h2 id="Java体系"><a href="#Java体系" class="headerlink" title="Java体系"></a>Java体系</h2><ul>
+<li><strong>Java SE（Standard Edition）</strong>：提供核心的Java库和API，涵盖语言基础、数据结构、并发、多线程、文件处理等，适用于桌面应用和核心后端开发。</li>
+<li><strong>Java EE（Enterprise Edition）</strong>：侧重于企业级应用开发，提供了分布式计算、Web服务、数据库交互、JMS消息处理等特性。</li>
+<li><strong>Java ME（Micro Edition）</strong>：适用于嵌入式和移动设备的精简版Java，过去用于开发功能手机和嵌入式系统。</li>
+<li><strong>JavaFX</strong>：用于构建现代用户界面应用，替代Swing和AWT，适用于桌面和移动应用的UI开发。</li>
+</ul>
+<h2 id="Java的特点"><a href="#Java的特点" class="headerlink" title="Java的特点"></a>Java的特点</h2><ul>
+<li><strong>跨平台性（“一次编写，随处运行”）</strong>：Java程序通过编译成字节码，依赖于JVM（Java虚拟机）运行，确保在不同操作系统上可移植。</li>
+<li><strong>面向对象</strong>：Java完全支持面向对象的编程理念，具有封装、继承和多态等特性，便于构建模块化和可扩展的应用。</li>
+<li><strong>安全性</strong>：Java提供了强大的安全机制，如字节码校验、沙箱模型和权限管理，尤其适用于网络环境中的应用程序。</li>
+<li><strong>垃圾回收机制</strong>：Java自动管理内存分配和释放，通过垃圾回收器（Garbage Collector）有效回收不再使用的对象，避免内存泄漏。</li>
+<li><strong>多线程支持</strong>：Java原生支持多线程编程，允许开发者在程序中处理多个任务，提高程序的执行效率。</li>
+<li><strong>丰富的标准库</strong>：Java提供了一个庞大的标准类库，涵盖I&#x2F;O、网络编程、数据结构、并发控制、GUI开发等领域。</li>
+</ul>
+<h2 id="Java的运行机制"><a href="#Java的运行机制" class="headerlink" title="Java的运行机制"></a>Java的运行机制</h2><ul>
+<li><strong>编译过程</strong>：Java代码首先被编译为中间字节码（bytecode），存储在<code>.class</code>文件中。字节码独立于底层硬件和操作系统。</li>
+<li><strong>JVM（Java虚拟机）</strong>：Java程序的字节码在各个平台的JVM中运行。JVM负责解释字节码并将其转换为机器代码，以便在特定平台上执行。</li>
+<li><strong>JIT（即时编译器）</strong>：JVM内含的JIT编译器在运行时将频繁执行的字节码块动态编译为本地机器代码，从而提高性能。</li>
+<li><strong>垃圾回收（Garbage Collection）</strong>：JVM管理对象的内存分配和回收，自动处理对象的生命周期，防止内存泄漏。通过标记-清除（Mark-and-Sweep）、标记-压缩等算法实现。</li>
+<li><strong>类加载器（ClassLoader）</strong>：Java使用类加载器动态加载类到内存。类加载器负责将字节码文件加载到JVM内存，并对其进行字节码校验，保证代码的正确性和安全性。</li>
+</ul>
+<h2 id="Java运行环境的安装与配置"><a href="#Java运行环境的安装与配置" class="headerlink" title="Java运行环境的安装与配置"></a>Java运行环境的安装与配置</h2><h2 id="windows部署JDK"><a href="#windows部署JDK" class="headerlink" title="windows部署JDK"></a>windows部署JDK</h2><ol>
+<li><p><a href="https://www.oracle.com/java/technologies/downloads/#java11-windows">下载java11</a></p>
 </li>
-<li><p>加载镜像</p>
+<li><p>选择<code>jdk-11.0.24_windows-x64_bin.exe</code>并安装</p>
+</li>
+<li><p>配置电脑环境变量</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">变量名: JAVA_HOME</span><br><span class="line">变量值: C:\Program Files\Java\jdk-11 # jdk的安装位置</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">变量名: PATH</span><br><span class="line">变量值: %JAVA_HOME%\bin;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打开命令行</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 执行:</span><br><span class="line">java -version</span><br><span class="line"></span><br><span class="line"># 输出:</span><br><span class="line">java version &quot;11.0.22&quot; 2024-01-16 LTS</span><br><span class="line">Java(TM) SE Runtime Environment 18.9 (build 11.0.22+9-LTS-219)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11.0.22+9-LTS-219, mixed mode)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="现在可以执行第一个程序了"><a href="#现在可以执行第一个程序了" class="headerlink" title="现在可以执行第一个程序了"></a>现在可以执行第一个程序了</h3><ol>
+<li><p>新建一个<code>Hello.txt</code>, 在文件内输入</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Hello</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.print(<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>文件名后缀改为<code>.java</code></p>
+</li>
+<li><p>在命令行执行: </p>
+ <figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">javac Hello.java</span><br><span class="line">java Hello</span><br><span class="line"></span><br><span class="line"># 命令行输出:</span><br><span class="line">Hello, World!</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意:</strong></p>
+<ol>
+<li><code>javac</code>是对<code>Hello.java</code>文件进行编译生成可执行的<code>.class</code>文件的命令, 此时直接在此执行对应的</li>
+<li><code>java</code>是执行程序的命令</li>
+<li>文件名与类名必须相同</li>
+</ol>
+</blockquote>
 </li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker load -i python-3.12.3-alpine.tar</span><br><span class="line">docker images</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java-2</title>
+    <url>/2024/09/30/2024-09-30-Java-2/</url>
+    <content><![CDATA[<h2 id="Java编程认识"><a href="#Java编程认识" class="headerlink" title="Java编程认识"></a>Java编程认识</h2><h3 id="1-Java-Application初步"><a href="#1-Java-Application初步" class="headerlink" title="1.  Java Application初步"></a>1.  Java Application初步</h3><ol>
+<li><p>Java源文件以.java为扩展名,文件名与类名一致</p>
+</li>
+<li><p>一个源文件只能有一个public公共类</p>
+</li>
+<li><p>java应用程序的执行入口-&gt;main()方法,书写格式-&gt;public static void main(String[] args){}</p>
+</li>
+<li><p>java严格区分大小写</p>
+</li>
+<li><p>java方法由一条条语句构成,每个语句以分号结束</p>
+</li>
+<li><p>Java的注释方式-</p>
+<ol>
+<li><p>单行注释</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 单行注释</span><br></pre></td></tr></table></figure>
 
-<ol start="5">
-<li>这是就可以正常构建了, 因为docker在本地有镜像是会默认使用本地的, 本地没有镜像时才会访问docker hub</li>
+</li>
+<li><p>多行注释</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/* 多行注释1 */</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">  * 多行注释2</span><br><span class="line">  */</span><br></pre></td></tr></table></figure></li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd zuanboot</span><br><span class="line">docker build -t zuanboot .</span><br><span class="line">docker run -d --name zuanboot -v $(pwd):/app -p 8900:58000 zuanboot:latest</span><br></pre></td></tr></table></figure>]]></content>
+</li>
+</ol>
+<h3 id="2-命名"><a href="#2-命名" class="headerlink" title="2. 命名"></a>2. 命名</h3><ol>
+<li><p>类名的首字母大写</p>
+</li>
+<li><p>变量名和方法名的首字母小写</p>
+</li>
+<li><p>运用驼峰标识</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 单词之间没有空格或下划线，第一个单词的首字母通常大写，而后续单词的首字母大写</span><br><span class="line">MinervaController // 类名</span><br><span class="line">2. 第一个单词的首字母通常小写</span><br><span class="line">startDate // 变量名</span><br><span class="line">getDate // 方法名</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="3-标识符"><a href="#3-标识符" class="headerlink" title="3. 标识符"></a>3. 标识符</h3><ol>
+<li><p>Java对各种<code>变量\方法</code>和<code>类</code>等要素命名时使用的字符序列称位<code>标识符</code>, 凡是自己可以起名字的地方都叫标识符</p>
+</li>
+<li><p>Java标识符的命名规则</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 由字母\下划线_\美元符$\数字组成</span><br><span class="line">2. 应以字母\下划线\美元符开头</span><br><span class="line">3. 大小写敏感,长度无限制</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="4-关键字"><a href="#4-关键字" class="headerlink" title="4. 关键字"></a>4. 关键字</h3><p>一些以特定的含义,用作专门的用途的字符称为关键字, 所有关键字均为小写</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">goto\const # 被保留</span><br><span class="line">abstract\default\if\private\this</span><br><span class="line">boolean\do\implements\protected\throw</span><br><span class="line">break\double\import\public\throws</span><br><span class="line">byte\else\instanceof\return\transient</span><br><span class="line">case\extends\int\short\try</span><br><span class="line">catch\final\interface\static\void</span><br><span class="line">char\finally\long\strictfp\volatile</span><br><span class="line">class\float\native\super\while</span><br><span class="line">const\for\new\switch\null</span><br><span class="line">continue\goto\package\synchronized</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>关键字</strong> 在下一篇详细介绍</p>
+</blockquote>
+<h3 id="5-java常量"><a href="#5-java常量" class="headerlink" title="5. java常量"></a>5. java常量</h3><ul>
+<li><p>使用<code>final</code>关键字定义常量</p>
+<ul>
+<li><p><code>final</code> 关键字可以用于基本数据类型和对象引用，确保它们的值不会被改变。一旦一个变量被声明为 <code>final</code>，它的值就不能再被修改。这适用于所有数据类型，包括基本类型和对象。</p>
+</li>
+<li><p>示例: </p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConstantsExample</span> &#123;</span><br><span class="line">    <span class="comment">// 定义基本类型的常量</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">MAX_SIZE</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">double</span> <span class="variable">PI</span> <span class="operator">=</span> <span class="number">3.14159</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义对象类型的常量</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">APP_NAME</span> <span class="operator">=</span> <span class="string">&quot;My Application&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">LocalDate</span> <span class="variable">START_DATE</span> <span class="operator">=</span> LocalDate.of(<span class="number">2023</span>, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Max Size: &quot;</span> + MAX_SIZE);</span><br><span class="line">        System.out.println(<span class="string">&quot;PI: &quot;</span> + PI);</span><br><span class="line">        System.out.println(<span class="string">&quot;App Name: &quot;</span> + APP_NAME);</span><br><span class="line">        System.out.println(<span class="string">&quot;Start Date: &quot;</span> + START_DATE);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>使用枚举（<code>enum</code>）定义常量</p>
+<ul>
+<li><p>枚举是一种特殊的类，用来表示一组固定的常量。枚举在 Java 5 中引入，提供了一种更安全、更清晰的方式来定义常量集合。</p>
+</li>
+<li><p>示例: </p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> <span class="title class_">Color</span> &#123;</span><br><span class="line">    RED, GREEN, BLUE</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EnumExample</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Color</span> <span class="variable">myColor</span> <span class="operator">=</span> Color.RED;</span><br><span class="line">        System.out.println(<span class="string">&quot;My color is: &quot;</span> + myColor);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>常量的作用</p>
+<ol>
+<li><strong>代码可读性</strong>：使用常量可以使代码更具可读性和可维护性，因为常量名通常比硬编码的数字或字符串更容易理解。</li>
+<li><strong>避免错误</strong>：常量可以防止在程序中多次使用相同的值时出现的拼写错误或数值错误。</li>
+<li><strong>单一职责原则</strong>：如果需要更改某个值，只需在一个地方更改，而不必在整个代码库中查找和替换。</li>
+<li><strong>类型安全</strong>：枚举提供了类型安全，确保只能使用预定义的值。</li>
+</ol>
+</li>
+<li><p>注意事项</p>
+<ul>
+<li>常量通常使用大写字母命名，以提高可读性。</li>
+<li>对于 <code>final</code> 变量，如果是在声明时初始化的，那么它必须被初始化；如果是在声明时不初始化，则必须在构造器中初始化。</li>
+<li>枚举常量是隐式 <code>public</code>, <code>static</code>, 和 <code>final</code> 的，因此不能被改变</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-java变量"><a href="#6-java变量" class="headerlink" title="6. java变量"></a>6. java变量</h3><p>程序中最基本的存储单元,要素包括变量名,变量类型和作用域, 每一个变量都属于特定的数据类型,在使用前必须对其声明,声明格式为type varName &#x3D; value<br>在 Java 中，数据类型分为两大类：基本数据类型（Primitive Data Types）和引用数据类型（Reference Data Types）。每种数据类型都有其特定的用途和特点。下面是对这两种数据类型的详细介绍：</p>
+<h4 id="基本数据类型（Primitive-Data-Types）"><a href="#基本数据类型（Primitive-Data-Types）" class="headerlink" title="基本数据类型（Primitive Data Types）"></a>基本数据类型（Primitive Data Types）</h4><p>基本数据类型是 Java 中最简单的数据类型，它们直接存储值。Java 有 8 种基本数据类型：</p>
+<ol>
+<li><p><strong><code>byte</code></strong></p>
+<ul>
+<li>大小：8 位（1 字节）</li>
+<li>范围：-128 到 127</li>
+<li>用途：存储较小的整数，节省内存</li>
+</ul>
+</li>
+<li><p><strong><code>short</code></strong></p>
+<ul>
+<li>大小：16 位（2 字节）</li>
+<li>范围：-32,768 到 32,767</li>
+<li>用途：存储中等大小的整数</li>
+</ul>
+</li>
+<li><p><strong><code>int</code></strong></p>
+<ul>
+<li>大小：32 位（4 字节）</li>
+<li>范围：-2,147,483,648 到 2,147,483,647</li>
+<li>用途：最常用的整数类型</li>
+</ul>
+</li>
+<li><p><strong><code>long</code></strong></p>
+<ul>
+<li>大小：64 位（8 字节）</li>
+<li>范围：-9,223,372,036,854,775,808 到 9,223,372,036,854,775,807</li>
+<li>用途：存储非常大的整数</li>
+</ul>
+</li>
+<li><p><strong><code>float</code></strong></p>
+<ul>
+<li>大小：32 位（4 字节）</li>
+<li>范围：约 ±1.4e-45 到 ±3.4e38</li>
+<li>用途：存储单精度浮点数</li>
+</ul>
+</li>
+<li><p><strong><code>double</code></strong></p>
+<ul>
+<li>大小：64 位（8 字节）</li>
+<li>范围：约 ±4.9e-324 到 ±1.8e308</li>
+<li>用途：存储双精度浮点数，精度更高</li>
+</ul>
+</li>
+<li><p><strong><code>char</code></strong></p>
+<ul>
+<li>大小：16 位（2 字节）</li>
+<li>范围：’\u0000’ 到 ‘\uffff’（0 到 65,535）</li>
+<li>用途：存储单个 Unicode 字符</li>
+</ul>
+</li>
+<li><p><strong><code>boolean</code></strong></p>
+<ul>
+<li>大小：1 位（实际占用内存取决于 JVM 实现）</li>
+<li>范围：<code>true</code> 或 <code>false</code></li>
+<li>用途：存储布尔值</li>
+</ul>
+</li>
+</ol>
+<h4 id="引用数据类型（Reference-Data-Types）"><a href="#引用数据类型（Reference-Data-Types）" class="headerlink" title="引用数据类型（Reference Data Types）"></a>引用数据类型（Reference Data Types）</h4><p>引用数据类型存储的是对象的引用（即地址），而不是对象本身。Java 中的主要引用数据类型包括：</p>
+<ol>
+<li><p><strong>类（Class）</strong></p>
+<ul>
+<li>例如：<code>String</code>, <code>Integer</code>, <code>ArrayList</code> 等</li>
+<li>用途：表示复杂的对象结构，可以包含属性和方法</li>
+</ul>
+</li>
+<li><p><strong>接口（Interface）</strong></p>
+<ul>
+<li>例如：<code>List</code>, <code>Runnable</code> 等</li>
+<li>用途：定义行为规范，多个类可以实现同一个接口</li>
+</ul>
+</li>
+<li><p><strong>数组（Array）</strong></p>
+<ul>
+<li>例如：<code>int[]</code>, <code>String[]</code> 等</li>
+<li>用途：存储相同类型的多个元素</li>
+</ul>
+</li>
+<li><p><strong>枚举（Enum）</strong></p>
+<ul>
+<li>例如：<code>Color</code>（RED, GREEN, BLUE）</li>
+<li>用途：表示一组固定的常量</li>
+</ul>
+</li>
+</ol>
+<p><strong>示例:</strong> </p>
+<ul>
+<li>基本数据类型示例</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PrimitiveTypesExample</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">byte</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">        <span class="type">short</span> <span class="variable">s</span> <span class="operator">=</span> <span class="number">1000</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">100000</span>;</span><br><span class="line">        <span class="type">long</span> <span class="variable">l</span> <span class="operator">=</span> <span class="number">10000000000L</span>;</span><br><span class="line">        <span class="type">float</span> <span class="variable">f</span> <span class="operator">=</span> <span class="number">3.14f</span>;</span><br><span class="line">        <span class="type">double</span> <span class="variable">d</span> <span class="operator">=</span> <span class="number">3.141592653589793</span>;</span><br><span class="line">        <span class="type">char</span> <span class="variable">c</span> <span class="operator">=</span> <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">bool</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;byte: &quot;</span> + b);</span><br><span class="line">        System.out.println(<span class="string">&quot;short: &quot;</span> + s);</span><br><span class="line">        System.out.println(<span class="string">&quot;int: &quot;</span> + i);</span><br><span class="line">        System.out.println(<span class="string">&quot;long: &quot;</span> + l);</span><br><span class="line">        System.out.println(<span class="string">&quot;float: &quot;</span> + f);</span><br><span class="line">        System.out.println(<span class="string">&quot;double: &quot;</span> + d);</span><br><span class="line">        System.out.println(<span class="string">&quot;char: &quot;</span> + c);</span><br><span class="line">        System.out.println(<span class="string">&quot;boolean: &quot;</span> + bool);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>引用数据类型示例</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ReferenceTypesExample</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;Hello, World!&quot;</span>;</span><br><span class="line">        <span class="type">int</span>[] numbers = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line">        ArrayList&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;Apple&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;Banana&quot;</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;String: &quot;</span> + str);</span><br><span class="line">        System.out.println(<span class="string">&quot;Array: &quot;</span> + Arrays.toString(numbers));</span><br><span class="line">        System.out.println(<span class="string">&quot;List: &quot;</span> + list);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>总结</p>
+<ul>
+<li><p><strong>基本数据类型</strong>：直接存储值，效率高，但功能有限。</p>
+</li>
+<li><p><strong>引用数据类型</strong>：存储对象的引用，功能强大，可以表示复杂的数据结构。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-程序格式"><a href="#7-程序格式" class="headerlink" title="7. 程序格式"></a>7. 程序格式</h3><p>格式应该注意的问题: </p>
+<ol>
+<li>大括号对齐, 到<code>&#123;</code>时缩进,键盘快捷方式: tab&#x2F;shift+tab</li>
+<li>程序块之间加空行, 排语句之间加空格</li>
+<li>运算符两侧加空格, <code>&#123;</code> 前面有空格</li>
+<li>成对编程</li>
+</ol>
+<h3 id="8-运算符"><a href="#8-运算符" class="headerlink" title="8. 运算符"></a>8. 运算符</h3><ol>
+<li><p>算数运算符</p>
+<p> 算术运算符用于执行基本的数学运算。</p>
+<ul>
+<li><p>**加法 (<code>+</code>)**：将两个操作数相加。</p>
+</li>
+<li><p>**减法 (<code>-</code>)**：从第一个操作数中减去第二个操作数。</p>
+</li>
+<li><p>**乘法 (<code>\*</code>)**：将两个操作数相乘。</p>
+</li>
+<li><p>**除法 (<code>/</code>)**：将第一个操作数除以第二个操作数。</p>
+</li>
+<li><p>**取模 (<code>%</code>)**：返回两个操作数相除后的余数。</p>
+</li>
+<li><p>**自增 (<code>++</code>)**：将操作数的值增加 1。</p>
+</li>
+<li><p>**自减 (<code>--</code>)**：将操作数的值减少 1。</p>
+</li>
+<li><p>示例: </p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> a + b;       <span class="comment">// 13</span></span><br><span class="line"><span class="type">int</span> <span class="variable">difference</span> <span class="operator">=</span> a - b; <span class="comment">// 7</span></span><br><span class="line"><span class="type">int</span> <span class="variable">product</span> <span class="operator">=</span> a * b;   <span class="comment">// 30</span></span><br><span class="line"><span class="type">int</span> <span class="variable">quotient</span> <span class="operator">=</span> a / b;  <span class="comment">// 3</span></span><br><span class="line"><span class="type">int</span> <span class="variable">remainder</span> <span class="operator">=</span> a % b; <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line">a++; <span class="comment">// a 现在是 11</span></span><br><span class="line">b--; <span class="comment">// b 现在是 2</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>关系运算符</p>
+<p> 关系运算符用于比较两个操作数，结果是一个布尔值（<code>true</code> 或 <code>false</code>）。</p>
+<ul>
+<li><p>**等于 (<code>==</code>)**：检查两个操作数是否相等。</p>
+</li>
+<li><p>**不等于 (<code>!=</code>)**：检查两个操作数是否不相等。</p>
+</li>
+<li><p>**大于 (<code>&gt;</code>)**：检查第一个操作数是否大于第二个操作数。</p>
+</li>
+<li><p>**小于 (<code>&lt;</code>)**：检查第一个操作数是否小于第二个操作数。</p>
+</li>
+<li><p>**大于等于 (<code>&gt;=</code>)**：检查第一个操作数是否大于或等于第二个操作数。</p>
+</li>
+<li><p>**小于等于 (<code>&lt;=</code>)**：检查第一个操作数是否小于或等于第二个操作数。</p>
+</li>
+<li><p>示例: </p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">y</span> <span class="operator">=</span> <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">boolean</span> <span class="variable">isEqual</span> <span class="operator">=</span> (x == y);      <span class="comment">// false</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">isNotEqual</span> <span class="operator">=</span> (x != y);   <span class="comment">// true</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">isGreaterThan</span> <span class="operator">=</span> (x &gt; y); <span class="comment">// false</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">isLessThan</span> <span class="operator">=</span> (x &lt; y);    <span class="comment">// true</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">isGreaterThanOrEqual</span> <span class="operator">=</span> (x &gt;= y); <span class="comment">// false</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">isLessThanOrEqual</span> <span class="operator">=</span> (x &lt;= y);    <span class="comment">// true</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>逻辑运算符</p>
+<p> 逻辑运算符用于组合多个布尔表达式，结果也是一个布尔值。</p>
+<ul>
+<li><p>**逻辑与 (<code>&amp;&amp;</code>)**：如果两个操作数都为 <code>true</code>，则结果为 <code>true</code>。</p>
+</li>
+<li><p>**逻辑或 (<code>||</code>)**：如果两个操作数中至少有一个为 <code>true</code>，则结果为 <code>true</code>。</p>
+</li>
+<li><p>**逻辑非 (<code>!</code>)**：反转操作数的布尔值。</p>
+</li>
+<li><p>示例: </p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">boolean</span> <span class="variable">p</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line"><span class="type">boolean</span> <span class="variable">q</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">boolean</span> <span class="variable">andResult</span> <span class="operator">=</span> (p &amp;&amp; q); <span class="comment">// false</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">orResult</span> <span class="operator">=</span> (p || q);  <span class="comment">// true</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">notResult</span> <span class="operator">=</span> !p;       <span class="comment">// false</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>位运算符</p>
+<p> 位运算符用于对二进制位进行操作。</p>
+<ul>
+<li><p>**按位与 (<code>&amp;</code>)**：对两个操作数的每一位进行与操作。</p>
+</li>
+<li><p>**按位或 (<code>|</code>)**：对两个操作数的每一位进行或操作。</p>
+</li>
+<li><p>**按位异或 (<code>^</code>)**：对两个操作数的每一位进行异或操作。</p>
+</li>
+<li><p>**按位非 (<code>~</code>)**：对操作数的每一位进行取反操作。</p>
+</li>
+<li><p>**左移 (<code>&lt;&lt;</code>)**：将操作数的二进制位向左移动指定的位数。</p>
+</li>
+<li><p>**右移 (<code>&gt;&gt;</code>)**：将操作数的二进制位向右移动指定的位数，高位补符号位。</p>
+</li>
+<li><p>**无符号右移 (<code>&gt;&gt;&gt;</code>)**：将操作数的二进制位向右移动指定的位数，高位补零</p>
+</li>
+<li><p>示例: </p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> <span class="number">5</span>;  <span class="comment">// 二进制: 0101</span></span><br><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">3</span>;  <span class="comment">// 二进制: 0011</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">andResult</span> <span class="operator">=</span> (m &amp; n); <span class="comment">// 0001 -&gt; 1</span></span><br><span class="line"><span class="type">int</span> <span class="variable">orResult</span> <span class="operator">=</span> (m | n);  <span class="comment">// 0111 -&gt; 7</span></span><br><span class="line"><span class="type">int</span> <span class="variable">xorResult</span> <span class="operator">=</span> (m ^ n); <span class="comment">// 0110 -&gt; 6</span></span><br><span class="line"><span class="type">int</span> <span class="variable">notResult</span> <span class="operator">=</span> ~m;      <span class="comment">// 11111111111111111111111111111010 -&gt; -6</span></span><br><span class="line"><span class="type">int</span> <span class="variable">leftShift</span> <span class="operator">=</span> (m &lt;&lt; <span class="number">1</span>); <span class="comment">// 1010 -&gt; 10</span></span><br><span class="line"><span class="type">int</span> <span class="variable">rightShift</span> <span class="operator">=</span> (m &gt;&gt; <span class="number">1</span>); <span class="comment">// 0010 -&gt; 2</span></span><br><span class="line"><span class="type">int</span> <span class="variable">unsignedRightShift</span> <span class="operator">=</span> (m &gt;&gt;&gt; <span class="number">1</span>); <span class="comment">// 0010 -&gt; 2</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>赋值运算符</p>
+<p> 赋值运算符用于将一个值赋给一个变量。</p>
+<ul>
+<li><p>**简单赋值 (<code>=</code>)**：将右边的值赋给左边的变量。</p>
+</li>
+<li><p>复合赋值运算符</p>
+<p>  ：结合了赋值和算术运算。</p>
+<ul>
+<li><p><code>+=</code>：加法赋值</p>
+</li>
+<li><p><code>-=</code>：减法赋值</p>
+</li>
+<li><p><code>*=</code>：乘法赋值</p>
+</li>
+<li><p><code>/=</code>：除法赋值</p>
+</li>
+<li><p><code>%=</code>：取模赋值</p>
+</li>
+<li><p><code>&amp;=</code>：按位与赋值</p>
+</li>
+<li><p><code>|=</code>：按位或赋值</p>
+</li>
+<li><p><code>^=</code>：按位异或赋值</p>
+</li>
+<li><p><code>&lt;&lt;=</code>：左移赋值</p>
+</li>
+<li><p><code>&gt;&gt;=</code>：右移赋值</p>
+</li>
+<li><p><code>&gt;&gt;&gt;=</code>：无符号右移赋值</p>
+</li>
+<li><p>示例: </p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">x += <span class="number">5</span>; <span class="comment">// 相当于 x = x + 5; x 现在是 15</span></span><br><span class="line">x -= <span class="number">3</span>; <span class="comment">// 相当于 x = x - 3; x 现在是 12</span></span><br><span class="line">x *= <span class="number">2</span>; <span class="comment">// 相当于 x = x * 2; x 现在是 24</span></span><br><span class="line">x /= <span class="number">4</span>; <span class="comment">// 相当于 x = x / 4; x 现在是 6</span></span><br><span class="line">x %= <span class="number">5</span>; <span class="comment">// 相当于 x = x % 5; x 现在是 1</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>条件运算符（三元运算符）</p>
+<p> 条件运算符（也称为三元运算符）根据条件的真假返回不同的值。</p>
+<ul>
+<li><p>**条件运算符 (<code>? :</code>)**：如果条件为 <code>true</code>，则返回第一个值；否则返回第二个值。</p>
+</li>
+<li><p>示例: </p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> <span class="number">20</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> (age &gt;= <span class="number">18</span>) ? <span class="string">&quot;成年&quot;</span> : <span class="string">&quot;未成年&quot;</span>;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出 &quot;成年&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>类型转换运算符</p>
+<p> 类型转换运算符用于在不同数据类型之间进行转换。</p>
+<ul>
+<li><p><strong>显式类型转换</strong>：将一个数据类型强制转换为另一个数据类型。</p>
+</li>
+<li><p><strong>隐式类型转换</strong>：编译器自动进行的类型转换。</p>
+</li>
+<li><p>示例: </p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">intValue</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line"><span class="type">double</span> <span class="variable">doubleValue</span> <span class="operator">=</span> intValue; <span class="comment">// 隐式类型转换</span></span><br><span class="line"></span><br><span class="line"><span class="type">double</span> <span class="variable">d</span> <span class="operator">=</span> <span class="number">10.5</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> (<span class="type">int</span>) d; <span class="comment">// 显式类型转换</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<h3 id="9-表达式"><a href="#9-表达式" class="headerlink" title="9. 表达式"></a>9. 表达式</h3><h4 id="9-1-表达式"><a href="#9-1-表达式" class="headerlink" title="9.1 表达式"></a>9.1 表达式</h4><p>符合一定语法规则的运算符和操作数的序列</p>
+<ol>
+<li>表达式的类型和值</li>
+<li>表达式的运算顺序</li>
+<li>三目条件运算符<br>     语法格式-&gt;<code>x ? y : z</code></li>
+</ol>
+<h3 id="10-变量的作用域"><a href="#10-变量的作用域" class="headerlink" title="10. 变量的作用域"></a>10. 变量的作用域</h3><ol>
+<li><p><strong>局部变量</strong>（Local Variable）：</p>
+<ul>
+<li><p>局部变量是在方法或代码块（如<code>for</code>循环或<code>if</code>语句）内部声明的变量。</p>
+</li>
+<li><p>局部变量只能在声明它的代码块中使用，当代码块结束后，局部变量的生命周期也结束。</p>
+</li>
+<li><p>局部变量必须在使用前初始化，否则编译器会报错。</p>
+</li>
+<li><p><strong>示例</strong>：</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">myMethod</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">10</span>; <span class="comment">// 局部变量x</span></span><br><span class="line">    System.out.println(x); <span class="comment">// 有效</span></span><br><span class="line">&#125;</span><br><span class="line">System.out.println(x); <span class="comment">// 无效，编译错误</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>成员变量</strong>（Field&#x2F;Instance Variable）：</p>
+<ul>
+<li><p>成员变量是定义在类内部但在方法外部的变量，通常每个对象都有自己的成员变量。</p>
+</li>
+<li><p>成员变量的作用域是整个类，在类的所有方法中都可以访问。</p>
+</li>
+<li><p>成员变量在类的实例创建时被初始化，其生命周期与对象的生命周期一致。</p>
+</li>
+<li><p><strong>示例</strong>：</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">5</span>; <span class="comment">// 成员变量</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">displayNum</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(num); <span class="comment">// 可以访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>类变量</strong>（Static Variable）：</p>
+<ul>
+<li><p>类变量是使用<code>static</code>关键字声明的变量，属于类本身，而不是类的实例（对象）。</p>
+</li>
+<li><p>类变量的生命周期是整个程序的运行期，所有对象共享同一个类变量。</p>
+</li>
+<li><p><strong>示例</strong>：</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="type">int</span> <span class="variable">staticNum</span> <span class="operator">=</span> <span class="number">10</span>; <span class="comment">// 类变量</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">displayStaticNum</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(staticNum); <span class="comment">// 通过类访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>方法参数</strong>（Parameter Variable）：</p>
+<ul>
+<li><p>方法参数是在方法声明中定义的，用于接收方法调用时传入的实际参数。</p>
+</li>
+<li><p>方法参数的作用域仅限于方法内部。</p>
+</li>
+<li><p><strong>示例</strong>：</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">myMethod</span><span class="params">(<span class="type">int</span> param)</span> &#123;</span><br><span class="line">    System.out.println(param); <span class="comment">// 参数param的作用域在方法内</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<h3 id="11-递归调用"><a href="#11-递归调用" class="headerlink" title="11. 递归调用"></a>11. 递归调用</h3><p>递归是一种直接或间接调用自身的方法。递归通常用于解决可以分解为相似的子问题的问题。在递归调用时，必须要有一个<strong>终止条件</strong>，否则会导致无限递归，从而引发栈溢出错误。</p>
+<ul>
+<li><p><strong>递归的基本结构</strong>：</p>
+<ol>
+<li><strong>终止条件</strong>：定义递归何时结束的条件。</li>
+<li><strong>递归调用</strong>：方法在某些情况下调用自身。</li>
+</ol>
+</li>
+<li><p><strong>示例</strong>：求阶乘的递归实现</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Factorial</span> &#123;</span><br><span class="line">    <span class="comment">// 阶乘方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">factorial</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>; <span class="comment">// 终止条件：n等于1时返回1</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> n * factorial(n - <span class="number">1</span>); <span class="comment">// 递归调用</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> factorial(<span class="number">5</span>); <span class="comment">// 调用递归方法</span></span><br><span class="line">        System.out.println(result); <span class="comment">// 输出120</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>递归的优缺点</strong>：</p>
+<ul>
+<li><strong>优点</strong>：递归简化了某些问题的解决方案，使代码更加简洁。</li>
+<li><strong>缺点</strong>：递归可能消耗较多的内存和时间，特别是当递归深度过大时，容易导致栈溢出。</li>
+</ul>
+</li>
+</ul>
+<p>在 Java 中，分支语句和循环语句是控制程序流程的重要工具。它们允许你根据条件执行不同的代码块，或者重复执行某段代码。下面是对 Java 中主要的分支语句和循环语句的详细介绍。</p>
+<h3 id="12-分支语句"><a href="#12-分支语句" class="headerlink" title="12. 分支语句"></a>12. 分支语句</h3><h4 id="1-if-语句"><a href="#1-if-语句" class="headerlink" title="1. if 语句"></a>1. <code>if</code> 语句</h4><p><code>if</code> 语句是最基本的条件分支语句，用于根据条件的真假来决定是否执行某段代码。</p>
+<h5 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (condition) &#123;</span><br><span class="line">    <span class="comment">// 执行代码块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="keyword">if</span> (x &gt; <span class="number">5</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;x 大于 5&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-if-else-语句"><a href="#2-if-else-语句" class="headerlink" title="2. if-else 语句"></a>2. <code>if-else</code> 语句</h4><p><code>if-else</code> 语句用于在条件为 <code>true</code> 时执行一个代码块，条件为 <code>false</code> 时执行另一个代码块。</p>
+<h5 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (condition) &#123;</span><br><span class="line">    <span class="comment">// 条件为 true 时执行的代码块</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 条件为 false 时执行的代码块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="keyword">if</span> (x &gt; <span class="number">5</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;x 大于 5&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;x 不大于 5&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-if-else-if-else-语句"><a href="#3-if-else-if-else-语句" class="headerlink" title="3. if-else if-else 语句"></a>3. <code>if-else if-else</code> 语句</h4><p><code>if-else if-else</code> 语句用于处理多个条件分支。</p>
+<h5 id="语法-2"><a href="#语法-2" class="headerlink" title="语法"></a>语法</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (condition1) &#123;</span><br><span class="line">    <span class="comment">// 条件1为 true 时执行的代码块</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (condition2) &#123;</span><br><span class="line">    <span class="comment">// 条件2为 true 时执行的代码块</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 其他情况下执行的代码块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="keyword">if</span> (x &gt; <span class="number">15</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;x 大于 15&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (x &gt; <span class="number">5</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;x 大于 5 但不大于 15&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;x 不大于 5&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-switch-语句"><a href="#4-switch-语句" class="headerlink" title="4. switch 语句"></a>4. <code>switch</code> 语句</h4><p><code>switch</code> 语句用于根据变量的值执行不同的代码块。它通常用于处理多个离散的值。</p>
+<h5 id="语法-3"><a href="#语法-3" class="headerlink" title="语法"></a>语法</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">switch</span> (expression) &#123;</span><br><span class="line">    <span class="keyword">case</span> value1:</span><br><span class="line">        <span class="comment">// 代码块1</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> value2:</span><br><span class="line">        <span class="comment">// 代码块2</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="comment">// 可以有多个 case</span></span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="comment">// 默认代码块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="示例-3"><a href="#示例-3" class="headerlink" title="示例"></a>示例</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">day</span> <span class="operator">=</span> <span class="number">3</span>;</span><br><span class="line"><span class="keyword">switch</span> (day) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        System.out.println(<span class="string">&quot;星期一&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        System.out.println(<span class="string">&quot;星期二&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        System.out.println(<span class="string">&quot;星期三&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">        System.out.println(<span class="string">&quot;星期四&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">        System.out.println(<span class="string">&quot;星期五&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line">        System.out.println(<span class="string">&quot;星期六&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">7</span>:</span><br><span class="line">        System.out.println(<span class="string">&quot;星期日&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        System.out.println(<span class="string">&quot;无效的天数&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="13-循环语句"><a href="#13-循环语句" class="headerlink" title="13. 循环语句"></a>13. 循环语句</h3><h4 id="1-for-循环"><a href="#1-for-循环" class="headerlink" title="1. for 循环"></a>1. <code>for</code> 循环</h4><p><code>for</code> 循环用于在已知次数的情况下重复执行某段代码。</p>
+<h5 id="语法-4"><a href="#语法-4" class="headerlink" title="语法"></a>语法</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (initialization; condition; increment/decrement) &#123;</span><br><span class="line">    <span class="comment">// 代码块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="示例-4"><a href="#示例-4" class="headerlink" title="示例"></a>示例</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;i 的值是: &quot;</span> + i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-while-循环"><a href="#2-while-循环" class="headerlink" title="2. while 循环"></a>2. <code>while</code> 循环</h4><p><code>while</code> 循环用于在条件为 <code>true</code> 时重复执行某段代码。</p>
+<h5 id="语法-5"><a href="#语法-5" class="headerlink" title="语法"></a>语法</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> (condition) &#123;</span><br><span class="line">    <span class="comment">// 代码块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="示例-5"><a href="#示例-5" class="headerlink" title="示例"></a>示例</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (i &lt; <span class="number">5</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;i 的值是: &quot;</span> + i);</span><br><span class="line">    i++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-do-while-循环"><a href="#3-do-while-循环" class="headerlink" title="3. do-while 循环"></a>3. <code>do-while</code> 循环</h4><p><code>do-while</code> 循环类似于 <code>while</code> 循环，但它是先执行一次代码块，然后再检查条件。</p>
+<h5 id="语法-6"><a href="#语法-6" class="headerlink" title="语法"></a>语法</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="comment">// 代码块</span></span><br><span class="line">&#125; <span class="keyword">while</span> (condition);</span><br></pre></td></tr></table></figure>
+
+<h5 id="示例-6"><a href="#示例-6" class="headerlink" title="示例"></a>示例</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;i 的值是: &quot;</span> + i);</span><br><span class="line">    i++;</span><br><span class="line">&#125; <span class="keyword">while</span> (i &lt; <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-for-each-循环"><a href="#4-for-each-循环" class="headerlink" title="4. for-each 循环"></a>4. <code>for-each</code> 循环</h4><p><code>for-each</code> 循环（也称为增强型 <code>for</code> 循环）用于遍历数组或集合中的每个元素。</p>
+<h5 id="语法-7"><a href="#语法-7" class="headerlink" title="语法"></a>语法</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (element : array/collection) &#123;</span><br><span class="line">    <span class="comment">// 代码块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="示例-7"><a href="#示例-7" class="headerlink" title="示例"></a>示例</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>[] numbers = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> number : numbers) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;数字是: &quot;</span> + number);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="控制循环的语句"><a href="#控制循环的语句" class="headerlink" title="控制循环的语句"></a>控制循环的语句</h3><h4 id="1-break-语句"><a href="#1-break-语句" class="headerlink" title="1. break 语句"></a>1. <code>break</code> 语句</h4><p><code>break</code> 语句用于立即退出循环或 <code>switch</code> 语句。</p>
+<h5 id="示例-8"><a href="#示例-8" class="headerlink" title="示例"></a>示例</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (i == <span class="number">5</span>) &#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">&quot;i 的值是: &quot;</span> + i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-continue-语句"><a href="#2-continue-语句" class="headerlink" title="2. continue 语句"></a>2. <code>continue</code> 语句</h4><p><code>continue</code> 语句用于跳过当前循环的剩余部分，直接进入下一次循环。</p>
+<h5 id="示例-9"><a href="#示例-9" class="headerlink" title="示例"></a>示例</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">&quot;i 的值是: &quot;</span> + i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li><strong>分支语句</strong>：<code>if</code>, <code>if-else</code>, <code>if-else if-else</code>, <code>switch</code> 用于根据条件执行不同的代码块。</li>
+<li><strong>循环语句</strong>：<code>for</code>, <code>while</code>, <code>do-while</code>, <code>for-each</code> 用于重复执行某段代码。</li>
+<li><strong>控制循环的语句</strong>：<code>break</code> 用于退出循环，<code>continue</code> 用于跳过当前循环的剩余部分。</li>
+</ul>
+<p>掌握这些分支和循环语句，可以帮助你编写出更加灵活和强大的 Java 程序。希望这些信息对你有所帮助！</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java-3</title>
+    <url>/2024/09/30/2024-09-30-Java-3/</url>
+    <content><![CDATA[<h3 id="标准关键字"><a href="#标准关键字" class="headerlink" title="标准关键字"></a>标准关键字</h3><ul>
+<li><strong>abstract</strong> - 用于声明抽象类或方法。抽象类不能被实例化，而抽象方法没有实现。</li>
+<li><strong>assert</strong> - 用于断言，在开发阶段帮助检查假设条件是否为真。</li>
+<li><strong>boolean</strong> - 基本数据类型，表示真或假的值。</li>
+<li><strong>break</strong> - 用于终止循环或 <code>switch</code> 语句。</li>
+<li><strong>byte</strong> - 基本数据类型，8位有符号整数。</li>
+<li><strong>case</strong> - 用于 <code>switch</code> 语句中的分支。</li>
+<li><strong>catch</strong> - 与 <code>try</code> 结合使用来捕获异常。</li>
+<li><strong>char</strong> - 基本数据类型，单个16位Unicode字符。</li>
+<li><strong>class</strong> - 定义一个新类。</li>
+<li><strong>continue</strong> - 跳过当前循环体剩余部分并继续下一次迭代。</li>
+<li><strong>default</strong> - 在 <code>switch</code> 语句中提供默认情况；在接口中定义默认方法。</li>
+<li><strong>do</strong> - 开始一个 <code>do-while</code> 循环。</li>
+<li><strong>double</strong> - 基本数据类型，双精度浮点数。</li>
+<li><strong>else</strong> - 与 <code>if</code> 一起使用，当 <code>if</code> 条件不成立时执行的代码块。</li>
+<li><strong>enum</strong> - 定义枚举类型。</li>
+<li><strong>extends</strong> - 表示一个类继承另一个类或一个接口扩展另一个接口。</li>
+<li><strong>final</strong> - 用于声明不可修改的变量、不可继承的类或不可重写的方法。</li>
+<li><strong>finally</strong> - 与 <code>try-catch</code> 结构一起使用，确保某些代码无论是否有异常抛出都会被执行。</li>
+<li><strong>float</strong> - 基本数据类型，单精度浮点数。</li>
+<li><strong>for</strong> - 用于创建循环。</li>
+<li><strong>if</strong> - 用于条件判断。</li>
+<li><strong>implements</strong> - 表示一个类实现了某个接口。</li>
+<li><strong>import</strong> - 导入其他包中的类或静态成员。</li>
+<li><strong>instanceof</strong> - 检查对象是否属于特定类型。</li>
+<li><strong>int</strong> - 基本数据类型，32位有符号整数。</li>
+<li><strong>interface</strong> - 定义一个接口。</li>
+<li><strong>long</strong> - 基本数据类型，64位有符号整数。</li>
+<li><strong>native</strong> - 表示该方法用其他语言实现。</li>
+<li><strong>new</strong> - 创建一个新的对象实例。</li>
+<li><strong>package</strong> - 定义一个包。</li>
+<li><strong>private</strong> - 访问修饰符，限制对类、方法或变量的访问。</li>
+<li><strong>protected</strong> - 访问修饰符，允许子类或同一包内的类访问。</li>
+<li><strong>public</strong> - 访问修饰符，不限制访问。</li>
+<li><strong>return</strong> - 从方法返回值。</li>
+<li><strong>short</strong> - 基本数据类型，16位有符号整数。</li>
+<li><strong>static</strong> - 定义静态变量或方法，它们属于类而不是类的实例。</li>
+<li><strong>strictfp</strong> - 确保浮点运算遵循IEEE 754标准。</li>
+<li><strong>super</strong> - 引用当前对象的父类。</li>
+<li><strong>switch</strong> - 用于多路分支选择。</li>
+<li><strong>synchronized</strong> - 用于控制多线程对共享资源的访问。</li>
+<li><strong>this</strong> - 引用当前对象的实例。</li>
+<li><strong>throw</strong> - 抛出一个异常。</li>
+<li><strong>throws</strong> - 声明方法可能抛出的异常。</li>
+<li><strong>transient</strong> - 标记不应被序列化的变量。</li>
+<li><strong>try</strong> - 尝试执行一段可能会抛出异常的代码。</li>
+<li><strong>void</strong> - 表示方法不返回任何值。</li>
+<li><strong>volatile</strong> - 确保变量的修改对所有线程可见。</li>
+<li><strong>while</strong> - 用于创建循环。</li>
+</ul>
+<h3 id="预留关键字（不常用）"><a href="#预留关键字（不常用）" class="headerlink" title="预留关键字（不常用）"></a>预留关键字（不常用）</h3><ul>
+<li><strong>const</strong> - 保留字，但未使用。</li>
+<li><strong>goto</strong> - 保留字，但未使用。</li>
+</ul>
+<p>这些关键字是构成 Java 语言的基础，每个都有其特定的功能和用途。在编写 Java 代码时，了解这些关键字及其用法是非常重要的。</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
   </entry>
   <entry>
     <title>windows桌面美化</title>
@@ -72,5 +643,32 @@
       <tags>
         <tag>windows</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>docker镜像挂了之后的解决方法</title>
+    <url>/2024/09/29/docker%E9%95%9C%E5%83%8F%E6%8C%82%E4%BA%86%E4%B9%8B%E5%90%8E%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h2><p>使用Dockerfile build镜像的时候第一步的FROM全部超时, 环境都加载不了肯定就没办法运行程序了</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决:"></a>解决:</h2><h3 id="1-手动下载所需的环境镜像"><a href="#1-手动下载所需的环境镜像" class="headerlink" title="1. 手动下载所需的环境镜像"></a>1. 手动下载所需的环境镜像</h3><ol>
+<li>我使用的是<code>python:3.12.3-alpine</code> , 需要在科学上网的机器上下载该镜像</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull python:3.12.3-alpine</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>导出该镜像</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker save -o python-3.12.3-alpine.tar python:3.12.3-alpine</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>把<code>python-3.12.3-alpine.tar</code>上传到云服务器</p>
+</li>
+<li><p>加载镜像</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker load -i python-3.12.3-alpine.tar</span><br><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>这是就可以正常构建了, 因为docker在本地有镜像是会默认使用本地的, 本地没有镜像时才会访问docker hub</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd zuanboot</span><br><span class="line">docker build -t zuanboot .</span><br><span class="line">docker run -d --name zuanboot -v $(pwd):/app -p 8900:58000 zuanboot:latest</span><br></pre></td></tr></table></figure>]]></content>
   </entry>
 </search>
