@@ -207,7 +207,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-09-30 10:03:32" itemprop="dateModified" datetime="2024-09-30T10:03:32+08:00">2024-09-30</time>
+                <time title="修改时间：2024-10-11 10:22:19" itemprop="dateModified" datetime="2024-10-11T10:22:19+08:00">2024-10-11</time>
               </span>
 
           
@@ -263,19 +263,7 @@
 <li><strong>垃圾回收（Garbage Collection）</strong>：JVM管理对象的内存分配和回收，自动处理对象的生命周期，防止内存泄漏。通过标记-清除（Mark-and-Sweep）、标记-压缩等算法实现。</li>
 <li><strong>类加载器（ClassLoader）</strong>：Java使用类加载器动态加载类到内存。类加载器负责将字节码文件加载到JVM内存，并对其进行字节码校验，保证代码的正确性和安全性。</li>
 </ul>
-<h2 id="Java运行环境的安装与配置"><a href="#Java运行环境的安装与配置" class="headerlink" title="Java运行环境的安装与配置"></a>Java运行环境的安装与配置</h2><h2 id="windows部署JDK"><a href="#windows部署JDK" class="headerlink" title="windows部署JDK"></a>windows部署JDK</h2><ol>
-<li><p><a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/downloads/#java11-windows">下载java11</a></p>
-</li>
-<li><p>选择<code>jdk-11.0.24_windows-x64_bin.exe</code>并安装</p>
-</li>
-<li><p>配置电脑环境变量</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">变量名: JAVA_HOME</span><br><span class="line">变量值: C:\Program Files\Java\jdk-11 # jdk的安装位置</span><br></pre></td></tr></table></figure>
-
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">变量名: PATH</span><br><span class="line">变量值: %JAVA_HOME%\bin;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>打开命令行</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 执行:</span><br><span class="line">java -version</span><br><span class="line"></span><br><span class="line"># 输出:</span><br><span class="line">java version &quot;11.0.22&quot; 2024-01-16 LTS</span><br><span class="line">Java(TM) SE Runtime Environment 18.9 (build 11.0.22+9-LTS-219)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11.0.22+9-LTS-219, mixed mode)</span><br></pre></td></tr></table></figure></li>
-</ol>
+<h2 id="Java运行环境的安装与配置"><a href="#Java运行环境的安装与配置" class="headerlink" title="Java运行环境的安装与配置"></a>Java运行环境的安装与配置</h2><h2 id="windows部署JDK"><a href="#windows部署JDK" class="headerlink" title="windows部署JDK"></a>windows部署JDK</h2><p><a target="_blank" rel="noopener" href="https://meverikc.github.io/2024/10/10/2024-10-10-Java-JDK%E5%AE%89%E8%A3%85/">Java-JDK安装教程</a></p>
 <h3 id="现在可以执行第一个程序了"><a href="#现在可以执行第一个程序了" class="headerlink" title="现在可以执行第一个程序了"></a>现在可以执行第一个程序了</h3><ol>
 <li><p>新建一个<code>Hello.txt</code>, 在文件内输入</p>
  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Hello</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.print(<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
