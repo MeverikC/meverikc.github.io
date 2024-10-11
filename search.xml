@@ -20,6 +20,139 @@
       </tags>
   </entry>
   <entry>
+    <title>Java-1</title>
+    <url>/2024/09/29/2024-09-29-Java-1/</url>
+    <content><![CDATA[<h2 id="计算机语言的历史及Java的历史地位"><a href="#计算机语言的历史及Java的历史地位" class="headerlink" title="计算机语言的历史及Java的历史地位"></a>计算机语言的历史及Java的历史地位</h2><h3 id="第一代语言"><a href="#第一代语言" class="headerlink" title="第一代语言"></a>第一代语言</h3><ul>
+<li><strong>打孔机 - 纯机器语言</strong></li>
+</ul>
+<h3 id="第二代语言"><a href="#第二代语言" class="headerlink" title="第二代语言"></a>第二代语言</h3><ul>
+<li><strong>汇编</strong></li>
+</ul>
+<h3 id="第三代语言"><a href="#第三代语言" class="headerlink" title="第三代语言"></a>第三代语言</h3><ul>
+<li><strong>C、Pascal、Fortran</strong>：面向过程的语言</li>
+<li>**C++**：面向过程&#x2F;面向对象</li>
+<li><strong>Java</strong>：跨平台的纯面向对象语言</li>
+<li><strong>.NET</strong>：跨语言的平台</li>
+</ul>
+<h2 id="Java自身的发展史"><a href="#Java自身的发展史" class="headerlink" title="Java自身的发展史"></a>Java自身的发展史</h2><h3 id="起源与初期发展"><a href="#起源与初期发展" class="headerlink" title="起源与初期发展"></a>起源与初期发展</h3><p>Java的开发始于1991年，由James Gosling领导的Sun Microsystems团队提出，最初的名字为“Oak”，目的是用于消费电子设备中的嵌入式系统。1995年，Java 1.0正式发布，并成为面向互联网和企业级应用开发的编程语言。</p>
+<h3 id="关键版本演变"><a href="#关键版本演变" class="headerlink" title="关键版本演变"></a>关键版本演变</h3><ul>
+<li>**Java 1.0 (1995)**：Java初次发布，具备“编写一次，随处运行”的核心理念。</li>
+<li>**Java 2 (1998)**：引入了三大平台版本：J2SE（标准版）、J2EE（企业版）、J2ME（移动版），增强了面向企业和移动设备的开发。</li>
+<li>**Java 5 (2004)**：引入泛型、枚举、增强型for循环等语言特性，极大提升了语言的灵活性与表达力。</li>
+<li>**Java 8 (2014)**：最具革命性的一次更新，引入了Lambda表达式、Streams API等新特性，极大提升了并发和函数式编程的支持。</li>
+<li><strong>Java 9及以后</strong>：Java 9推出模块化系统（Project Jigsaw），Java 10引入局部变量类型推断，Java 11成为长期支持版（LTS）。</li>
+</ul>
+<h3 id="Oracle收购与开源"><a href="#Oracle收购与开源" class="headerlink" title="Oracle收购与开源"></a>Oracle收购与开源</h3><p>2010年，Oracle收购了Sun Microsystems，并接管了Java的发展。Java逐步转向开源社区驱动，Java SE平台下的OpenJDK成为Java的官方参考实现。</p>
+<h2 id="Java体系"><a href="#Java体系" class="headerlink" title="Java体系"></a>Java体系</h2><ul>
+<li><strong>Java SE（Standard Edition）</strong>：提供核心的Java库和API，涵盖语言基础、数据结构、并发、多线程、文件处理等，适用于桌面应用和核心后端开发。</li>
+<li><strong>Java EE（Enterprise Edition）</strong>：侧重于企业级应用开发，提供了分布式计算、Web服务、数据库交互、JMS消息处理等特性。</li>
+<li><strong>Java ME（Micro Edition）</strong>：适用于嵌入式和移动设备的精简版Java，过去用于开发功能手机和嵌入式系统。</li>
+<li><strong>JavaFX</strong>：用于构建现代用户界面应用，替代Swing和AWT，适用于桌面和移动应用的UI开发。</li>
+</ul>
+<h2 id="Java的特点"><a href="#Java的特点" class="headerlink" title="Java的特点"></a>Java的特点</h2><ul>
+<li><strong>跨平台性（“一次编写，随处运行”）</strong>：Java程序通过编译成字节码，依赖于JVM（Java虚拟机）运行，确保在不同操作系统上可移植。</li>
+<li><strong>面向对象</strong>：Java完全支持面向对象的编程理念，具有封装、继承和多态等特性，便于构建模块化和可扩展的应用。</li>
+<li><strong>安全性</strong>：Java提供了强大的安全机制，如字节码校验、沙箱模型和权限管理，尤其适用于网络环境中的应用程序。</li>
+<li><strong>垃圾回收机制</strong>：Java自动管理内存分配和释放，通过垃圾回收器（Garbage Collector）有效回收不再使用的对象，避免内存泄漏。</li>
+<li><strong>多线程支持</strong>：Java原生支持多线程编程，允许开发者在程序中处理多个任务，提高程序的执行效率。</li>
+<li><strong>丰富的标准库</strong>：Java提供了一个庞大的标准类库，涵盖I&#x2F;O、网络编程、数据结构、并发控制、GUI开发等领域。</li>
+</ul>
+<h2 id="Java的运行机制"><a href="#Java的运行机制" class="headerlink" title="Java的运行机制"></a>Java的运行机制</h2><ul>
+<li><strong>编译过程</strong>：Java代码首先被编译为中间字节码（bytecode），存储在<code>.class</code>文件中。字节码独立于底层硬件和操作系统。</li>
+<li><strong>JVM（Java虚拟机）</strong>：Java程序的字节码在各个平台的JVM中运行。JVM负责解释字节码并将其转换为机器代码，以便在特定平台上执行。</li>
+<li><strong>JIT（即时编译器）</strong>：JVM内含的JIT编译器在运行时将频繁执行的字节码块动态编译为本地机器代码，从而提高性能。</li>
+<li><strong>垃圾回收（Garbage Collection）</strong>：JVM管理对象的内存分配和回收，自动处理对象的生命周期，防止内存泄漏。通过标记-清除（Mark-and-Sweep）、标记-压缩等算法实现。</li>
+<li><strong>类加载器（ClassLoader）</strong>：Java使用类加载器动态加载类到内存。类加载器负责将字节码文件加载到JVM内存，并对其进行字节码校验，保证代码的正确性和安全性。</li>
+</ul>
+<h2 id="Java运行环境的安装与配置"><a href="#Java运行环境的安装与配置" class="headerlink" title="Java运行环境的安装与配置"></a>Java运行环境的安装与配置</h2><h2 id="windows部署JDK"><a href="#windows部署JDK" class="headerlink" title="windows部署JDK"></a>windows部署JDK</h2><p><a href="https://meverikc.github.io/2024/10/10/2024-10-10-Java-JDK%E5%AE%89%E8%A3%85/">Java-JDK安装教程</a></p>
+<h3 id="现在可以执行第一个程序了"><a href="#现在可以执行第一个程序了" class="headerlink" title="现在可以执行第一个程序了"></a>现在可以执行第一个程序了</h3><ol>
+<li><p>新建一个<code>Hello.txt</code>, 在文件内输入</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Hello</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.print(<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>文件名后缀改为<code>.java</code></p>
+</li>
+<li><p>在命令行执行: </p>
+ <figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">javac Hello.java</span><br><span class="line">java Hello</span><br><span class="line"></span><br><span class="line"># 命令行输出:</span><br><span class="line">Hello, World!</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意:</strong></p>
+<ol>
+<li><code>javac</code>是对<code>Hello.java</code>文件进行编译生成可执行的<code>.class</code>文件的命令, 此时直接在此执行对应的</li>
+<li><code>java</code>是执行程序的命令</li>
+<li>文件名与类名必须相同</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java-3</title>
+    <url>/2024/09/30/2024-09-30-Java-3/</url>
+    <content><![CDATA[<h3 id="标准关键字"><a href="#标准关键字" class="headerlink" title="标准关键字"></a>标准关键字</h3><ul>
+<li><strong>abstract</strong> - 用于声明抽象类或方法。抽象类不能被实例化，而抽象方法没有实现。</li>
+<li><strong>assert</strong> - 用于断言，在开发阶段帮助检查假设条件是否为真。</li>
+<li><strong>boolean</strong> - 基本数据类型，表示真或假的值。</li>
+<li><strong>break</strong> - 用于终止循环或 <code>switch</code> 语句。</li>
+<li><strong>byte</strong> - 基本数据类型，8位有符号整数。</li>
+<li><strong>case</strong> - 用于 <code>switch</code> 语句中的分支。</li>
+<li><strong>catch</strong> - 与 <code>try</code> 结合使用来捕获异常。</li>
+<li><strong>char</strong> - 基本数据类型，单个16位Unicode字符。</li>
+<li><strong>class</strong> - 定义一个新类。</li>
+<li><strong>continue</strong> - 跳过当前循环体剩余部分并继续下一次迭代。</li>
+<li><strong>default</strong> - 在 <code>switch</code> 语句中提供默认情况；在接口中定义默认方法。</li>
+<li><strong>do</strong> - 开始一个 <code>do-while</code> 循环。</li>
+<li><strong>double</strong> - 基本数据类型，双精度浮点数。</li>
+<li><strong>else</strong> - 与 <code>if</code> 一起使用，当 <code>if</code> 条件不成立时执行的代码块。</li>
+<li><strong>enum</strong> - 定义枚举类型。</li>
+<li><strong>extends</strong> - 表示一个类继承另一个类或一个接口扩展另一个接口。</li>
+<li><strong>final</strong> - 用于声明不可修改的变量、不可继承的类或不可重写的方法。</li>
+<li><strong>finally</strong> - 与 <code>try-catch</code> 结构一起使用，确保某些代码无论是否有异常抛出都会被执行。</li>
+<li><strong>float</strong> - 基本数据类型，单精度浮点数。</li>
+<li><strong>for</strong> - 用于创建循环。</li>
+<li><strong>if</strong> - 用于条件判断。</li>
+<li><strong>implements</strong> - 表示一个类实现了某个接口。</li>
+<li><strong>import</strong> - 导入其他包中的类或静态成员。</li>
+<li><strong>instanceof</strong> - 检查对象是否属于特定类型。</li>
+<li><strong>int</strong> - 基本数据类型，32位有符号整数。</li>
+<li><strong>interface</strong> - 定义一个接口。</li>
+<li><strong>long</strong> - 基本数据类型，64位有符号整数。</li>
+<li><strong>native</strong> - 表示该方法用其他语言实现。</li>
+<li><strong>new</strong> - 创建一个新的对象实例。</li>
+<li><strong>package</strong> - 定义一个包。</li>
+<li><strong>private</strong> - 访问修饰符，限制对类、方法或变量的访问。</li>
+<li><strong>protected</strong> - 访问修饰符，允许子类或同一包内的类访问。</li>
+<li><strong>public</strong> - 访问修饰符，不限制访问。</li>
+<li><strong>return</strong> - 从方法返回值。</li>
+<li><strong>short</strong> - 基本数据类型，16位有符号整数。</li>
+<li><strong>static</strong> - 定义静态变量或方法，它们属于类而不是类的实例。</li>
+<li><strong>strictfp</strong> - 确保浮点运算遵循IEEE 754标准。</li>
+<li><strong>super</strong> - 引用当前对象的父类。</li>
+<li><strong>switch</strong> - 用于多路分支选择。</li>
+<li><strong>synchronized</strong> - 用于控制多线程对共享资源的访问。</li>
+<li><strong>this</strong> - 引用当前对象的实例。</li>
+<li><strong>throw</strong> - 抛出一个异常。</li>
+<li><strong>throws</strong> - 声明方法可能抛出的异常。</li>
+<li><strong>transient</strong> - 标记不应被序列化的变量。</li>
+<li><strong>try</strong> - 尝试执行一段可能会抛出异常的代码。</li>
+<li><strong>void</strong> - 表示方法不返回任何值。</li>
+<li><strong>volatile</strong> - 确保变量的修改对所有线程可见。</li>
+<li><strong>while</strong> - 用于创建循环。</li>
+</ul>
+<h3 id="预留关键字（不常用）"><a href="#预留关键字（不常用）" class="headerlink" title="预留关键字（不常用）"></a>预留关键字（不常用）</h3><ul>
+<li><strong>const</strong> - 保留字，但未使用。</li>
+<li><strong>goto</strong> - 保留字，但未使用。</li>
+</ul>
+<p>这些关键字是构成 Java 语言的基础，每个都有其特定的功能和用途。在编写 Java 代码时，了解这些关键字及其用法是非常重要的。</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java-2</title>
     <url>/2024/09/30/2024-09-30-Java-2/</url>
     <content><![CDATA[<h2 id="Java编程认识"><a href="#Java编程认识" class="headerlink" title="Java编程认识"></a>Java编程认识</h2><h3 id="1-Java-Application初步"><a href="#1-Java-Application初步" class="headerlink" title="1.  Java Application初步"></a>1.  Java Application初步</h3><ol>
@@ -467,139 +600,6 @@
 <li><strong>控制循环的语句</strong>：<code>break</code> 用于退出循环，<code>continue</code> 用于跳过当前循环的剩余部分。</li>
 </ul>
 <p>掌握这些分支和循环语句，可以帮助你编写出更加灵活和强大的 Java 程序。希望这些信息对你有所帮助！</p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java-3</title>
-    <url>/2024/09/30/2024-09-30-Java-3/</url>
-    <content><![CDATA[<h3 id="标准关键字"><a href="#标准关键字" class="headerlink" title="标准关键字"></a>标准关键字</h3><ul>
-<li><strong>abstract</strong> - 用于声明抽象类或方法。抽象类不能被实例化，而抽象方法没有实现。</li>
-<li><strong>assert</strong> - 用于断言，在开发阶段帮助检查假设条件是否为真。</li>
-<li><strong>boolean</strong> - 基本数据类型，表示真或假的值。</li>
-<li><strong>break</strong> - 用于终止循环或 <code>switch</code> 语句。</li>
-<li><strong>byte</strong> - 基本数据类型，8位有符号整数。</li>
-<li><strong>case</strong> - 用于 <code>switch</code> 语句中的分支。</li>
-<li><strong>catch</strong> - 与 <code>try</code> 结合使用来捕获异常。</li>
-<li><strong>char</strong> - 基本数据类型，单个16位Unicode字符。</li>
-<li><strong>class</strong> - 定义一个新类。</li>
-<li><strong>continue</strong> - 跳过当前循环体剩余部分并继续下一次迭代。</li>
-<li><strong>default</strong> - 在 <code>switch</code> 语句中提供默认情况；在接口中定义默认方法。</li>
-<li><strong>do</strong> - 开始一个 <code>do-while</code> 循环。</li>
-<li><strong>double</strong> - 基本数据类型，双精度浮点数。</li>
-<li><strong>else</strong> - 与 <code>if</code> 一起使用，当 <code>if</code> 条件不成立时执行的代码块。</li>
-<li><strong>enum</strong> - 定义枚举类型。</li>
-<li><strong>extends</strong> - 表示一个类继承另一个类或一个接口扩展另一个接口。</li>
-<li><strong>final</strong> - 用于声明不可修改的变量、不可继承的类或不可重写的方法。</li>
-<li><strong>finally</strong> - 与 <code>try-catch</code> 结构一起使用，确保某些代码无论是否有异常抛出都会被执行。</li>
-<li><strong>float</strong> - 基本数据类型，单精度浮点数。</li>
-<li><strong>for</strong> - 用于创建循环。</li>
-<li><strong>if</strong> - 用于条件判断。</li>
-<li><strong>implements</strong> - 表示一个类实现了某个接口。</li>
-<li><strong>import</strong> - 导入其他包中的类或静态成员。</li>
-<li><strong>instanceof</strong> - 检查对象是否属于特定类型。</li>
-<li><strong>int</strong> - 基本数据类型，32位有符号整数。</li>
-<li><strong>interface</strong> - 定义一个接口。</li>
-<li><strong>long</strong> - 基本数据类型，64位有符号整数。</li>
-<li><strong>native</strong> - 表示该方法用其他语言实现。</li>
-<li><strong>new</strong> - 创建一个新的对象实例。</li>
-<li><strong>package</strong> - 定义一个包。</li>
-<li><strong>private</strong> - 访问修饰符，限制对类、方法或变量的访问。</li>
-<li><strong>protected</strong> - 访问修饰符，允许子类或同一包内的类访问。</li>
-<li><strong>public</strong> - 访问修饰符，不限制访问。</li>
-<li><strong>return</strong> - 从方法返回值。</li>
-<li><strong>short</strong> - 基本数据类型，16位有符号整数。</li>
-<li><strong>static</strong> - 定义静态变量或方法，它们属于类而不是类的实例。</li>
-<li><strong>strictfp</strong> - 确保浮点运算遵循IEEE 754标准。</li>
-<li><strong>super</strong> - 引用当前对象的父类。</li>
-<li><strong>switch</strong> - 用于多路分支选择。</li>
-<li><strong>synchronized</strong> - 用于控制多线程对共享资源的访问。</li>
-<li><strong>this</strong> - 引用当前对象的实例。</li>
-<li><strong>throw</strong> - 抛出一个异常。</li>
-<li><strong>throws</strong> - 声明方法可能抛出的异常。</li>
-<li><strong>transient</strong> - 标记不应被序列化的变量。</li>
-<li><strong>try</strong> - 尝试执行一段可能会抛出异常的代码。</li>
-<li><strong>void</strong> - 表示方法不返回任何值。</li>
-<li><strong>volatile</strong> - 确保变量的修改对所有线程可见。</li>
-<li><strong>while</strong> - 用于创建循环。</li>
-</ul>
-<h3 id="预留关键字（不常用）"><a href="#预留关键字（不常用）" class="headerlink" title="预留关键字（不常用）"></a>预留关键字（不常用）</h3><ul>
-<li><strong>const</strong> - 保留字，但未使用。</li>
-<li><strong>goto</strong> - 保留字，但未使用。</li>
-</ul>
-<p>这些关键字是构成 Java 语言的基础，每个都有其特定的功能和用途。在编写 Java 代码时，了解这些关键字及其用法是非常重要的。</p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java-1</title>
-    <url>/2024/09/29/2024-09-29-Java-1/</url>
-    <content><![CDATA[<h2 id="计算机语言的历史及Java的历史地位"><a href="#计算机语言的历史及Java的历史地位" class="headerlink" title="计算机语言的历史及Java的历史地位"></a>计算机语言的历史及Java的历史地位</h2><h3 id="第一代语言"><a href="#第一代语言" class="headerlink" title="第一代语言"></a>第一代语言</h3><ul>
-<li><strong>打孔机 - 纯机器语言</strong></li>
-</ul>
-<h3 id="第二代语言"><a href="#第二代语言" class="headerlink" title="第二代语言"></a>第二代语言</h3><ul>
-<li><strong>汇编</strong></li>
-</ul>
-<h3 id="第三代语言"><a href="#第三代语言" class="headerlink" title="第三代语言"></a>第三代语言</h3><ul>
-<li><strong>C、Pascal、Fortran</strong>：面向过程的语言</li>
-<li>**C++**：面向过程&#x2F;面向对象</li>
-<li><strong>Java</strong>：跨平台的纯面向对象语言</li>
-<li><strong>.NET</strong>：跨语言的平台</li>
-</ul>
-<h2 id="Java自身的发展史"><a href="#Java自身的发展史" class="headerlink" title="Java自身的发展史"></a>Java自身的发展史</h2><h3 id="起源与初期发展"><a href="#起源与初期发展" class="headerlink" title="起源与初期发展"></a>起源与初期发展</h3><p>Java的开发始于1991年，由James Gosling领导的Sun Microsystems团队提出，最初的名字为“Oak”，目的是用于消费电子设备中的嵌入式系统。1995年，Java 1.0正式发布，并成为面向互联网和企业级应用开发的编程语言。</p>
-<h3 id="关键版本演变"><a href="#关键版本演变" class="headerlink" title="关键版本演变"></a>关键版本演变</h3><ul>
-<li>**Java 1.0 (1995)**：Java初次发布，具备“编写一次，随处运行”的核心理念。</li>
-<li>**Java 2 (1998)**：引入了三大平台版本：J2SE（标准版）、J2EE（企业版）、J2ME（移动版），增强了面向企业和移动设备的开发。</li>
-<li>**Java 5 (2004)**：引入泛型、枚举、增强型for循环等语言特性，极大提升了语言的灵活性与表达力。</li>
-<li>**Java 8 (2014)**：最具革命性的一次更新，引入了Lambda表达式、Streams API等新特性，极大提升了并发和函数式编程的支持。</li>
-<li><strong>Java 9及以后</strong>：Java 9推出模块化系统（Project Jigsaw），Java 10引入局部变量类型推断，Java 11成为长期支持版（LTS）。</li>
-</ul>
-<h3 id="Oracle收购与开源"><a href="#Oracle收购与开源" class="headerlink" title="Oracle收购与开源"></a>Oracle收购与开源</h3><p>2010年，Oracle收购了Sun Microsystems，并接管了Java的发展。Java逐步转向开源社区驱动，Java SE平台下的OpenJDK成为Java的官方参考实现。</p>
-<h2 id="Java体系"><a href="#Java体系" class="headerlink" title="Java体系"></a>Java体系</h2><ul>
-<li><strong>Java SE（Standard Edition）</strong>：提供核心的Java库和API，涵盖语言基础、数据结构、并发、多线程、文件处理等，适用于桌面应用和核心后端开发。</li>
-<li><strong>Java EE（Enterprise Edition）</strong>：侧重于企业级应用开发，提供了分布式计算、Web服务、数据库交互、JMS消息处理等特性。</li>
-<li><strong>Java ME（Micro Edition）</strong>：适用于嵌入式和移动设备的精简版Java，过去用于开发功能手机和嵌入式系统。</li>
-<li><strong>JavaFX</strong>：用于构建现代用户界面应用，替代Swing和AWT，适用于桌面和移动应用的UI开发。</li>
-</ul>
-<h2 id="Java的特点"><a href="#Java的特点" class="headerlink" title="Java的特点"></a>Java的特点</h2><ul>
-<li><strong>跨平台性（“一次编写，随处运行”）</strong>：Java程序通过编译成字节码，依赖于JVM（Java虚拟机）运行，确保在不同操作系统上可移植。</li>
-<li><strong>面向对象</strong>：Java完全支持面向对象的编程理念，具有封装、继承和多态等特性，便于构建模块化和可扩展的应用。</li>
-<li><strong>安全性</strong>：Java提供了强大的安全机制，如字节码校验、沙箱模型和权限管理，尤其适用于网络环境中的应用程序。</li>
-<li><strong>垃圾回收机制</strong>：Java自动管理内存分配和释放，通过垃圾回收器（Garbage Collector）有效回收不再使用的对象，避免内存泄漏。</li>
-<li><strong>多线程支持</strong>：Java原生支持多线程编程，允许开发者在程序中处理多个任务，提高程序的执行效率。</li>
-<li><strong>丰富的标准库</strong>：Java提供了一个庞大的标准类库，涵盖I&#x2F;O、网络编程、数据结构、并发控制、GUI开发等领域。</li>
-</ul>
-<h2 id="Java的运行机制"><a href="#Java的运行机制" class="headerlink" title="Java的运行机制"></a>Java的运行机制</h2><ul>
-<li><strong>编译过程</strong>：Java代码首先被编译为中间字节码（bytecode），存储在<code>.class</code>文件中。字节码独立于底层硬件和操作系统。</li>
-<li><strong>JVM（Java虚拟机）</strong>：Java程序的字节码在各个平台的JVM中运行。JVM负责解释字节码并将其转换为机器代码，以便在特定平台上执行。</li>
-<li><strong>JIT（即时编译器）</strong>：JVM内含的JIT编译器在运行时将频繁执行的字节码块动态编译为本地机器代码，从而提高性能。</li>
-<li><strong>垃圾回收（Garbage Collection）</strong>：JVM管理对象的内存分配和回收，自动处理对象的生命周期，防止内存泄漏。通过标记-清除（Mark-and-Sweep）、标记-压缩等算法实现。</li>
-<li><strong>类加载器（ClassLoader）</strong>：Java使用类加载器动态加载类到内存。类加载器负责将字节码文件加载到JVM内存，并对其进行字节码校验，保证代码的正确性和安全性。</li>
-</ul>
-<h2 id="Java运行环境的安装与配置"><a href="#Java运行环境的安装与配置" class="headerlink" title="Java运行环境的安装与配置"></a>Java运行环境的安装与配置</h2><h2 id="windows部署JDK"><a href="#windows部署JDK" class="headerlink" title="windows部署JDK"></a>windows部署JDK</h2><p><a href="https://meverikc.github.io/2024/10/10/2024-10-10-Java-JDK%E5%AE%89%E8%A3%85/">Java-JDK安装教程</a></p>
-<h3 id="现在可以执行第一个程序了"><a href="#现在可以执行第一个程序了" class="headerlink" title="现在可以执行第一个程序了"></a>现在可以执行第一个程序了</h3><ol>
-<li><p>新建一个<code>Hello.txt</code>, 在文件内输入</p>
- <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Hello</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.print(<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>文件名后缀改为<code>.java</code></p>
-</li>
-<li><p>在命令行执行: </p>
- <figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">javac Hello.java</span><br><span class="line">java Hello</span><br><span class="line"></span><br><span class="line"># 命令行输出:</span><br><span class="line">Hello, World!</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>注意:</strong></p>
-<ol>
-<li><code>javac</code>是对<code>Hello.java</code>文件进行编译生成可执行的<code>.class</code>文件的命令, 此时直接在此执行对应的</li>
-<li><code>java</code>是执行程序的命令</li>
-<li>文件名与类名必须相同</li>
-</ol>
-</blockquote>
-</li>
-</ol>
 ]]></content>
       <tags>
         <tag>Java</tag>
