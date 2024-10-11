@@ -49,6 +49,22 @@
 
   <title>docker镜像挂了之后的解决方法 | MFIKC</title>
   
+    <script>
+      function sendPageView() {
+        if (CONFIG.hostname !== location.hostname) return;
+        var uid = localStorage.getItem('uid') || (Math.random() + '.' + Math.random());
+        localStorage.setItem('uid', uid);
+        navigator.sendBeacon('https://www.google-analytics.com/collect', new URLSearchParams({
+          v  : 1,
+          tid: 'G-5NCKWQXZMW',
+          cid: uid,
+          t  : 'pageview',
+          dp : encodeURIComponent(location.pathname)
+        }));
+      }
+      document.addEventListener('pjax:complete', sendPageView);
+      sendPageView();
+    </script>
 
 
 
@@ -259,8 +275,8 @@
       <i class="fa fa-chevron-left"></i> Java-1
     </a></div>
       <div class="post-nav-item">
-    <a href="/2024/09/30/2024-09-30-Java-2/" rel="next" title="Java-2">
-      Java-2 <i class="fa fa-chevron-right"></i>
+    <a href="/2024/09/30/2024-09-30-Java-3/" rel="next" title="Java-3">
+      Java-3 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>

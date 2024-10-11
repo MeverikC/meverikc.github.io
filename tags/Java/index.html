@@ -47,6 +47,22 @@
 
   <title>标签: Java | MFIKC</title>
   
+    <script>
+      function sendPageView() {
+        if (CONFIG.hostname !== location.hostname) return;
+        var uid = localStorage.getItem('uid') || (Math.random() + '.' + Math.random());
+        localStorage.setItem('uid', uid);
+        navigator.sendBeacon('https://www.google-analytics.com/collect', new URLSearchParams({
+          v  : 1,
+          tid: 'G-5NCKWQXZMW',
+          cid: uid,
+          t  : 'pageview',
+          dp : encodeURIComponent(location.pathname)
+        }));
+      }
+      document.addEventListener('pjax:complete', sendPageView);
+      sendPageView();
+    </script>
 
 
 
@@ -222,8 +238,8 @@
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/2024/09/30/2024-09-30-Java-3/" itemprop="url">
-            <span itemprop="name">Java-3</span>
+          <a class="post-title-link" href="/2024/09/30/2024-09-30-Java-2/" itemprop="url">
+            <span itemprop="name">Java-2</span>
           </a>
       </div>
 
@@ -242,8 +258,8 @@
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/2024/09/30/2024-09-30-Java-2/" itemprop="url">
-            <span itemprop="name">Java-2</span>
+          <a class="post-title-link" href="/2024/09/30/2024-09-30-Java-3/" itemprop="url">
+            <span itemprop="name">Java-3</span>
           </a>
       </div>
 
