@@ -643,33 +643,6 @@
       </tags>
   </entry>
   <entry>
-    <title>docker镜像挂了之后的解决方法</title>
-    <url>/2024/09/29/docker%E9%95%9C%E5%83%8F%E6%8C%82%E4%BA%86%E4%B9%8B%E5%90%8E%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h2><p>使用Dockerfile build镜像的时候第一步的FROM全部超时, 环境都加载不了肯定就没办法运行程序了</p>
-<h2 id="解决"><a href="#解决" class="headerlink" title="解决:"></a>解决:</h2><h3 id="1-手动下载所需的环境镜像"><a href="#1-手动下载所需的环境镜像" class="headerlink" title="1. 手动下载所需的环境镜像"></a>1. 手动下载所需的环境镜像</h3><ol>
-<li>我使用的是<code>python:3.12.3-alpine</code> , 需要在科学上网的机器上下载该镜像</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull python:3.12.3-alpine</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>导出该镜像</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker save -o python-3.12.3-alpine.tar python:3.12.3-alpine</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li><p>把<code>python-3.12.3-alpine.tar</code>上传到云服务器</p>
-</li>
-<li><p>加载镜像</p>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker load -i python-3.12.3-alpine.tar</span><br><span class="line">docker images</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>这是就可以正常构建了, 因为docker在本地有镜像是会默认使用本地的, 本地没有镜像时才会访问docker hub</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd zuanboot</span><br><span class="line">docker build -t zuanboot .</span><br><span class="line">docker run -d --name zuanboot -v $(pwd):/app -p 8900:58000 zuanboot:latest</span><br></pre></td></tr></table></figure>]]></content>
-  </entry>
-  <entry>
     <title>windows桌面美化</title>
     <url>/2024/09/20/windows%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/</url>
     <content><![CDATA[<h2 id="流程简介"><a href="#流程简介" class="headerlink" title="流程简介"></a>流程简介</h2><ol>
@@ -695,5 +668,32 @@
       <tags>
         <tag>windows</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>docker镜像挂了之后的解决方法</title>
+    <url>/2024/09/29/docker%E9%95%9C%E5%83%8F%E6%8C%82%E4%BA%86%E4%B9%8B%E5%90%8E%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h2><p>使用Dockerfile build镜像的时候第一步的FROM全部超时, 环境都加载不了肯定就没办法运行程序了</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决:"></a>解决:</h2><h3 id="1-手动下载所需的环境镜像"><a href="#1-手动下载所需的环境镜像" class="headerlink" title="1. 手动下载所需的环境镜像"></a>1. 手动下载所需的环境镜像</h3><ol>
+<li>我使用的是<code>python:3.12.3-alpine</code> , 需要在科学上网的机器上下载该镜像</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull python:3.12.3-alpine</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>导出该镜像</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker save -o python-3.12.3-alpine.tar python:3.12.3-alpine</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>把<code>python-3.12.3-alpine.tar</code>上传到云服务器</p>
+</li>
+<li><p>加载镜像</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker load -i python-3.12.3-alpine.tar</span><br><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>这是就可以正常构建了, 因为docker在本地有镜像是会默认使用本地的, 本地没有镜像时才会访问docker hub</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd zuanboot</span><br><span class="line">docker build -t zuanboot .</span><br><span class="line">docker run -d --name zuanboot -v $(pwd):/app -p 8900:58000 zuanboot:latest</span><br></pre></td></tr></table></figure>]]></content>
   </entry>
 </search>
