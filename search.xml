@@ -606,33 +606,6 @@
       </tags>
   </entry>
   <entry>
-    <title>windows桌面美化</title>
-    <url>/2024/09/20/windows%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/</url>
-    <content><![CDATA[<h2 id="流程简介"><a href="#流程简介" class="headerlink" title="流程简介"></a>流程简介</h2><ol>
-<li><p>使用到的工具:</p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. rainmeter # 主题</span><br><span class="line">2. 致美化主题: welfare(可选)</span><br><span class="line">3. winstep nexus</span><br><span class="line">4. wallpaper engine</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>sop: </p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 下载rainmeter并安装</span><br><span class="line">2. 下载welfare,并安装</span><br><span class="line">3. 打开rainmeter设置, 加载welfare主题</span><br><span class="line">3. 下载winstep nexus并安装且运行, </span><br></pre></td></tr></table></figure></li>
-</ol>
-<blockquote>
-<p> <strong>注意事项:</strong> </p>
-<ol>
-<li><code>welfare</code> 的安装前必须先下载rainmeter</li>
-<li>winstep nexus要使用科学上网</li>
-<li></li>
-</ol>
-</blockquote>
-<h3 id="1-rainmeter"><a href="#1-rainmeter" class="headerlink" title="1. rainmeter"></a>1. rainmeter</h3><ol>
-<li><p><a href="https://www.rainmeter.net/">下载地址</a> </p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.rainmeter.net/</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <tags>
-        <tag>windows</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java-JDK安装</title>
     <url>/2024/10/10/2024-10-10-Java-JDK%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h3 id="Windows安装Java-11的完整教程"><a href="#Windows安装Java-11的完整教程" class="headerlink" title="Windows安装Java 11的完整教程"></a>Windows安装Java 11的完整教程</h3><p>以下是详细的步骤来帮助你在Windows系统中安装Java 11并配置环境变量。</p>
@@ -695,5 +668,32 @@
 <li>这是就可以正常构建了, 因为docker在本地有镜像是会默认使用本地的, 本地没有镜像时才会访问docker hub</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd zuanboot</span><br><span class="line">docker build -t zuanboot .</span><br><span class="line">docker run -d --name zuanboot -v $(pwd):/app -p 8900:58000 zuanboot:latest</span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
+  <entry>
+    <title>windows桌面美化</title>
+    <url>/2024/09/20/windows%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/</url>
+    <content><![CDATA[<h2 id="流程简介"><a href="#流程简介" class="headerlink" title="流程简介"></a>流程简介</h2><ol>
+<li><p>使用到的工具:</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. rainmeter # 主题</span><br><span class="line">2. 致美化主题: welfare(可选)</span><br><span class="line">3. winstep nexus</span><br><span class="line">4. wallpaper engine</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>sop: </p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 下载rainmeter并安装</span><br><span class="line">2. 下载welfare,并安装</span><br><span class="line">3. 打开rainmeter设置, 加载welfare主题</span><br><span class="line">3. 下载winstep nexus并安装且运行, </span><br></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p> <strong>注意事项:</strong> </p>
+<ol>
+<li><code>welfare</code> 的安装前必须先下载rainmeter</li>
+<li>winstep nexus要使用科学上网</li>
+<li></li>
+</ol>
+</blockquote>
+<h3 id="1-rainmeter"><a href="#1-rainmeter" class="headerlink" title="1. rainmeter"></a>1. rainmeter</h3><ol>
+<li><p><a href="https://www.rainmeter.net/">下载地址</a> </p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.rainmeter.net/</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>windows</tag>
+      </tags>
   </entry>
 </search>
