@@ -1248,7 +1248,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #6354d1;
+  background: #ffff5d;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2764,4 +2764,7 @@ code {
 .dark-mode code {
   color: #e6db74;
   background-color: #272822;
+}
+.archive .collection-title {
+  display: none !important;
 }
