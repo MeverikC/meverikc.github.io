@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/m.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/m.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/m.ico">
+  <link rel="mask-icon" href="/images/m.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"meverikc.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Java容器Java中的容器（Collections）是指用于存储和操作一组数据的对象。Java提供了丰富的容器类，这些类在java.util包中实现。容器主要分为两大类：Collection和Map。以下将详细介绍Java容器的分类、常用实现类及其特点。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java-6">
+<meta property="og:url" content="https://meverikc.github.io/2024/11/12/2024-11-12-Java-6/">
+<meta property="og:site_name" content="MFIKC">
+<meta property="og:description" content="Java容器Java中的容器（Collections）是指用于存储和操作一组数据的对象。Java提供了丰富的容器类，这些类在java.util包中实现。容器主要分为两大类：Collection和Map。以下将详细介绍Java容器的分类、常用实现类及其特点。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meverikc.github.io/images/Java-6_1.png">
+<meta property="og:image" content="https://meverikc.github.io/images/Java-6_2.png">
+<meta property="og:image" content="https://meverikc.github.io/images/Java-6_3.png">
+<meta property="article:published_time" content="2024-11-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-12T07:19:27.938Z">
+<meta property="article:author" content="MeverikC">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://meverikc.github.io/images/Java-6_1.png">
+
+<link rel="canonical" href="https://meverikc.github.io/2024/11/12/2024-11-12-Java-6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Java-6 | MFIKC</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5NCKWQXZMW"></script>
+    <script data-pjax>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-5NCKWQXZMW');
+    </script>
+
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a9d6dfd1deeea5f7f077565d10ddd79f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">MFIKC</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-game">
+
+    <a href="/game/" rel="section"><i class="fa fa-gamepad fa-fw"></i>game</a>
+
+  </li>
+        <li class="menu-item menu-item-lovely">
+
+    <a href="/lovely/" rel="section"><i class="fa fa-heart fa-fw"></i>lovely</a>
+
+  </li>
+        <li class="menu-item menu-item-javaapi">
+
+    <a href="/javaApi/" rel="section"><i class="fa fa-book fa-fw"></i>javaApi</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://meverikc.github.io/2024/11/12/2024-11-12-Java-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="MeverikC">
+      <meta itemprop="description" content="记录个人学习记录及一些电脑操作问题, 后续会持续更新, 敬请关注">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MFIKC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java-6
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-11-12 00:00:00 / 修改时间：15:19:27" itemprop="dateCreated datePublished" datetime="2024-11-12T00:00:00+08:00">2024-11-12</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="Java容器"><a href="#Java容器" class="headerlink" title="Java容器"></a>Java容器</h3><p>Java中的容器（Collections）是指用于存储和操作一组数据的对象。Java提供了丰富的容器类，这些类在<code>java.util</code>包中实现。容器主要分为两大类：<strong>Collection</strong>和<strong>Map</strong>。以下将详细介绍Java容器的分类、常用实现类及其特点。<br><img src="/../images/Java-6_1.png"></p>
+<hr>
+<span id="more"></span>
+
+<h2 id="一、Java容器分类"><a href="#一、Java容器分类" class="headerlink" title="一、Java容器分类"></a>一、Java容器分类</h2><h3 id="1-Collection接口"><a href="#1-Collection接口" class="headerlink" title="1. Collection接口"></a>1. Collection接口</h3><p>Collection是一个存储单一元素的集合，可以进一步分为以下三种：</p>
+<ul>
+<li><strong>List</strong>：有序且允许重复的集合。</li>
+<li><strong>Set</strong>：无序且不允许重复的集合。</li>
+<li><strong>Queue</strong>：用于存储具有优先级关系的队列集合。</li>
+</ul>
+<h3 id="2-Map接口"><a href="#2-Map接口" class="headerlink" title="2. Map接口"></a>2. Map接口</h3><p>Map是用于存储键值对的集合，其中键是唯一的，值可以重复。</p>
+<hr>
+<h2 id="二、Collection接口的实现类"><a href="#二、Collection接口的实现类" class="headerlink" title="二、Collection接口的实现类"></a>二、Collection接口的实现类</h2><h3 id="1-List接口"><a href="#1-List接口" class="headerlink" title="1. List接口"></a>1. List接口</h3><p>List接口的实现类有：<code>ArrayList</code>、<code>LinkedList</code>、<code>Vector</code>。</p>
+<h4 id="1-1-ArrayList"><a href="#1-1-ArrayList" class="headerlink" title="1.1 ArrayList"></a>1.1 ArrayList</h4><ul>
+<li><p><strong>特点</strong>：</p>
+<ul>
+<li>基于动态数组实现。</li>
+<li>随机访问速度快，查询效率高（O(1)）。</li>
+<li>插入和删除时需要移动元素，效率较低（O(n)）。</li>
+</ul>
+</li>
+<li><p><strong>使用场景</strong>：适合查询多、修改少的场景。</p>
+</li>
+<li><p><strong>示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        ArrayList&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;Java&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;Python&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;C++&quot;</span>);</span><br><span class="line">        System.out.println(list); <span class="comment">// 输出：[Java, Python, C++]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ArrayList 类位于 java.util 包中，使用前需要引入它，语法格式如下：</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList; <span class="comment">// 引入 ArrayList 类</span></span><br><span class="line"></span><br><span class="line">ArrayList&lt;E&gt; objectName =<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();　 <span class="comment">// 初始化</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>E</strong>: 泛型数据类型，用于设置 objectName 的数据类型，<strong>只能为引用数据类型</strong>。</p>
+</li>
+<li><p><strong>objectName</strong>: 对象名。</p>
+</li>
+<li><p>ArrayList 是一个数组队列，提供了相关的添加、删除、修改、遍历等功能。</p>
+<ul>
+<li><p><strong>添加元素</strong></p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RunoobTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        ArrayList&lt;String&gt; sites = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;();</span><br><span class="line">        sites.add(<span class="string">&quot;Google&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Runoob&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Taobao&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Weibo&quot;</span>);</span><br><span class="line">        System.out.println(sites);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>访问元素</strong></p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RunoobTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        ArrayList&lt;String&gt; sites = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;();</span><br><span class="line">        sites.add(<span class="string">&quot;Google&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Runoob&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Taobao&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Weibo&quot;</span>);</span><br><span class="line">        System.out.println(sites.get(<span class="number">1</span>));  <span class="comment">// 访问第二个元素</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>修改元素</strong></p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RunoobTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        ArrayList&lt;String&gt; sites = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;();</span><br><span class="line">        sites.add(<span class="string">&quot;Google&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Runoob&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Taobao&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Weibo&quot;</span>);</span><br><span class="line">        sites.set(<span class="number">2</span>, <span class="string">&quot;Wiki&quot;</span>); <span class="comment">// 第一个参数为索引位置，第二个为要修改的值</span></span><br><span class="line">        System.out.println(sites);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>删除元素</strong></p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RunoobTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        ArrayList&lt;String&gt; sites = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;();</span><br><span class="line">        sites.add(<span class="string">&quot;Google&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Runoob&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Taobao&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Weibo&quot;</span>);</span><br><span class="line">        sites.remove(<span class="number">3</span>); <span class="comment">// 删除第四个元素</span></span><br><span class="line">        System.out.println(sites);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>计算大小</strong></p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RunoobTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        ArrayList&lt;String&gt; sites = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;();</span><br><span class="line">        sites.add(<span class="string">&quot;Google&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Runoob&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Taobao&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Weibo&quot;</span>);</span><br><span class="line">        System.out.println(sites.size());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>迭代数组列表</strong></p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RunoobTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        ArrayList&lt;String&gt; sites = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;();</span><br><span class="line">        sites.add(<span class="string">&quot;Google&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Runoob&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Taobao&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Weibo&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; sites.size(); i++) &#123;</span><br><span class="line">            System.out.println(sites.get(i));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 或</span></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RunoobTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        ArrayList&lt;String&gt; sites = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;();</span><br><span class="line">        sites.add(<span class="string">&quot;Google&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Runoob&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Taobao&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Weibo&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (String i : sites) &#123;</span><br><span class="line">            System.out.println(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>ArrayList 排序</strong></p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;  <span class="comment">// 引入 Collections 类</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RunoobTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        ArrayList&lt;String&gt; sites = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;();</span><br><span class="line">        sites.add(<span class="string">&quot;Taobao&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Wiki&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Runoob&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Weibo&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Google&quot;</span>);</span><br><span class="line">        Collections.sort(sites);  <span class="comment">// 字母排序</span></span><br><span class="line">        <span class="keyword">for</span> (String i : sites) &#123;</span><br><span class="line">            System.out.println(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;  <span class="comment">// 引入 Collections 类</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RunoobTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; myNumbers = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Integer&gt;();</span><br><span class="line">        myNumbers.add(<span class="number">33</span>);</span><br><span class="line">        myNumbers.add(<span class="number">15</span>);</span><br><span class="line">        myNumbers.add(<span class="number">20</span>);</span><br><span class="line">        myNumbers.add(<span class="number">34</span>);</span><br><span class="line">        myNumbers.add(<span class="number">8</span>);</span><br><span class="line">        myNumbers.add(<span class="number">12</span>);</span><br><span class="line"></span><br><span class="line">        Collections.sort(myNumbers);  <span class="comment">// 数字排序</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i : myNumbers) &#123;</span><br><span class="line">            System.out.println(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.meverikc.top:8080/javaapi/java.base/java/util/ArrayList.html"><strong>Java ArrayList方法</strong></a></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-2-LinkedList"><a href="#1-2-LinkedList" class="headerlink" title="1.2 LinkedList"></a>1.2 LinkedList</h4><ul>
+<li><strong>特点</strong>：<ul>
+<li>基于双向链表实现。</li>
+<li>插入和删除效率高（O(1)）。</li>
+<li>随机访问效率低（O(n)）。</li>
+</ul>
+</li>
+<li><strong>使用场景</strong>：适合频繁插入、删除操作的场景。</li>
+<li><strong>示例</strong>：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        LinkedList&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;A&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;B&quot;</span>);</span><br><span class="line">        list.addFirst(<span class="string">&quot;C&quot;</span>);</span><br><span class="line">        System.out.println(list); <span class="comment">// 输出：[C, A, B]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="1-3-Vector"><a href="#1-3-Vector" class="headerlink" title="1.3 Vector"></a>1.3 Vector</h4><ul>
+<li><strong>特点</strong>：<ul>
+<li>线程安全（方法加了<code>synchronized</code>修饰）。</li>
+<li>性能较<code>ArrayList</code>低。</li>
+</ul>
+</li>
+<li><strong>不推荐使用</strong>：在大部分场景下，<code>ArrayList</code>性能更优。</li>
+</ul>
+<hr>
+<h3 id="2-Set接口"><a href="#2-Set接口" class="headerlink" title="2. Set接口"></a>2. Set接口</h3><p>Set接口的实现类有：<code>HashSet</code>、<code>TreeSet</code>、<code>LinkedHashSet</code>。<br><img src="/../images/Java-6_2.png"></p>
+<h4 id="2-1-HashSet"><a href="#2-1-HashSet" class="headerlink" title="2.1 HashSet"></a>2.1 HashSet</h4><ul>
+<li><p><strong>特点</strong>：</p>
+<ul>
+<li>基于<code>HashMap</code>实现。</li>
+<li>元素无序且不允许重复。</li>
+<li>插入、删除、查找的时间复杂度为O(1)。</li>
+</ul>
+</li>
+<li><p><strong>使用场景</strong>：需要高效的去重操作。</p>
+</li>
+<li><p><strong>示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        HashSet&lt;Integer&gt; set = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">        set.add(<span class="number">1</span>);</span><br><span class="line">        set.add(<span class="number">2</span>);</span><br><span class="line">        set.add(<span class="number">2</span>); <span class="comment">// 重复元素不会被添加</span></span><br><span class="line">        System.out.println(set); <span class="comment">// 输出：[1, 2]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>使用:</strong><br>HashSet 类位于 java.util 包中，使用前需要引入它，语法格式如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashSet; <span class="comment">// 引入 HashSet 类</span></span><br></pre></td></tr></table></figure>
+
+<p>以下实例我们创建一个 HashSet 对象 sites，用于保存字符串元素：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HashSet&lt;String&gt; sites = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;String&gt;();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>添加元素</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入 HashSet 类      </span></span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RunoobTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    HashSet&lt;String&gt; sites = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;String&gt;();</span><br><span class="line">        sites.add(<span class="string">&quot;Google&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Runoob&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Taobao&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Zhihu&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Runoob&quot;</span>);  <span class="comment">// 重复的元素不会被添加</span></span><br><span class="line">        System.out.println(sites);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>判断元素是否存在</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入 HashSet 类      </span></span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RunoobTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    HashSet&lt;String&gt; sites = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;String&gt;();</span><br><span class="line">        sites.add(<span class="string">&quot;Google&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Runoob&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Taobao&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Zhihu&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Runoob&quot;</span>);  <span class="comment">// 重复的元素不会被添加</span></span><br><span class="line">        System.out.println(sites.contains(<span class="string">&quot;Taobao&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>删除元素</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入 HashSet 类      </span></span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"><span class="comment">// remove方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RunoobTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    HashSet&lt;String&gt; sites = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;String&gt;();</span><br><span class="line">        sites.add(<span class="string">&quot;Google&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Runoob&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Taobao&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Zhihu&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Runoob&quot;</span>);     <span class="comment">// 重复的元素不会被添加</span></span><br><span class="line">        sites.remove(<span class="string">&quot;Taobao&quot;</span>);  <span class="comment">// 删除元素，删除成功返回 true，否则为 false</span></span><br><span class="line">        System.out.println(sites);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入 HashSet 类      </span></span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"><span class="comment">// 删除集合中所有元素可以使用 clear 方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RunoobTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    HashSet&lt;String&gt; sites = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;String&gt;();</span><br><span class="line">        sites.add(<span class="string">&quot;Google&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Runoob&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Taobao&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Zhihu&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Runoob&quot;</span>);     <span class="comment">// 重复的元素不会被添加</span></span><br><span class="line">        sites.clear();  </span><br><span class="line">        System.out.println(sites);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>计算大小</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入 HashSet 类      </span></span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RunoobTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    HashSet&lt;String&gt; sites = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;String&gt;();</span><br><span class="line">        sites.add(<span class="string">&quot;Google&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Runoob&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Taobao&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Zhihu&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Runoob&quot;</span>);     <span class="comment">// 重复的元素不会被添加</span></span><br><span class="line">        System.out.println(sites.size());  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>迭代 HashSet</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入 HashSet 类      </span></span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RunoobTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    HashSet&lt;String&gt; sites = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;String&gt;();</span><br><span class="line">        sites.add(<span class="string">&quot;Google&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Runoob&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Taobao&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Zhihu&quot;</span>);</span><br><span class="line">        sites.add(<span class="string">&quot;Runoob&quot;</span>);     <span class="comment">// 重复的元素不会被添加</span></span><br><span class="line">        <span class="keyword">for</span> (String i : sites) &#123;</span><br><span class="line">            System.out.println(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.meverikc.top:8080/javaapi/java.base/java/util/HashSet.html"><strong>HashSet方法</strong></a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-2-TreeSet"><a href="#2-2-TreeSet" class="headerlink" title="2.2 TreeSet"></a>2.2 TreeSet</h4><ul>
+<li><strong>特点</strong>：<ul>
+<li>基于<code>TreeMap</code>实现，底层是红黑树。</li>
+<li>元素有序（自然顺序或自定义排序）。</li>
+<li>插入、删除、查找的时间复杂度为O(log n)。</li>
+</ul>
+</li>
+<li><strong>使用场景</strong>：需要排序的集合。</li>
+<li><strong>示例</strong>：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.TreeSet;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        TreeSet&lt;String&gt; set = <span class="keyword">new</span> <span class="title class_">TreeSet</span>&lt;&gt;();</span><br><span class="line">        set.add(<span class="string">&quot;Banana&quot;</span>);</span><br><span class="line">        set.add(<span class="string">&quot;Apple&quot;</span>);</span><br><span class="line">        set.add(<span class="string">&quot;Cherry&quot;</span>);</span><br><span class="line">        System.out.println(set); <span class="comment">// 输出：[Apple, Banana, Cherry]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-3-LinkedHashSet"><a href="#2-3-LinkedHashSet" class="headerlink" title="2.3 LinkedHashSet"></a>2.3 LinkedHashSet</h4><ul>
+<li><strong>特点</strong>：<ul>
+<li>保证插入顺序。</li>
+<li>基于<code>HashSet</code>，通过链表维护顺序。</li>
+</ul>
+</li>
+<li><strong>使用场景</strong>：既需要去重又需要保持顺序。</li>
+<li><strong>示例</strong>：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.LinkedHashSet;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        LinkedHashSet&lt;String&gt; set = <span class="keyword">new</span> <span class="title class_">LinkedHashSet</span>&lt;&gt;();</span><br><span class="line">        set.add(<span class="string">&quot;A&quot;</span>);</span><br><span class="line">        set.add(<span class="string">&quot;B&quot;</span>);</span><br><span class="line">        set.add(<span class="string">&quot;C&quot;</span>);</span><br><span class="line">        System.out.println(set); <span class="comment">// 输出：[A, B, C]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h3 id="3-Queue接口"><a href="#3-Queue接口" class="headerlink" title="3. Queue接口"></a>3. Queue接口</h3><p>Queue接口的常见实现类有：<code>PriorityQueue</code>、<code>LinkedList</code>（实现了Deque接口）。</p>
+<h4 id="3-1-PriorityQueue"><a href="#3-1-PriorityQueue" class="headerlink" title="3.1 PriorityQueue"></a>3.1 PriorityQueue</h4><ul>
+<li><strong>特点</strong>：<ul>
+<li>基于堆实现。</li>
+<li>元素按优先级排序。</li>
+</ul>
+</li>
+<li><strong>使用场景</strong>：需要实现优先级队列。</li>
+<li><strong>示例</strong>：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.PriorityQueue;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        PriorityQueue&lt;Integer&gt; queue = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;();</span><br><span class="line">        queue.add(<span class="number">10</span>);</span><br><span class="line">        queue.add(<span class="number">5</span>);</span><br><span class="line">        queue.add(<span class="number">20</span>);</span><br><span class="line">        System.out.println(queue.poll()); <span class="comment">// 输出：5（最小值）</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="三、Map接口的实现类"><a href="#三、Map接口的实现类" class="headerlink" title="三、Map接口的实现类"></a>三、Map接口的实现类</h2><h3 id="1-HashMap"><a href="#1-HashMap" class="headerlink" title="1. HashMap"></a>1. HashMap</h3><p><img src="/../images/Java-6_3.png"></p>
+<ul>
+<li><pre><code class="java">1. HashMap 是一个散列表，它存储的内容是键值对(key-value)映射。
+
+2. HashMap 实现了 Map 接口，根据键的 HashCode 值存储数据，具有很快的访问速度，最多允许一条记录的键为 null，不支持线程同步。
+
+3. HashMap 是无序的，即不会记录插入的顺序。
+
+4. HashMap 继承于AbstractMap，实现了 Map、Cloneable、java.io.Serializable 接口。
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- **特点**：</span><br><span class="line"></span><br><span class="line">  - 基于哈希表实现，键值对无序。</span><br><span class="line">  - 插入、删除、查找的时间复杂度为O(1)。</span><br><span class="line">  - JDK 1.8开始，链表长度超过阈值时使用红黑树优化。</span><br><span class="line">- **示例**：</span><br><span class="line">  ```java</span><br><span class="line">  import java.util.HashMap;</span><br><span class="line">  public class Main &#123;</span><br><span class="line">      public static void main(String[] args) &#123;</span><br><span class="line">          HashMap&lt;String, Integer&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">          map.put(&quot;Apple&quot;, 3);</span><br><span class="line">          map.put(&quot;Banana&quot;, 2);</span><br><span class="line">          System.out.println(map.get(&quot;Apple&quot;)); // 输出：3</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+<li><p><strong>使用:</strong><br>HashMap 类位于 java.util 包中，使用前需要引入它，语法格式如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap; <span class="comment">// 引入 HashMap 类</span></span><br></pre></td></tr></table></figure>
+
+<p>以下实例我们创建一个 HashMap 对象 Sites， 整型（Integer）的 key 和字符串（String）类型的 value：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HashMap&lt;Integer, String&gt; Sites = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;Integer, String&gt;();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>添加元素</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入 HashMap 类      </span></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RunoobTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 创建 HashMap 对象 Sites</span></span><br><span class="line">        HashMap&lt;Integer, String&gt; Sites = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;Integer, String&gt;();</span><br><span class="line">        <span class="comment">// 添加键值对</span></span><br><span class="line">        Sites.put(<span class="number">1</span>, <span class="string">&quot;Google&quot;</span>);</span><br><span class="line">        Sites.put(<span class="number">2</span>, <span class="string">&quot;Runoob&quot;</span>);</span><br><span class="line">        Sites.put(<span class="number">3</span>, <span class="string">&quot;Taobao&quot;</span>);</span><br><span class="line">        Sites.put(<span class="number">4</span>, <span class="string">&quot;Zhihu&quot;</span>);</span><br><span class="line">        System.out.println(Sites);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>访问元素</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入 HashMap 类      </span></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RunoobTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 创建 HashMap 对象 Sites</span></span><br><span class="line">        HashMap&lt;Integer, String&gt; Sites = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;Integer, String&gt;();</span><br><span class="line">        <span class="comment">// 添加键值对</span></span><br><span class="line">        Sites.put(<span class="number">1</span>, <span class="string">&quot;Google&quot;</span>);</span><br><span class="line">        Sites.put(<span class="number">2</span>, <span class="string">&quot;Runoob&quot;</span>);</span><br><span class="line">        Sites.put(<span class="number">3</span>, <span class="string">&quot;Taobao&quot;</span>);</span><br><span class="line">        Sites.put(<span class="number">4</span>, <span class="string">&quot;Zhihu&quot;</span>);</span><br><span class="line">        System.out.println(Sites.get(<span class="number">3</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>删除元素</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入 HashMap 类      </span></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RunoobTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 创建 HashMap 对象 Sites</span></span><br><span class="line">        HashMap&lt;Integer, String&gt; Sites = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;Integer, String&gt;();</span><br><span class="line">        <span class="comment">// 添加键值对</span></span><br><span class="line">        Sites.put(<span class="number">1</span>, <span class="string">&quot;Google&quot;</span>);</span><br><span class="line">        Sites.put(<span class="number">2</span>, <span class="string">&quot;Runoob&quot;</span>);</span><br><span class="line">        Sites.put(<span class="number">3</span>, <span class="string">&quot;Taobao&quot;</span>);</span><br><span class="line">        Sites.put(<span class="number">4</span>, <span class="string">&quot;Zhihu&quot;</span>);</span><br><span class="line">        Sites.remove(<span class="number">4</span>);</span><br><span class="line">        System.out.println(Sites);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除所有键值对使用 cleat 方法: </span></span><br><span class="line"><span class="comment">// 引入 HashMap 类      </span></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RunoobTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 创建 HashMap 对象 Sites</span></span><br><span class="line">        HashMap&lt;Integer, String&gt; Sites = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;Integer, String&gt;();</span><br><span class="line">        <span class="comment">// 添加键值对</span></span><br><span class="line">        Sites.put(<span class="number">1</span>, <span class="string">&quot;Google&quot;</span>);</span><br><span class="line">        Sites.put(<span class="number">2</span>, <span class="string">&quot;Runoob&quot;</span>);</span><br><span class="line">        Sites.put(<span class="number">3</span>, <span class="string">&quot;Taobao&quot;</span>);</span><br><span class="line">        Sites.put(<span class="number">4</span>, <span class="string">&quot;Zhihu&quot;</span>);</span><br><span class="line">        Sites.clear();</span><br><span class="line">        System.out.println(Sites);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>计算大小</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入 HashMap 类      </span></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RunoobTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 创建 HashMap 对象 Sites</span></span><br><span class="line">        HashMap&lt;Integer, String&gt; Sites = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;Integer, String&gt;();</span><br><span class="line">        <span class="comment">// 添加键值对</span></span><br><span class="line">        Sites.put(<span class="number">1</span>, <span class="string">&quot;Google&quot;</span>);</span><br><span class="line">        Sites.put(<span class="number">2</span>, <span class="string">&quot;Runoob&quot;</span>);</span><br><span class="line">        Sites.put(<span class="number">3</span>, <span class="string">&quot;Taobao&quot;</span>);</span><br><span class="line">        Sites.put(<span class="number">4</span>, <span class="string">&quot;Zhihu&quot;</span>);</span><br><span class="line">        System.out.println(Sites.size());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>迭代 HashMap</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入 HashMap 类      </span></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RunoobTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 创建 HashMap 对象 Sites</span></span><br><span class="line">        HashMap&lt;Integer, String&gt; Sites = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;Integer, String&gt;();</span><br><span class="line">        <span class="comment">// 添加键值对</span></span><br><span class="line">        Sites.put(<span class="number">1</span>, <span class="string">&quot;Google&quot;</span>);</span><br><span class="line">        Sites.put(<span class="number">2</span>, <span class="string">&quot;Runoob&quot;</span>);</span><br><span class="line">        Sites.put(<span class="number">3</span>, <span class="string">&quot;Taobao&quot;</span>);</span><br><span class="line">        Sites.put(<span class="number">4</span>, <span class="string">&quot;Zhihu&quot;</span>);</span><br><span class="line">        <span class="comment">// 输出 key 和 value</span></span><br><span class="line">        <span class="keyword">for</span> (Integer i : Sites.keySet()) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;key: &quot;</span> + i + <span class="string">&quot; value: &quot;</span> + Sites.get(i));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 返回所有 value 值</span></span><br><span class="line">        <span class="keyword">for</span>(String value: Sites.values()) &#123;</span><br><span class="line">          <span class="comment">// 输出每一个value</span></span><br><span class="line">          System.out.print(value + <span class="string">&quot;, &quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.meverikc.top:8080/javaapi/java.base/java/util/HashMap.html"><strong>Java HashMap方法</strong></a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-TreeMap"><a href="#2-TreeMap" class="headerlink" title="2. TreeMap"></a>2. TreeMap</h3><ul>
+<li><strong>特点</strong>：<ul>
+<li>基于红黑树实现，键有序。</li>
+<li>插入、删除、查找的时间复杂度为O(log n)。</li>
+</ul>
+</li>
+<li><strong>示例</strong>：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.TreeMap;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        TreeMap&lt;String, Integer&gt; map = <span class="keyword">new</span> <span class="title class_">TreeMap</span>&lt;&gt;();</span><br><span class="line">        map.put(<span class="string">&quot;Orange&quot;</span>, <span class="number">5</span>);</span><br><span class="line">        map.put(<span class="string">&quot;Apple&quot;</span>, <span class="number">10</span>);</span><br><span class="line">        System.out.println(map); <span class="comment">// 输出：&#123;Apple=10, Orange=5&#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="3-LinkedHashMap"><a href="#3-LinkedHashMap" class="headerlink" title="3. LinkedHashMap"></a>3. LinkedHashMap</h3><ul>
+<li><strong>特点</strong>：<ul>
+<li>保证插入顺序。</li>
+<li>基于<code>HashMap</code>实现，维护了一个双向链表。</li>
+</ul>
+</li>
+<li><strong>示例</strong>：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.LinkedHashMap;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        LinkedHashMap&lt;String, Integer&gt; map = <span class="keyword">new</span> <span class="title class_">LinkedHashMap</span>&lt;&gt;();</span><br><span class="line">        map.put(<span class="string">&quot;One&quot;</span>, <span class="number">1</span>);</span><br><span class="line">        map.put(<span class="string">&quot;Two&quot;</span>, <span class="number">2</span>);</span><br><span class="line">        System.out.println(map); <span class="comment">// 输出：&#123;One=1, Two=2&#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="四、容器工具类"><a href="#四、容器工具类" class="headerlink" title="四、容器工具类"></a>四、容器工具类</h2><p>Java提供了<code>Collections</code>工具类，常用于容器的操作，如排序、查找、同步化等。</p>
+<h3 id="常用方法："><a href="#常用方法：" class="headerlink" title="常用方法："></a>常用方法：</h3><ul>
+<li><code>Collections.sort()</code>：排序。</li>
+<li><code>Collections.shuffle()</code>：随机打乱顺序。</li>
+<li><code>Collections.synchronizedList()</code>：将容器同步化。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        list.add(<span class="number">3</span>);</span><br><span class="line">        list.add(<span class="number">1</span>);</span><br><span class="line">        list.add(<span class="number">2</span>);</span><br><span class="line">        Collections.sort(list);</span><br><span class="line">        System.out.println(list); <span class="comment">// 输出：[1, 2, 3]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><p>Java容器为我们提供了高效的数据存储和操作能力，选择合适的容器对于提升程序性能非常重要。在实际开发中，根据场景需求选择对应的容器，例如：</p>
+<ul>
+<li>需要有序、可重复数据时使用<code>ArrayList</code>。</li>
+<li>需要无序、去重数据时使用<code>HashSet</code>。</li>
+<li>需要键值对存储时使用<code>HashMap</code>或<code>TreeMap</code>。</li>
+</ul>
+<p>深入理解每种容器的特性与适用场景是写出高质量Java代码的关键！</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/11/05/2024-11-05-Java-5/" rel="prev" title="Java-5">
+      <i class="fa fa-chevron-left"></i> Java-5
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java%E5%AE%B9%E5%99%A8"><span class="nav-text">Java容器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81Java%E5%AE%B9%E5%99%A8%E5%88%86%E7%B1%BB"><span class="nav-text">一、Java容器分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Collection%E6%8E%A5%E5%8F%A3"><span class="nav-text">1. Collection接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Map%E6%8E%A5%E5%8F%A3"><span class="nav-text">2. Map接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Collection%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%AE%9E%E7%8E%B0%E7%B1%BB"><span class="nav-text">二、Collection接口的实现类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-List%E6%8E%A5%E5%8F%A3"><span class="nav-text">1. List接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-ArrayList"><span class="nav-text">1.1 ArrayList</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-LinkedList"><span class="nav-text">1.2 LinkedList</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-Vector"><span class="nav-text">1.3 Vector</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Set%E6%8E%A5%E5%8F%A3"><span class="nav-text">2. Set接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-HashSet"><span class="nav-text">2.1 HashSet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-TreeSet"><span class="nav-text">2.2 TreeSet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-LinkedHashSet"><span class="nav-text">2.3 LinkedHashSet</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Queue%E6%8E%A5%E5%8F%A3"><span class="nav-text">3. Queue接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-PriorityQueue"><span class="nav-text">3.1 PriorityQueue</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81Map%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%AE%9E%E7%8E%B0%E7%B1%BB"><span class="nav-text">三、Map接口的实现类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-HashMap"><span class="nav-text">1. HashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-TreeMap"><span class="nav-text">2. TreeMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-LinkedHashMap"><span class="nav-text">3. LinkedHashMap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%AE%B9%E5%99%A8%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="nav-text">四、容器工具类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-text">常用方法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%80%BB%E7%BB%93"><span class="nav-text">五、总结</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="MeverikC"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">MeverikC</p>
+  <div class="site-description" itemprop="description">记录个人学习记录及一些电脑操作问题, 后续会持续更新, 敬请关注</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MeverikC</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+    </div>
+</body>
+</html>
