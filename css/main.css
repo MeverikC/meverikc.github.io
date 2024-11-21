@@ -658,22 +658,22 @@ pre .javascript .function {
   padding: 0 2px;
 }
 .post-body .label.default {
-  background: #f0f0f0;
+  background: #f4f4f4;
 }
 .post-body .label.primary {
-  background: #efe6f7;
+  background: #f3ecf9;
 }
 .post-body .label.info {
-  background: #e5f2f8;
+  background: #eaf5f9;
 }
 .post-body .label.success {
-  background: #e7f4e9;
+  background: #ebf6ed;
 }
 .post-body .label.warning {
-  background: #fcf6e1;
+  background: #fdf7e6;
 }
 .post-body .label.danger {
-  background: #fae8eb;
+  background: #fbedef;
 }
 .post-body .tabs {
   margin-bottom: 20px;
@@ -791,8 +791,9 @@ pre .javascript .function {
   margin-bottom: 20px;
   padding: 1em;
   position: relative;
-  border: 1px solid #eee;
-  border-left-width: 5px;
+  background: #f9f9f9;
+  border: initial;
+  border-left: 3px solid #eee;
 }
 .post-body .note h2,
 .post-body .note h3,
@@ -823,6 +824,7 @@ pre .javascript .function {
   margin-bottom: 0;
 }
 .post-body .note.default {
+  background: #fbfbfb;
   border-left-color: #777;
 }
 .post-body .note.default h2,
@@ -833,6 +835,7 @@ pre .javascript .function {
   color: #777;
 }
 .post-body .note.primary {
+  background: #f9f6fc;
   border-left-color: #6f42c1;
 }
 .post-body .note.primary h2,
@@ -843,6 +846,7 @@ pre .javascript .function {
   color: #6f42c1;
 }
 .post-body .note.info {
+  background: #f4f9fc;
   border-left-color: #428bca;
 }
 .post-body .note.info h2,
@@ -853,6 +857,7 @@ pre .javascript .function {
   color: #428bca;
 }
 .post-body .note.success {
+  background: #f4faf5;
   border-left-color: #5cb85c;
 }
 .post-body .note.success h2,
@@ -863,6 +868,7 @@ pre .javascript .function {
   color: #5cb85c;
 }
 .post-body .note.warning {
+  background: #fefaef;
   border-left-color: #f0ad4e;
 }
 .post-body .note.warning h2,
@@ -873,6 +879,7 @@ pre .javascript .function {
   color: #f0ad4e;
 }
 .post-body .note.danger {
+  background: #fdf6f7;
   border-left-color: #d9534f;
 }
 .post-body .note.danger h2,
@@ -1248,7 +1255,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #678cdd;
+  background: #a3ffff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2591,7 +2598,6 @@ ul.breadcrumb li + li:last-child {
 }
 .links-of-author-item {
   margin: 5px 0 0;
-  width: 50%;
 }
 .links-of-author-item a,
 .links-of-author-item span.exturl {
@@ -2767,4 +2773,8 @@ code {
 }
 .archive .collection-title {
   display: none !important;
+}
+.bi {
+  padding-right: 9px;
+  padding-left: 2px;
 }

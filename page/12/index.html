@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/m.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/m.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/m.ico">
+  <link rel="mask-icon" href="/images/m.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"meverikc.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="记录个人学习记录及一些电脑操作问题, 后续会持续更新, 敬请关注">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MFIKC">
+<meta property="og:url" content="https://meverikc.github.io/page/12/">
+<meta property="og:site_name" content="MFIKC">
+<meta property="og:description" content="记录个人学习记录及一些电脑操作问题, 后续会持续更新, 敬请关注">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="MeverikC">
+<meta property="article:tag" content="前端,后端,运维">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://meverikc.github.io/page/12/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>MFIKC</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5NCKWQXZMW"></script>
+    <script data-pjax>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-5NCKWQXZMW');
+    </script>
+
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a9d6dfd1deeea5f7f077565d10ddd79f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">MFIKC</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-java">
+
+    <a href="/java/" rel="section"><i class="bi bi-filetype-java fa-fw"></i>Java</a>
+
+  </li>
+
+
+      
+        
+            
+  <li class="menu-item menu-item-recreation">
+
+    <a href="/recreation/" rel="section"><i class="fa fa-dice fa-fw"></i>recreation</a>
+
+  </li>
+
+
+      
+        <li class="menu-item menu-item-hello-algo">
+
+    <a href="/hello-algo/" rel="section"><i class="bi bi-cpu fa-fw"></i>hello-algo</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-other">
+
+    <a href="/other/" rel="section"><i class="bi bi-three-dots fa-fw"></i>Other</a>
+
+  </li>
+
+
+      
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://meverikc.github.io/2024/09/19/2024-09-19-%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="MeverikC">
+      <meta itemprop="description" content="记录个人学习记录及一些电脑操作问题, 后续会持续更新, 敬请关注">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MFIKC">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/09/19/2024-09-19-%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">Hexo NexT主题优化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-09-19 00:00:00" itemprop="dateCreated datePublished" datetime="2024-09-19T00:00:00+08:00">2024-09-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-11-21 14:27:39" itemprop="dateModified" datetime="2024-11-21T14:27:39+08:00">2024-11-21</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1-使用next主题"><a href="#1-使用next主题" class="headerlink" title="1.使用next主题"></a>1.使用next主题</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"># 更新npm</span><br><span class="line">npm update</span><br><span class="line"></span><br><span class="line"># 若不存在hexo则执行</span><br><span class="line">npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line"># 存在直接执行</span><br><span class="line">hexo init my-blog</span><br><span class="line">cd my-blog</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"># 在`my-blog`目录下 安装next主题</span><br><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line"></span><br><span class="line"># 打开`blog\_config.yml`, 修改`themes`为`next`</span><br><span class="line">theme: next</span><br><span class="line"></span><br><span class="line"># 找到`#site`</span><br><span class="line">title: MFIKC</span><br><span class="line">subtitle: 个人博客</span><br><span class="line">description: 涉及前端、后端、运维</span><br><span class="line">keywords: 前端,后端,运维</span><br><span class="line">author: MeverikC</span><br><span class="line">language: zh-CN</span><br><span class="line">timezone: &#x27;Asia/Shanghai&#x27;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-更换风格"><a href="#2-更换风格" class="headerlink" title="2. 更换风格"></a>2. 更换风格</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 打开 `blog\themes\next\_config.yml`, 找到`Schemes`</span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-动态背景"><a href="#3-动态背景" class="headerlink" title="3. 动态背景"></a>3. 动态背景</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd blog\themes\next</span><br><span class="line"></span><br><span class="line">git clone https://github.com/theme-next/theme-next-canvas-ribbon source/lib/canvas-ribbon</span><br><span class="line"></span><br><span class="line"># 打开`themes\next\_config.yml`, 找到`canvas_ribbon`</span><br><span class="line">canvas_ribbon:</span><br><span class="line">  enable: true # true 打开</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-文章加密"><a href="#4-文章加密" class="headerlink" title="4. 文章加密"></a>4. 文章加密</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cd blog</span><br><span class="line">npm install --save hexo-blog-encrypt</span><br><span class="line"># blog\themes\next\_config.yml</span><br><span class="line">encrypt:</span><br><span class="line">  enable: true</span><br><span class="line">  default_abstract: 这篇文章已加密，请输入密码查看。</span><br><span class="line">  default_message: 请输入密码访问。</span><br><span class="line"># 在`.md`文件头添加</span><br><span class="line">password: mypassword</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-搜索"><a href="#5-搜索" class="headerlink" title="5. 搜索"></a>5. 搜索</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># 安装依赖</span><br><span class="line">npm install hexo-generator-searchdb</span><br><span class="line"></span><br><span class="line"># 打开`blog\_config.yml`, 添加</span><br><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  content: true</span><br><span class="line">  format: html</span><br><span class="line">  </span><br><span class="line"># 打开`blog\themes\next\_config.yml`, 找到`local_search:`, 修改为</span><br><span class="line">local_search:</span><br><span class="line">  enable: true</span><br><span class="line">  # If auto, trigger search by changing input.</span><br><span class="line">  # If manual, trigger search by pressing enter key or search button.</span><br><span class="line">  trigger: auto</span><br><span class="line">  # Show top n results per article, show all results by setting to -1</span><br><span class="line">  top_n_per_article: 1</span><br><span class="line">  # Unescape html strings to the readable one.</span><br><span class="line">  unescape: false</span><br><span class="line">  # Preload the search data when the page loads.</span><br><span class="line">  preload: false</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-标签样式"><a href="#6-标签样式" class="headerlink" title="6. 标签样式"></a>6. 标签样式</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 打开`blog\next\_config.yml`, 找到`tag_icon: false`, 改为</span><br><span class="line">tag_icon: true</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-头像"><a href="#7-头像" class="headerlink" title="7. 头像"></a>7. 头像</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 把头像照片放进`blog\next\source\images`下, 起名为`avatar.jpg`</span><br><span class="line"># 打开`blog\next\_config.yml`, 找到`# Sidebar Avatar`</span><br><span class="line">avatar:</span><br><span class="line">  url: /images/avatar.jpg # 添加头像</span><br><span class="line">  rounded: true # 为true则圆形展示 </span><br><span class="line">  rotated: true # 为true则随光标旋转</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-代码块"><a href="#8-代码块" class="headerlink" title="8. 代码块"></a>8. 代码块</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 打开`blog\next\_config.yml`</span><br><span class="line">codeblock:</span><br><span class="line">  highlight_theme: night blue</span><br><span class="line">  # 复制按钮</span><br><span class="line">  copy_button:</span><br><span class="line">    enable: true</span><br><span class="line">    # 展示复制结果</span><br><span class="line">    show_result: true</span><br><span class="line">    # 可用值: default | flat | mac</span><br><span class="line">    style: mac</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-链接样式"><a href="#9-链接样式" class="headerlink" title="9. 链接样式"></a>9. 链接样式</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 打开`themes\next\source\css\_common\components\post\post.styl`, 在末尾添加如下css样式：</span><br><span class="line">// 文章内链接文本样式</span><br><span class="line">.post-body p a&#123;</span><br><span class="line">  color: #0593d3;</span><br><span class="line">  border-bottom: none;</span><br><span class="line">  border-bottom: 1px solid #0593d3;</span><br><span class="line">  &amp;:hover &#123;</span><br><span class="line">    color: #fc6423;</span><br><span class="line">    border-bottom: none;</span><br><span class="line">    border-bottom: 1px solid #fc6423;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-主页文章顺序设置"><a href="#10-主页文章顺序设置" class="headerlink" title="10. 主页文章顺序设置"></a>10. 主页文章顺序设置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 主页设置</span><br><span class="line"># path: 你的博客索引页的根路径。(默认 = &#x27;&#x27;)</span><br><span class="line"># per_page: 每页显示的文章数。(0 = 禁用分页)</span><br><span class="line"># order_by: 文章排序方式。(默认按日期降序排列)</span><br><span class="line">index_generator:</span><br><span class="line">  path: &#x27;&#x27;</span><br><span class="line">  per_page: 10</span><br><span class="line">  order_by: -date</span><br></pre></td></tr></table></figure>
+
+<h3 id="11-归档目录排序"><a href="#11-归档目录排序" class="headerlink" title="11. 归档目录排序"></a>11. 归档目录排序</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 打开`blog\_config.yml`, 添加:</span><br><span class="line">archive_generator:</span><br><span class="line">  order_by: -top # top为每篇文章前的yml配置</span><br></pre></td></tr></table></figure>
+
+<h3 id="12-部署"><a href="#12-部署" class="headerlink" title="12. 部署"></a>12. 部署</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">cd blog</span><br><span class="line"></span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line"># 打开`blog\_config.yml`, 找到`deploy:`</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: </span><br><span class="line">  	github: https://github.com/MeverikC/meverikc.github.io.git</span><br><span class="line">  	gitee: https://gitee.com/你的用户名/你的仓库名.git,分支名</span><br><span class="line">  branch: master</span><br><span class="line">  message: &quot;Site updated: &#123;&#123; now(&#x27;YYYY-MM-DD HH:mm:ss&#x27;) &#125;&#125;&quot;</span><br><span class="line"></span><br><span class="line"># 部署到github上</span><br><span class="line">hexo clean #清除之前生成的东西</span><br><span class="line">hexo generate  #生成静态文章，缩写hexo g</span><br><span class="line">hexo deploy  #部署文章，缩写hexo d</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="MeverikC"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">MeverikC</p>
+  <div class="site-description" itemprop="description">记录个人学习记录及一些电脑操作问题, 后续会持续更新, 敬请关注</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/meverikc" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;meverikc" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:meverlike@gmail.com" title="E-Mail → mailto:meverlike@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MeverikC</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+    </div>
+</body>
+</html>
