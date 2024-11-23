@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head title="MD Editor">
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="./css/editormd.min.css" />
+        <style>
+            html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                background: #577a8f;
+            }
+            .editormd {
+                box-sizing: border-box;
+            }
+            .export-btn {
+                font-display: center;
+            }
+        </style>
+    </head>
+    <body>
+        <button id="export-btn">导出 Markdown</button>
+        <div id="editor">
+            <!-- Tips: Editor.md can auto append a `<textarea>` tag -->
+            <textarea style="display:none;">### Hello Editor.md !</textarea>
+        </div>
+        <script src="./js/jquery.min.js"></script>
+        <script src="./js/editormd.js"></script>
+        <script type="text/javascript">
+            var editor;
+            $(function() {
+                editor = editormd("editor", {
+                    width: "100%",
+                    height: "80%",
+                    // markdown: "xxxx",     // dynamic set Markdown text
+                    path : "./lib/",  // Autoload modules mode, codemirror, marked... dependents libs path
+                    toolbarIcons: function() {
+                        // 获取默认的所有工具名称
+                        var icons = editormd.toolbarModes.full;
+                        // 过滤掉不需要的工具
+                        icons = icons.filter(function (i) {return !['fullscreen', 'preview', 'emoji'].includes(i);});
+                        // 加入自定义的工具名
+                        icons.push('|', 'load_md');
+                        return icons;
+                    },
+                    toolbarCustomIcons: {
+                        load_md: '<input type="file" id="my_file" accept=".md" onchange="md_file_changed()" style="display: none;"><li><a href="javascript:#" onclick="load_md_file()" title="load md" unselectable="on"><i class="fa fa-upload" name="load_md" unselectable="on"></i></a></li>',
+                    },
+                });
+
+                $("#export-btn").click(function() {
+                    var content = editor.getMarkdown();
+                    downloadFile(content, "output.md");
+                });
+
+                function downloadFile(content, filename) {
+                    var blob = new Blob([content], { type: "text/markdown" });
+                    var link = document.createElement("a");
+                    link.href = URL.createObjectURL(blob);
+                    link.download = filename;
+                    link.click();
+                };
+            });
+            
+            window.load_md_file = function () {
+                // 点击图标，触发隐藏的<input/>标签的点击事件用以选择本地 md 文档
+                $("#my_file").click();
+            }
+            window.md_file_changed = function () {
+                // 获取选择到的本地文件对象，利用 HTML5 的 File API 加载其内容
+                var file = document.getElementById("my_file").files[0];
+                var reader = new FileReader();
+                reader.readAsText(file, "utf-8");
+                reader.onload = function (e) {
+                    // 将文档内容载入编辑器
+                    var fileText = e.target.result;
+                    window.md_editor.cm.replaceSelection(fileText);
+                }
+            }
+        </script>
+    </body>
+</html>
