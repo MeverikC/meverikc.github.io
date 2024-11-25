@@ -1,33 +1,79 @@
 <!DOCTYPE html>
 <html lang="zh">
-    <head title="MD Editor">
+    <head>
         <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./css/editormd.min.css" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/m.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/m.png">
+        <link rel="aicon" type="image/png" sizes="16x16" href="/images/m.png">
+        <title>MD Editor</title>
         <style>
             html, body {
                 width: 100%;
                 height: 100%;
                 margin: 0;
-                background: #577a8f;
+                background: #327a80;
+                display: flex;
+                justify-content: center; /* 水平居中 */
+                align-items: center;     /* 垂直居中 */
+                flex-direction: column;  /* 可以选择让内容竖直方向排列 */
             }
             .editormd {
+                width: 80%; /* 设置编辑器的宽度 */
+                height: 80%; /* 设置编辑器的高度 */
                 box-sizing: border-box;
             }
-            .export-btn {
-                font-display: center;
+             /* 设置按钮样式 */
+            #homeButton {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                /*width: 10vw; !* 按屏幕宽度的10%设置宽度 *!*/
+                /*height: 10vw;*/
+                /*font-size: 1.5rem; !* 使用相对于根元素字体大小的单位 *!*/
+                background-color: #007bff;
+                color: white;
+                font-size: 24px;
+                border: none;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+                z-index: 9999;  /* 确保按钮置于最顶层 */
             }
+
+            /* 鼠标悬停时改变按钮颜色 */
+            #homeButton:hover {
+                background-color: #0056b3;
+            }
+            /* 在移动设备上调整按钮大小 */
+            /*@media screen and (max-width: 1000px) {*/
+            /*    #homeButton {*/
+            /*        width: 125px; !* 增大按钮宽度 *!*/
+            /*        height: 125px; !* 增大按钮高度 *!*/
+            /*        font-size: 28px; !* 调整字体大小 *!*/
+            /*    }*/
+            /*}*/
         </style>
     </head>
     <body>
-        <button id="export-btn">导出 Markdown</button>
         <div id="editor">
             <!-- Tips: Editor.md can auto append a `<textarea>` tag -->
             <textarea style="display:none;">### Hello Editor.md !</textarea>
         </div>
+        <!-- 返回首页按钮 -->
+        <button id="homeButton" onclick="location.href='/'">
+            <i class="fa fa-home"></i>
+        </button>
         <script src="./js/jquery.min.js"></script>
         <script src="./js/editormd.js"></script>
         <script type="text/javascript">
-            var editor;
+            let editor;
             $(function() {
                 editor = editormd("editor", {
                     width: "100%",
@@ -40,28 +86,65 @@
                         // 过滤掉不需要的工具
                         icons = icons.filter(function (i) {return !['fullscreen', 'preview', 'emoji'].includes(i);});
                         // 加入自定义的工具名
-                        icons.push('|', 'load_md');
+                        icons.push('|', 'load_md','export_btn','save_btn');
                         return icons;
                     },
                     toolbarCustomIcons: {
                         load_md: '<input type="file" id="my_file" accept=".md" onchange="md_file_changed()" style="display: none;"><li><a href="javascript:#" onclick="load_md_file()" title="load md" unselectable="on"><i class="fa fa-upload" name="load_md" unselectable="on"></i></a></li>',
+                        export_btn: '<button id="export-btn" onclick="downloadFile()" style="display: none;"></button><li><a href="javascript:#;" onclick="trigger_download()" title="导出 Markdown" unselectable="on"><i class="fa fa-download"></i> </a></li>',
+                        save_btn: '<button id="save-btn" onclick="saveToLocal()" style="display: none;"></button><li><a href="javascript:#;" onclick="trigger_save_local()" title="保存到本地" unselectable="on"><i class="fa fa-save"></i> </a></li>',
                     },
                 });
-
-                $("#export-btn").click(function() {
-                    var content = editor.getMarkdown();
-                    downloadFile(content, "output.md");
-                });
-
-                function downloadFile(content, filename) {
-                    var blob = new Blob([content], { type: "text/markdown" });
-                    var link = document.createElement("a");
-                    link.href = URL.createObjectURL(blob);
-                    link.download = filename;
-                    link.click();
-                };
             });
             
+            // 下载到本地
+            window.trigger_download = function () {
+                $("#export-btn").click();
+            }
+            window.downloadFile = function () {
+                var content = editor.getMarkdown();
+                var custom_fileName = prompt("请输入文件名（不带扩展名）", "new-file");
+                if (!custom_fileName) return;
+                var blob = new Blob([content], { type: "text/markdown" });
+                var link = document.createElement("a");
+                var fileName = custom_fileName + '.md';
+                link.href = URL.createObjectURL(blob);
+                link.download = fileName;
+                link.click();
+            }
+
+            // // 保存至_post目录
+            // window.trigger_save_local = function () {
+            //     $("#save-btn").click();
+            // }
+            window.saveToLocal = function () {
+                var content = editor.getMarkdown(); // 获取Markdown内容
+                var fileName = prompt("请输入文件名（不带扩展名）", "new-file"); // 获取文件名
+                if (!fileName) return;
+
+                // 创建 POST 请求
+                fetch('http://localhost:3000/save-md', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        fileName: fileName + '.md',
+                        content: content
+                    })
+                }).then(response => {
+                    if (response.ok) {
+                        alert("文件已保存到服务器！");
+                    } else {
+                        alert("保存失败，请检查服务器配置。");
+                    }
+                }).catch(err => {
+                    console.error("保存失败：", err);
+                    alert("保存失败，请检查网络连接。");
+                });
+            }
+
+            // 上传本地文档
             window.load_md_file = function () {
                 // 点击图标，触发隐藏的<input/>标签的点击事件用以选择本地 md 文档
                 $("#my_file").click();
@@ -74,9 +157,34 @@
                 reader.onload = function (e) {
                     // 将文档内容载入编辑器
                     var fileText = e.target.result;
-                    window.md_editor.cm.replaceSelection(fileText);
+                    editor.cm.replaceSelection(fileText);
                 }
             }
+
+        </script>
+        <script>
+            function adjustButtonSize() {
+                const button = document.getElementById('homeButton');
+                const screenWidth = window.innerWidth;
+                console.log(screenWidth)
+                if (screenWidth < 1000 && screenWidth >= 700) {
+                    button.style.width = 10 + 'vm';
+                    button.style.height = 10 + 'vm';
+                    button.style.fontSize = 1.5 + 'rem';
+                }else if (screenWidth >= 1000){
+                    button.style.width = 50 + 'px';
+                    button.style.height = 50 + 'px';
+                }else if (screenWidth < 700) {
+                    button.style.width = 50 + 'px';
+                    button.style.height = 50 + 'px';
+                }
+            }
+
+            // 初始化调整
+            adjustButtonSize();
+
+            // 监听窗口大小变化事件
+            window.addEventListener('resize', adjustButtonSize);
         </script>
     </body>
 </html>
