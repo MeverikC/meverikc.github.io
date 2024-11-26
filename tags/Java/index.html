@@ -16,6 +16,8 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -221,6 +223,7 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
 
 
     <main class="main">
@@ -339,8 +342,8 @@
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/2024/09/30/2024-09-30-Java-4/" itemprop="url">
-            <span itemprop="name">Java-4</span>
+          <a class="post-title-link" href="/2024/09/30/2024-09-30-Java-3/" itemprop="url">
+            <span itemprop="name">Java-3</span>
           </a>
       </div>
 
@@ -359,8 +362,8 @@
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/2024/09/30/2024-09-30-Java-3/" itemprop="url">
-            <span itemprop="name">Java-3</span>
+          <a class="post-title-link" href="/2024/09/30/2024-09-30-Java-4/" itemprop="url">
+            <span itemprop="name">Java-4</span>
           </a>
       </div>
 
@@ -620,6 +623,19 @@ window.addEventListener('pjax:success', () => {
 
 
 
+<script data-pjax>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
 
     <div id="pjax">

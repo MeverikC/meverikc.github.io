@@ -16,6 +16,8 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -223,6 +225,7 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
 
 
     <main class="main">
@@ -384,7 +387,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BD%BF%E7%94%A8next%E4%B8%BB%E9%A2%98"><span class="nav-text">1.使用next主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%9B%B4%E6%8D%A2%E9%A3%8E%E6%A0%BC"><span class="nav-text">2. 更换风格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%8A%A8%E6%80%81%E8%83%8C%E6%99%AF"><span class="nav-text">3. 动态背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%96%87%E7%AB%A0%E5%8A%A0%E5%AF%86"><span class="nav-text">4. 文章加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%90%9C%E7%B4%A2"><span class="nav-text">5. 搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E6%A0%87%E7%AD%BE%E6%A0%B7%E5%BC%8F"><span class="nav-text">6. 标签样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E5%A4%B4%E5%83%8F"><span class="nav-text">7. 头像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="nav-text">8. 代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E9%93%BE%E6%8E%A5%E6%A0%B7%E5%BC%8F"><span class="nav-text">9. 链接样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E4%B8%BB%E9%A1%B5%E6%96%87%E7%AB%A0%E9%A1%BA%E5%BA%8F%E8%AE%BE%E7%BD%AE"><span class="nav-text">10. 主页文章顺序设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E5%BD%92%E6%A1%A3%E7%9B%AE%E5%BD%95%E6%8E%92%E5%BA%8F"><span class="nav-text">11. 归档目录排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E9%83%A8%E7%BD%B2"><span class="nav-text">12. 部署</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BD%BF%E7%94%A8next%E4%B8%BB%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">1.使用next主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%9B%B4%E6%8D%A2%E9%A3%8E%E6%A0%BC"><span class="nav-number">2.</span> <span class="nav-text">2. 更换风格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%8A%A8%E6%80%81%E8%83%8C%E6%99%AF"><span class="nav-number">3.</span> <span class="nav-text">3. 动态背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%96%87%E7%AB%A0%E5%8A%A0%E5%AF%86"><span class="nav-number">4.</span> <span class="nav-text">4. 文章加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%90%9C%E7%B4%A2"><span class="nav-number">5.</span> <span class="nav-text">5. 搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E6%A0%87%E7%AD%BE%E6%A0%B7%E5%BC%8F"><span class="nav-number">6.</span> <span class="nav-text">6. 标签样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E5%A4%B4%E5%83%8F"><span class="nav-number">7.</span> <span class="nav-text">7. 头像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="nav-number">8.</span> <span class="nav-text">8. 代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E9%93%BE%E6%8E%A5%E6%A0%B7%E5%BC%8F"><span class="nav-number">9.</span> <span class="nav-text">9. 链接样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E4%B8%BB%E9%A1%B5%E6%96%87%E7%AB%A0%E9%A1%BA%E5%BA%8F%E8%AE%BE%E7%BD%AE"><span class="nav-number">10.</span> <span class="nav-text">10. 主页文章顺序设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E5%BD%92%E6%A1%A3%E7%9B%AE%E5%BD%95%E6%8E%92%E5%BA%8F"><span class="nav-number">11.</span> <span class="nav-text">11. 归档目录排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E9%83%A8%E7%BD%B2"><span class="nav-number">12.</span> <span class="nav-text">12. 部署</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -560,6 +563,19 @@ window.addEventListener('pjax:success', () => {
 
 
 
+<script data-pjax>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
 
     <div id="pjax">
