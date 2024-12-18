@@ -777,6 +777,80 @@
       </tags>
   </entry>
   <entry>
+    <title>Java-5</title>
+    <url>/2024/11/05/2024-11-05-Java-5/</url>
+    <content><![CDATA[<h2 id="String-类"><a href="#String-类" class="headerlink" title="String 类"></a>String 类</h2><p>字符串广泛应用 在 Java 编程中，在 Java 中字符串属于对象，Java 提供了 String 类来创建和操作字符串。</p>
+<hr>
+<h3 id="1-创建字符串"><a href="#1-创建字符串" class="headerlink" title="1. 创建字符串"></a>1. 创建字符串</h3><p>创建字符串最简单的方式如下:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;Hello,World!&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p>在代码中遇到字符串常量时，这里的值是 “<strong>Hello,World!</strong>“，编译器会使用该值创建一个 String 对象。</p>
+<p>和其它对象一样，可以使用关键字和构造方法来创建 String 对象。</p>
+<p>用构造函数创建字符串：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;Hello,World!&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>String 创建的字符串存储在公共池中，而 new 创建的字符串对象在堆上：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="string">&quot;Hello,World!&quot;</span>;               <span class="comment">// String 直接创建</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> <span class="string">&quot;Hello,World!&quot;</span>;               <span class="comment">// String 直接创建</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s3</span> <span class="operator">=</span> s1;                    		  <span class="comment">// 相同引用</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s4</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;Hello,World!&quot;</span>);   <span class="comment">// String 对象创建</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s5</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;Hello,World!&quot;</span>);   <span class="comment">// String 对象创建</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/java-5_1.png"></p>
+<p>String 类有 11 种构造方法，这些方法提供不同的参数来初始化字符串，比如提供一个字符数组参数:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StringDemo</span>&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span>&#123;</span><br><span class="line">      <span class="type">char</span>[] helloArray = &#123; <span class="string">&#x27;H&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;o&#x27;</span>&#125;;</span><br><span class="line">      <span class="type">String</span> <span class="variable">helloString</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(helloArray);  </span><br><span class="line">      System.out.println( helloString );</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上实例编译运行结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Hello</span><br></pre></td></tr></table></figure>
+
+<p>**注意:**String 类是不可改变的，所以你一旦创建了 String 对象，那它的值就无法改变了（详看笔记部分解析）。</p>
+<p>如果需要对字符串做很多修改，那么应该选择使用 <a href="">StringBuffer &amp; StringBuilder 类</a>。</p>
+<h3 id="2-字符串长度"><a href="#2-字符串长度" class="headerlink" title="2. 字符串长度"></a>2. 字符串长度</h3><p>用于获取有关对象的信息的方法称为访问器方法。</p>
+<p>String 类的一个访问器方法是 length() 方法，它返回字符串对象包含的字符数。</p>
+<p>下面的代码执行后，len 变量等于 14:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StringDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">site</span> <span class="operator">=</span> <span class="string">&quot;www.baidu.com&quot;</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> site.length();</span><br><span class="line">        System.out.println( <span class="string">&quot;百度网址长度 : &quot;</span> + len );</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上实例编译运行结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">百度网址长度 : 14</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-连接字符串"><a href="#3-连接字符串" class="headerlink" title="3. 连接字符串"></a>3. 连接字符串</h3><p>String 类提供了连接两个字符串的方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">string1.concat(string2);</span><br></pre></td></tr></table></figure>
+
+<p>返回 string2 连接 string1 的新字符串。也可以对字符串常量使用 concat() 方法，如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;我的名字是 &quot;</span>.concat(<span class="string">&quot;john&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>更常用的是使用’+’操作符来连接字符串，如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;Hello,&quot;</span> + <span class="string">&quot; john&quot;</span> + <span class="string">&quot;!&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>结果如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Hello, john!</span><br></pre></td></tr></table></figure>
+
+<p>下面是一个例子:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StringDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span> &#123;     </span><br><span class="line">        <span class="type">String</span> <span class="variable">string1</span> <span class="operator">=</span> <span class="string">&quot;百度网址：&quot;</span>;     </span><br><span class="line">        System.out.println(<span class="string">&quot;1、&quot;</span> + string1 + <span class="string">&quot;www.baidu.com&quot;</span>);  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上实例编译运行结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、百度网址：www.baidu.com</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-创建格式化字符串"><a href="#4-创建格式化字符串" class="headerlink" title="4. 创建格式化字符串"></a>4. 创建格式化字符串</h3><p>我们知道输出格式化数字可以使用 printf() 和 format() 方法。</p>
+<p>String 类使用静态方法 format() 返回一个String 对象而不是 PrintStream 对象。</p>
+<p>String 类的静态方法 format() 能用来创建可复用的格式化字符串，而不仅仅是用于一次打印输出。</p>
+<p>如下所示：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">System.out.printf(<span class="string">&quot;浮点型变量的值为 &quot;</span> +</span><br><span class="line">                  <span class="string">&quot;%f, 整型变量的值为 &quot;</span> +</span><br><span class="line">                  <span class="string">&quot; %d, 字符串变量的值为 &quot;</span> +</span><br><span class="line">                  <span class="string">&quot;is %s&quot;</span>, floatVar, intVar, stringVar);</span><br></pre></td></tr></table></figure>
+
+<p>你也可以这样写</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String fs;</span><br><span class="line">fs = String.format(<span class="string">&quot;浮点型变量的值为 &quot;</span> +</span><br><span class="line">                   <span class="string">&quot;%f, 整型变量的值为 &quot;</span> +</span><br><span class="line">                   <span class="string">&quot; %d, 字符串变量的值为 &quot;</span> +</span><br><span class="line">                   <span class="string">&quot; %s&quot;</span>, floatVar, intVar, stringVar);</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-String-方法"><a href="#5-String-方法" class="headerlink" title="5. String 方法"></a>5. String 方法</h3><p>下面是 String 类支持的方法，更多详细，参看 Java String API文档:</p>
+<p><a href="https://docs.oracle.com/en/java/javase/11/docs/api/index.html">官方文档</a></p>
+<p><a href="http://meverikc.top:8080/javaapi">中文在线文档</a></p>
+<p><a href="http://www.meverikc.top:8080/javaapi/java.base/java/lang/String.html#method.summary">String类内容</a></p>
+<p><a href="https://github.com/MeverikC/meverikc.github.io/releases/tag/latest">中文文档下载</a> </p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java-JDK安装</title>
     <url>/2024/10/10/2024-10-10-Java-JDK%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h3 id="Windows安装Java-11的完整教程"><a href="#Windows安装Java-11的完整教程" class="headerlink" title="Windows安装Java 11的完整教程"></a>Windows安装Java 11的完整教程</h3><p>以下是详细的步骤来帮助你在Windows系统中安装Java 11并配置环境变量。</p>
@@ -1050,80 +1124,6 @@
 <li>需要键值对存储时使用<code>HashMap</code>或<code>TreeMap</code>。</li>
 </ul>
 <p>深入理解每种容器的特性与适用场景是写出高质量Java代码的关键！</p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java-5</title>
-    <url>/2024/11/05/2024-11-05-Java-5/</url>
-    <content><![CDATA[<h2 id="String-类"><a href="#String-类" class="headerlink" title="String 类"></a>String 类</h2><p>字符串广泛应用 在 Java 编程中，在 Java 中字符串属于对象，Java 提供了 String 类来创建和操作字符串。</p>
-<hr>
-<h3 id="1-创建字符串"><a href="#1-创建字符串" class="headerlink" title="1. 创建字符串"></a>1. 创建字符串</h3><p>创建字符串最简单的方式如下:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;Hello,World!&quot;</span>;</span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<p>在代码中遇到字符串常量时，这里的值是 “<strong>Hello,World!</strong>“，编译器会使用该值创建一个 String 对象。</p>
-<p>和其它对象一样，可以使用关键字和构造方法来创建 String 对象。</p>
-<p>用构造函数创建字符串：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;Hello,World!&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>String 创建的字符串存储在公共池中，而 new 创建的字符串对象在堆上：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="string">&quot;Hello,World!&quot;</span>;               <span class="comment">// String 直接创建</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> <span class="string">&quot;Hello,World!&quot;</span>;               <span class="comment">// String 直接创建</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s3</span> <span class="operator">=</span> s1;                    		  <span class="comment">// 相同引用</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s4</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;Hello,World!&quot;</span>);   <span class="comment">// String 对象创建</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s5</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;Hello,World!&quot;</span>);   <span class="comment">// String 对象创建</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="/../images/java-5_1.png"></p>
-<p>String 类有 11 种构造方法，这些方法提供不同的参数来初始化字符串，比如提供一个字符数组参数:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StringDemo</span>&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span>&#123;</span><br><span class="line">      <span class="type">char</span>[] helloArray = &#123; <span class="string">&#x27;H&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;o&#x27;</span>&#125;;</span><br><span class="line">      <span class="type">String</span> <span class="variable">helloString</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(helloArray);  </span><br><span class="line">      System.out.println( helloString );</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>以上实例编译运行结果如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Hello</span><br></pre></td></tr></table></figure>
-
-<p>**注意:**String 类是不可改变的，所以你一旦创建了 String 对象，那它的值就无法改变了（详看笔记部分解析）。</p>
-<p>如果需要对字符串做很多修改，那么应该选择使用 <a href="">StringBuffer &amp; StringBuilder 类</a>。</p>
-<h3 id="2-字符串长度"><a href="#2-字符串长度" class="headerlink" title="2. 字符串长度"></a>2. 字符串长度</h3><p>用于获取有关对象的信息的方法称为访问器方法。</p>
-<p>String 类的一个访问器方法是 length() 方法，它返回字符串对象包含的字符数。</p>
-<p>下面的代码执行后，len 变量等于 14:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StringDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">site</span> <span class="operator">=</span> <span class="string">&quot;www.baidu.com&quot;</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> site.length();</span><br><span class="line">        System.out.println( <span class="string">&quot;百度网址长度 : &quot;</span> + len );</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>以上实例编译运行结果如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">百度网址长度 : 14</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-连接字符串"><a href="#3-连接字符串" class="headerlink" title="3. 连接字符串"></a>3. 连接字符串</h3><p>String 类提供了连接两个字符串的方法：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">string1.concat(string2);</span><br></pre></td></tr></table></figure>
-
-<p>返回 string2 连接 string1 的新字符串。也可以对字符串常量使用 concat() 方法，如：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;我的名字是 &quot;</span>.concat(<span class="string">&quot;john&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>更常用的是使用’+’操作符来连接字符串，如：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;Hello,&quot;</span> + <span class="string">&quot; john&quot;</span> + <span class="string">&quot;!&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>结果如下:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Hello, john!</span><br></pre></td></tr></table></figure>
-
-<p>下面是一个例子:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StringDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span> &#123;     </span><br><span class="line">        <span class="type">String</span> <span class="variable">string1</span> <span class="operator">=</span> <span class="string">&quot;百度网址：&quot;</span>;     </span><br><span class="line">        System.out.println(<span class="string">&quot;1、&quot;</span> + string1 + <span class="string">&quot;www.baidu.com&quot;</span>);  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>以上实例编译运行结果如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、百度网址：www.baidu.com</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-创建格式化字符串"><a href="#4-创建格式化字符串" class="headerlink" title="4. 创建格式化字符串"></a>4. 创建格式化字符串</h3><p>我们知道输出格式化数字可以使用 printf() 和 format() 方法。</p>
-<p>String 类使用静态方法 format() 返回一个String 对象而不是 PrintStream 对象。</p>
-<p>String 类的静态方法 format() 能用来创建可复用的格式化字符串，而不仅仅是用于一次打印输出。</p>
-<p>如下所示：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">System.out.printf(<span class="string">&quot;浮点型变量的值为 &quot;</span> +</span><br><span class="line">                  <span class="string">&quot;%f, 整型变量的值为 &quot;</span> +</span><br><span class="line">                  <span class="string">&quot; %d, 字符串变量的值为 &quot;</span> +</span><br><span class="line">                  <span class="string">&quot;is %s&quot;</span>, floatVar, intVar, stringVar);</span><br></pre></td></tr></table></figure>
-
-<p>你也可以这样写</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String fs;</span><br><span class="line">fs = String.format(<span class="string">&quot;浮点型变量的值为 &quot;</span> +</span><br><span class="line">                   <span class="string">&quot;%f, 整型变量的值为 &quot;</span> +</span><br><span class="line">                   <span class="string">&quot; %d, 字符串变量的值为 &quot;</span> +</span><br><span class="line">                   <span class="string">&quot; %s&quot;</span>, floatVar, intVar, stringVar);</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-String-方法"><a href="#5-String-方法" class="headerlink" title="5. String 方法"></a>5. String 方法</h3><p>下面是 String 类支持的方法，更多详细，参看 Java String API文档:</p>
-<p><a href="https://docs.oracle.com/en/java/javase/11/docs/api/index.html">官方文档</a></p>
-<p><a href="http://meverikc.top:8080/javaapi">中文在线文档</a></p>
-<p><a href="http://www.meverikc.top:8080/javaapi/java.base/java/lang/String.html#method.summary">String类内容</a></p>
-<p><a href="https://github.com/MeverikC/meverikc.github.io/releases/tag/latest">中文文档下载</a> </p>
 ]]></content>
       <tags>
         <tag>Java</tag>
