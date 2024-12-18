@@ -25,7 +25,7 @@ h1 {
 /* 自定义下拉选择框 */
 .select-container {
     position: relative;
-    width: 80px;
+    width: 100px;
     margin-top: 30px;
 
     /* 字体 */
