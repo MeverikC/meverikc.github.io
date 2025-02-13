@@ -24,31 +24,33 @@
     var CONFIG = {"hostname":"meverikc.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="记录个人学习记录及一些电脑操作问题, 后续会持续更新, 敬请关注">
-<meta property="og:type" content="website">
-<meta property="og:title" content="MFIKC">
-<meta property="og:url" content="https://meverikc.github.io/page/2/">
+  <meta name="description" content="Stream下面是一份关于Java中Stream API的完整、详细的用法及其作用的说明，内容涵盖了概念、创建方式、中间操作、终止操作、并行处理及注意事项。  一、Stream API概述Java 8引入的Stream API为集合及数组提供了一种声明式、函数式的数据处理方式。与传统的集合操作相比，Stream具有以下几个显著特点：  非数据结构   Stream并不存储数据，它只是对数据源（如集">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stream&amp;Lambda">
+<meta property="og:url" content="https://meverikc.github.io/2025/02/13/Stream&Lambda/">
 <meta property="og:site_name" content="MFIKC">
-<meta property="og:description" content="记录个人学习记录及一些电脑操作问题, 后续会持续更新, 敬请关注">
+<meta property="og:description" content="Stream下面是一份关于Java中Stream API的完整、详细的用法及其作用的说明，内容涵盖了概念、创建方式、中间操作、终止操作、并行处理及注意事项。  一、Stream API概述Java 8引入的Stream API为集合及数组提供了一种声明式、函数式的数据处理方式。与传统的集合操作相比，Stream具有以下几个显著特点：  非数据结构   Stream并不存储数据，它只是对数据源（如集">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-02-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-02-13T06:13:34.005Z">
 <meta property="article:author" content="MeverikC">
-<meta property="article:tag" content="前端,后端,运维">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://meverikc.github.io/page/2/">
+<link rel="canonical" href="https://meverikc.github.io/2025/02/13/Stream&Lambda/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>MFIKC</title>
+  <title>Stream&Lambda | MFIKC</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5NCKWQXZMW"></script>
     <script data-pjax>
@@ -231,9 +233,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -249,10 +252,9 @@
       <meta itemprop="name" content="MFIKC">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/02/13/Stream&Lambda/" class="post-title-link" itemprop="url">Stream&Lambda</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          Stream&Lambda
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -276,7 +278,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h1><p>下面是一份关于Java中Stream API的完整、详细的用法及其作用的说明，内容涵盖了概念、创建方式、中间操作、终止操作、并行处理及注意事项。</p>
+        <h1 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h1><p>下面是一份关于Java中Stream API的完整、详细的用法及其作用的说明，内容涵盖了概念、创建方式、中间操作、终止操作、并行处理及注意事项。</p>
 <hr>
 <h2 id="一、Stream-API概述"><a href="#一、Stream-API概述" class="headerlink" title="一、Stream API概述"></a>一、Stream API概述</h2><p>Java 8引入的Stream API为集合及数组提供了一种声明式、函数式的数据处理方式。与传统的集合操作相比，Stream具有以下几个显著特点：</p>
 <ul>
@@ -460,22 +462,36 @@
 <h2 id="八、总结"><a href="#八、总结" class="headerlink" title="八、总结"></a>八、总结</h2><p>Java Lambda 表达式使代码更加简洁、灵活，能够将行为作为参数传递，从而实现函数式编程风格。它不仅极大地简化了匿名内部类的写法，还与 Stream API、事件处理、多线程等场景完美结合，帮助开发者编写出更高效、更易读的代码。在使用时请注意 Lambda 表达式中变量的作用域（必须是有效最终的）以及与函数式接口的配合使用。</p>
 <p>希望这份详细说明能够帮助你全面掌握 Java Lambda 表达式的用法及其作用。 Happy coding!</p>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/11/23/windows%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/" rel="prev" title="windows桌面美化">
+      <i class="fa fa-chevron-left"></i> windows桌面美化
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
       </footer>
+    
   </article>
   
   
   
 
-
-  
 
 
           </div>
@@ -526,6 +542,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Stream"><span class="nav-number">1.</span> <span class="nav-text">Stream</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81Stream-API%E6%A6%82%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">一、Stream API概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Stream%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="nav-number">1.2.</span> <span class="nav-text">二、Stream的创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81Stream%E7%9A%84%E4%B8%AD%E9%97%B4%E6%93%8D%E4%BD%9C"><span class="nav-number">1.3.</span> <span class="nav-text">三、Stream的中间操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81Stream%E7%9A%84%E7%BB%88%E6%AD%A2%E6%93%8D%E4%BD%9C"><span class="nav-number">1.4.</span> <span class="nav-text">四、Stream的终止操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81Stream%E7%9A%84%E5%B9%B6%E8%A1%8C%E5%A4%84%E7%90%86"><span class="nav-number">1.5.</span> <span class="nav-text">五、Stream的并行处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81Stream-API%E7%9A%84%E4%BD%9C%E7%94%A8%E4%B8%8E%E4%BC%98%E7%82%B9"><span class="nav-number">1.6.</span> <span class="nav-text">六、Stream API的作用与优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.7.</span> <span class="nav-text">七、注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.8.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lambda"><span class="nav-number">2.</span> <span class="nav-text">Lambda</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81Lambda-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%AE%80%E4%BB%8B"><span class="nav-number">2.1.</span> <span class="nav-text">一、Lambda 表达式简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Lambda-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%AF%AD%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">二、Lambda 表达式的语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3%EF%BC%88Functional-Interface%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">三、函数式接口（Functional Interface）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81Lambda-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E4%BD%9C%E7%94%A8"><span class="nav-number">2.4.</span> <span class="nav-text">四、Lambda 表达式的使用场景及作用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%AE%80%E5%8C%96%E4%BB%A3%E7%A0%81"><span class="nav-number">2.4.1.</span> <span class="nav-text">1. 简化代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%B8%8E%E9%9B%86%E5%90%88%E5%8F%8A-Stream-API-%E7%BB%93%E5%90%88"><span class="nav-number">2.4.2.</span> <span class="nav-text">2. 与集合及 Stream API 结合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%8F%8A%E5%9B%9E%E8%B0%83"><span class="nav-number">2.4.3.</span> <span class="nav-text">3. 事件处理及回调</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-number">2.4.4.</span> <span class="nav-text">4. 多线程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81Lambda-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%AD%E7%9A%84%E5%8F%98%E9%87%8F%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">2.5.</span> <span class="nav-text">五、Lambda 表达式中的变量作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8%E4%B8%8E%E6%9E%84%E9%80%A0%E5%99%A8%E5%BC%95%E7%94%A8"><span class="nav-number">2.6.</span> <span class="nav-text">六、方法引用与构造器引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.7.</span> <span class="nav-text">七、完整示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E6%80%BB%E7%BB%93"><span class="nav-number">2.8.</span> <span class="nav-text">八、总结</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

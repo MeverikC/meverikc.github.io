@@ -777,6 +777,43 @@
       </tags>
   </entry>
   <entry>
+    <title>Java-JDK安装</title>
+    <url>/2024/10/10/2024-10-10-Java-JDK%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h3 id="Windows安装Java-11的完整教程"><a href="#Windows安装Java-11的完整教程" class="headerlink" title="Windows安装Java 11的完整教程"></a>Windows安装Java 11的完整教程</h3><p>以下是详细的步骤来帮助你在Windows系统中安装Java 11并配置环境变量。</p>
+<h4 id="1-下载Java-11-JDK"><a href="#1-下载Java-11-JDK" class="headerlink" title="1. 下载Java 11 JDK"></a>1. 下载Java 11 JDK</h4><ol>
+<li>打开你的浏览器，访问<a href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html">Oracle JDK下载页面</a></li>
+<li>在页面中找到<code>Windows安装包</code>，选择<code>Windows x64</code> <code>Installer</code> 并下载。 <span id="more"></span><br> <img src="/../images/jdk11_install.png"></li>
+</ol>
+<h4 id="2-安装Java-11-JDK"><a href="#2-安装Java-11-JDK" class="headerlink" title="2. 安装Java 11 JDK"></a>2. 安装Java 11 JDK</h4><ol>
+<li>下载完成后，双击安装文件（<code>.exe</code>）启动安装向导。</li>
+<li>在安装过程中，选择安装路径（默认是<code>C:\Program Files\Java\jdk-11.x.x</code>，可以更改路径）。点击<code>Next</code>继续。</li>
+<li>等待安装完成，点击<code>Close</code>。</li>
+</ol>
+<h4 id="3-配置环境变量"><a href="#3-配置环境变量" class="headerlink" title="3. 配置环境变量"></a>3. 配置环境变量</h4><ol>
+<li>右键点击<code>此电脑</code>或<code>计算机</code>，选择<code>属性</code>。<br> <img src="/../images/ENV-set1.png"></li>
+<li>选择<code>高级系统设置</code>，点击弹出窗口中的<code>环境变量</code>。<br> <img src="/../images/ENV-set2.png"><br> <img src="/../images/ENV-set3.png"></li>
+<li>在系统变量下点击下<code>新建</code><br> <img src="/../images/ENV-set4.png"></li>
+<li>在弹出的窗口内的变量名输入<code>JAVA_HOME</code>, 在变量值输入<code>C:\Program Files\Java\jdk-11</code><br> <img src="/../images/ENV-set5.png"><br> 输入完点击<code>确定</code> </li>
+<li>在<code>系统变量</code>部分找到并选择<code>Path</code>，然后点击<code>编辑</code>。<br> <img src="/../images/ENV-set6.png"></li>
+<li>点击<code>新建</code>，并添加以下：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">%JAVA_HOME%\bin</span><br></pre></td></tr></table></figure>
+点击<code>确定</code>保存修改。</li>
+</ol>
+<h4 id="4-验证Java安装"><a href="#4-验证Java安装" class="headerlink" title="4. 验证Java安装"></a>4. 验证Java安装</h4><ol>
+<li>打开<code>命令提示符</code>（按下<code>Windows键 + R</code>，输入<code>cmd</code>并回车）。</li>
+<li>输入以下命令检查Java是否安装成功：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
+如果成功，你会看到类似如下输出，显示Java 11的版本信息：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java version &quot;11.x.x&quot;</span><br><span class="line">Java(TM) SE Runtime Environment 18.x.x (build 11.x.x)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 11.x.x, mixed mode)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="5-验证JAVA-HOME设置"><a href="#5-验证JAVA-HOME设置" class="headerlink" title="5. 验证JAVA_HOME设置"></a>5. 验证<code>JAVA_HOME</code>设置</h4><ol>
+<li>在<code>命令提示符</code>中输入以下命令，确认<code>JAVA_HOME</code>是否设置正确：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo %JAVA_HOME%</span><br></pre></td></tr></table></figure>
+它应该返回你的JDK安装路径，如：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C:\Program Files\Java\jdk-11.x.x</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>至此，你已经成功在Windows系统上安装并配置了Java 11。</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java-5</title>
     <url>/2024/11/05/2024-11-05-Java-5/</url>
     <content><![CDATA[<h2 id="String-类"><a href="#String-类" class="headerlink" title="String 类"></a>String 类</h2><p>字符串广泛应用 在 Java 编程中，在 Java 中字符串属于对象，Java 提供了 String 类来创建和操作字符串。</p>
@@ -845,43 +882,6 @@
 <p><a href="http://meverikc.top:8080/javaapi">中文在线文档</a></p>
 <p><a href="http://www.meverikc.top:8080/javaapi/java.base/java/lang/String.html#method.summary">String类内容</a></p>
 <p><a href="https://github.com/MeverikC/meverikc.github.io/releases/tag/latest">中文文档下载</a> </p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java-JDK安装</title>
-    <url>/2024/10/10/2024-10-10-Java-JDK%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h3 id="Windows安装Java-11的完整教程"><a href="#Windows安装Java-11的完整教程" class="headerlink" title="Windows安装Java 11的完整教程"></a>Windows安装Java 11的完整教程</h3><p>以下是详细的步骤来帮助你在Windows系统中安装Java 11并配置环境变量。</p>
-<h4 id="1-下载Java-11-JDK"><a href="#1-下载Java-11-JDK" class="headerlink" title="1. 下载Java 11 JDK"></a>1. 下载Java 11 JDK</h4><ol>
-<li>打开你的浏览器，访问<a href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html">Oracle JDK下载页面</a></li>
-<li>在页面中找到<code>Windows安装包</code>，选择<code>Windows x64</code> <code>Installer</code> 并下载。 <span id="more"></span><br> <img src="/../images/jdk11_install.png"></li>
-</ol>
-<h4 id="2-安装Java-11-JDK"><a href="#2-安装Java-11-JDK" class="headerlink" title="2. 安装Java 11 JDK"></a>2. 安装Java 11 JDK</h4><ol>
-<li>下载完成后，双击安装文件（<code>.exe</code>）启动安装向导。</li>
-<li>在安装过程中，选择安装路径（默认是<code>C:\Program Files\Java\jdk-11.x.x</code>，可以更改路径）。点击<code>Next</code>继续。</li>
-<li>等待安装完成，点击<code>Close</code>。</li>
-</ol>
-<h4 id="3-配置环境变量"><a href="#3-配置环境变量" class="headerlink" title="3. 配置环境变量"></a>3. 配置环境变量</h4><ol>
-<li>右键点击<code>此电脑</code>或<code>计算机</code>，选择<code>属性</code>。<br> <img src="/../images/ENV-set1.png"></li>
-<li>选择<code>高级系统设置</code>，点击弹出窗口中的<code>环境变量</code>。<br> <img src="/../images/ENV-set2.png"><br> <img src="/../images/ENV-set3.png"></li>
-<li>在系统变量下点击下<code>新建</code><br> <img src="/../images/ENV-set4.png"></li>
-<li>在弹出的窗口内的变量名输入<code>JAVA_HOME</code>, 在变量值输入<code>C:\Program Files\Java\jdk-11</code><br> <img src="/../images/ENV-set5.png"><br> 输入完点击<code>确定</code> </li>
-<li>在<code>系统变量</code>部分找到并选择<code>Path</code>，然后点击<code>编辑</code>。<br> <img src="/../images/ENV-set6.png"></li>
-<li>点击<code>新建</code>，并添加以下：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">%JAVA_HOME%\bin</span><br></pre></td></tr></table></figure>
-点击<code>确定</code>保存修改。</li>
-</ol>
-<h4 id="4-验证Java安装"><a href="#4-验证Java安装" class="headerlink" title="4. 验证Java安装"></a>4. 验证Java安装</h4><ol>
-<li>打开<code>命令提示符</code>（按下<code>Windows键 + R</code>，输入<code>cmd</code>并回车）。</li>
-<li>输入以下命令检查Java是否安装成功：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
-如果成功，你会看到类似如下输出，显示Java 11的版本信息：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java version &quot;11.x.x&quot;</span><br><span class="line">Java(TM) SE Runtime Environment 18.x.x (build 11.x.x)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 11.x.x, mixed mode)</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h4 id="5-验证JAVA-HOME设置"><a href="#5-验证JAVA-HOME设置" class="headerlink" title="5. 验证JAVA_HOME设置"></a>5. 验证<code>JAVA_HOME</code>设置</h4><ol>
-<li>在<code>命令提示符</code>中输入以下命令，确认<code>JAVA_HOME</code>是否设置正确：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo %JAVA_HOME%</span><br></pre></td></tr></table></figure>
-它应该返回你的JDK安装路径，如：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C:\Program Files\Java\jdk-11.x.x</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>至此，你已经成功在Windows系统上安装并配置了Java 11。</p>
 ]]></content>
       <tags>
         <tag>Java</tag>
@@ -1138,6 +1138,197 @@
       <tags>
         <tag>nvm</tag>
         <tag>node</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Stream&amp;Lambda</title>
+    <url>/2025/02/13/Stream&amp;Lambda/</url>
+    <content><![CDATA[<h1 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h1><p>下面是一份关于Java中Stream API的完整、详细的用法及其作用的说明，内容涵盖了概念、创建方式、中间操作、终止操作、并行处理及注意事项。</p>
+<hr>
+<h2 id="一、Stream-API概述"><a href="#一、Stream-API概述" class="headerlink" title="一、Stream API概述"></a>一、Stream API概述</h2><p>Java 8引入的Stream API为集合及数组提供了一种声明式、函数式的数据处理方式。与传统的集合操作相比，Stream具有以下几个显著特点：</p>
+<ul>
+<li><strong>非数据结构</strong><br>   Stream并不存储数据，它只是对数据源（如集合、数组、I&#x2F;O通道等）的一个视图，所有的操作都是在数据源上进行计算的，这就避免了不必要的数据复制。</li>
+<li><strong>惰性求值</strong><br>   中间操作（如filter、map、sorted等）不会立即执行，只有在调用终止操作（例如forEach、collect等）时，才会统一触发整个操作链的计算，从而实现高效计算</li>
+<li><strong>不可重复使用</strong><br>   一个Stream一旦执行完终止操作后就会被“消费”，不能再使用；如果需要再次操作，需要重新生成新的Stream</li>
+<li><strong>支持并行处理</strong><br>   Stream API提供了parallelStream()方法或通过parallel()将顺序流转换为并行流，利用多核处理器以更高效地执行大数据量的操作</li>
+</ul>
+<hr>
+<h2 id="二、Stream的创建"><a href="#二、Stream的创建" class="headerlink" title="二、Stream的创建"></a>二、Stream的创建</h2><p>可以通过多种方式创建Stream，常见方法包括：</p>
+<ol>
+<li><p><strong>从集合创建</strong><br>  使用集合的<code>stream()</code>或<code>parallelStream()</code>方法即可。例如：</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; list = Arrays.asList(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>);</span><br><span class="line">Stream&lt;String&gt; stream = list.stream();          <span class="comment">// 顺序流</span></span><br><span class="line">Stream&lt;String&gt; parallelStream = list.parallelStream(); <span class="comment">// 并行流</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>从数组创建</strong><br>  利用<code>Arrays.stream()</code>方法：</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Integer[] nums = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line">Stream&lt;Integer&gt; stream = Arrays.stream(nums);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>使用静态工厂方法</strong><br>  如<code>Stream.of()</code>、<code>Stream.iterate()</code>、<code>Stream.generate()</code>等：</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 直接创建</span></span><br><span class="line">Stream&lt;Integer&gt; stream = Stream.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 生成无限流：例如生成0开始，每次加2的数列（通过limit限制个数）</span></span><br><span class="line">Stream&lt;Integer&gt; evenNumbers = Stream.iterate(<span class="number">0</span>, n -&gt; n + <span class="number">2</span>).limit(<span class="number">6</span>);</span><br><span class="line">evenNumbers.forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>从I&#x2F;O流创建</strong><br>  如使用<code>BufferedReader.lines()</code>从文件中获取每一行生成Stream：</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> (<span class="type">BufferedReader</span> <span class="variable">reader</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">FileReader</span>(<span class="string">&quot;test.txt&quot;</span>))) &#123;</span><br><span class="line">    Stream&lt;String&gt; lines = reader.lines();</span><br><span class="line">    lines.forEach(System.out::println);</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="三、Stream的中间操作"><a href="#三、Stream的中间操作" class="headerlink" title="三、Stream的中间操作"></a>三、Stream的中间操作</h2><p>中间操作返回的是一个新的Stream对象，可以对数据进行转换、筛选等处理，并支持链式调用。常见的中间操作包括：</p>
+<ol>
+<li><p><strong>filter(Predicate predicate)</strong><br>  用于过滤符合条件的元素：</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;Integer&gt; nums = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>);</span><br><span class="line">List&lt;Integer&gt; evens = nums.stream()</span><br><span class="line">    .filter(n -&gt; n % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">    .collect(Collectors.toList());</span><br><span class="line"><span class="comment">// 输出：[2, 4, 6]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>map(Function&lt;T, R&gt; mapper)</strong><br>  将每个元素转换成另一种形式，例如映射成平方数：</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;Integer&gt; nums = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>);</span><br><span class="line">List&lt;Integer&gt; squares = nums.stream()</span><br><span class="line">    .map(n -&gt; n * n)</span><br><span class="line">    .collect(Collectors.toList());</span><br><span class="line"><span class="comment">// 输出：[1, 4, 9, 16]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>flatMap(Function&lt;T, Stream&gt; mapper)</strong><br>  用于处理一对多映射关系，将嵌套结构扁平化：</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;List&lt;String&gt;&gt; nested = Arrays.asList(</span><br><span class="line">    Arrays.asList(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>),</span><br><span class="line">    Arrays.asList(<span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>)</span><br><span class="line">);</span><br><span class="line">List&lt;String&gt; flatList = nested.stream()</span><br><span class="line">    .flatMap(List::stream)</span><br><span class="line">    .collect(Collectors.toList());</span><br><span class="line"><span class="comment">// 输出：[a, b, c, d]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>sorted() &#x2F; sorted(Comparator)</strong><br>  对流中的元素进行排序：</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; names = Arrays.asList(<span class="string">&quot;Tom&quot;</span>, <span class="string">&quot;Alice&quot;</span>, <span class="string">&quot;Bob&quot;</span>);</span><br><span class="line">List&lt;String&gt; sortedNames = names.stream()</span><br><span class="line">    .sorted()</span><br><span class="line">    .collect(Collectors.toList());</span><br><span class="line"><span class="comment">// 输出：[Alice, Bob, Tom]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>distinct()</strong><br>  去除重复元素：</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;Integer&gt; nums = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>);</span><br><span class="line">List&lt;Integer&gt; uniqueNums = nums.stream()</span><br><span class="line">    .distinct()</span><br><span class="line">    .collect(Collectors.toList());</span><br><span class="line"><span class="comment">// 输出：[1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
+
+<p> 【citeturn0search6】</p>
+</li>
+<li><p><strong>limit(long maxSize)</strong> 与 <strong>skip(long n)</strong><br>  分别用于限制流中元素的个数和跳过前n个元素：</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;Integer&gt; nums = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>);</span><br><span class="line">List&lt;Integer&gt; firstFive = nums.stream()</span><br><span class="line">    .limit(<span class="number">5</span>)</span><br><span class="line">    .collect(Collectors.toList());</span><br><span class="line"><span class="comment">// 输出：[1, 2, 3, 4, 5]</span></span><br><span class="line"></span><br><span class="line">List&lt;Integer&gt; afterSkip = nums.stream()</span><br><span class="line">    .skip(<span class="number">5</span>)</span><br><span class="line">    .collect(Collectors.toList());</span><br><span class="line"><span class="comment">// 输出：[6, 7, 8, 9, 10]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>peek(Consumer action)</strong><br>  用于在流的每个元素上执行操作（通常用于调试），但不会改变流的元素：</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; names = Arrays.asList(<span class="string">&quot;Alice&quot;</span>, <span class="string">&quot;Bob&quot;</span>, <span class="string">&quot;Charlie&quot;</span>);</span><br><span class="line">names.stream()</span><br><span class="line">    .peek(System.out::println)</span><br><span class="line">    .collect(Collectors.toList());</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="四、Stream的终止操作"><a href="#四、Stream的终止操作" class="headerlink" title="四、Stream的终止操作"></a>四、Stream的终止操作</h2><p>终止操作会触发整个流的计算，并产生最终结果。常见终止操作包括：</p>
+<ol>
+<li><p><strong>forEach(Consumer action)</strong><br>  遍历流中的每个元素：</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; names = Arrays.asList(<span class="string">&quot;Alice&quot;</span>, <span class="string">&quot;Bob&quot;</span>, <span class="string">&quot;Charlie&quot;</span>);</span><br><span class="line">names.stream().forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>collect(Collector&lt;T, A, R&gt; collector)</strong><br>  将流中元素收集到集合、数组或其他数据结构中：</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;Integer&gt; nums = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>);</span><br><span class="line">List&lt;Integer&gt; listResult = nums.stream()</span><br><span class="line">    .collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+
+<p> 例如，还可以使用<code>Collectors.joining()</code>将字符串连接成一个整体【citeturn0search3】。</p>
+</li>
+<li><p><strong>reduce(BinaryOperator accumulator)</strong><br>  将流中的元素进行规约（如求和、求最大值）：</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;Integer&gt; nums = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>);</span><br><span class="line"><span class="comment">// 无起始值，返回Optional</span></span><br><span class="line">Optional&lt;Integer&gt; sumOpt = nums.stream().reduce(Integer::sum);</span><br><span class="line"><span class="comment">// 有起始值</span></span><br><span class="line"><span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> nums.stream().reduce(<span class="number">0</span>, Integer::sum);</span><br><span class="line"><span class="comment">// 输出：10</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>count()、min()、max()</strong><br>  分别用于统计个数、求最小&#x2F;最大值：</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">long</span> <span class="variable">count</span> <span class="operator">=</span> nums.stream().count();</span><br><span class="line"><span class="type">int</span> <span class="variable">min</span> <span class="operator">=</span> nums.stream().min(Integer::compare).get();</span><br><span class="line"><span class="type">int</span> <span class="variable">max</span> <span class="operator">=</span> nums.stream().max(Integer::compare).get();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>findFirst() 和 findAny()</strong><br>  分别用于查找第一个元素和任意一个元素（对于并行流，findAny可能更高效）【citeturn0search6】。</p>
+</li>
+</ol>
+<hr>
+<h2 id="五、Stream的并行处理"><a href="#五、Stream的并行处理" class="headerlink" title="五、Stream的并行处理"></a>五、Stream的并行处理</h2><p>利用并行流，可以轻松利用多核CPU实现并行处理，只需调用<code>parallelStream()</code>或将顺序流转换为并行流：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;Integer&gt; nums = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>);</span><br><span class="line">List&lt;Integer&gt; result = nums.parallelStream()</span><br><span class="line">    .filter(n -&gt; n % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">    .map(n -&gt; n * n)</span><br><span class="line">    .collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+
+<p>注意：并行流在处理有顺序要求的场景下可能会改变结果的顺序，且部分操作可能需要保证线程安全【citeturn0search7】。</p>
+<hr>
+<h2 id="六、Stream-API的作用与优点"><a href="#六、Stream-API的作用与优点" class="headerlink" title="六、Stream API的作用与优点"></a>六、Stream API的作用与优点</h2><ol>
+<li><strong>简洁易读</strong><br>  通过链式调用，代码更加声明式，避免了繁琐的循环和临时变量。</li>
+<li><strong>高效处理</strong><br>  惰性求值和内部迭代机制使得Stream在大数据量下也能高效执行，同时内置的并行处理可充分利用多核性能。</li>
+<li><strong>灵活性强</strong><br>  可对数据进行各种转换（过滤、映射、扁平化、归约等），并且能方便地转换成集合、数组或字符串。</li>
+<li><strong>函数式编程风格</strong><br>  使代码更具模块化和可组合性，更易于测试和维护。</li>
+</ol>
+<hr>
+<h2 id="七、注意事项"><a href="#七、注意事项" class="headerlink" title="七、注意事项"></a>七、注意事项</h2><ul>
+<li><strong>一次性使用</strong><br>   Stream在执行终止操作后不能再重复使用；需要时请重新生成。</li>
+<li><strong>避免副作用</strong><br>   尽量保持中间操作无副作用，尤其在并行流中，避免修改共享变量。</li>
+<li><strong>有状态操作成本较高</strong><br>   如sorted、distinct等操作可能需要缓存数据，在大数据集上使用时需注意性能和内存问题。</li>
+<li><strong>顺序与并行</strong><br>   在并行流中，如果需要保持元素顺序，则可能会牺牲部分性能；对于无顺序要求的场景可以使用unordered()或直接使用parallelStream()。</li>
+</ul>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Java的Stream API极大地提高了对集合数据进行处理的灵活性和表达能力。它将复杂的数据操作简化为一系列声明式的转换，通过中间操作与终止操作的组合，不仅使代码更简洁、可读性更高，还能利用并行处理提高性能。理解Stream的“惰性求值”、“一次性使用”以及各类常见操作（如filter、map、reduce等）的用法，将有助于你编写出高效、优雅的Java代码。</p>
+<p>以上就是关于Java中Stream的完整详细用法及其作用的说明，希望能帮助你更深入地掌握这一强大特性。 Happy coding!</p>
+<h1 id="Lambda"><a href="#Lambda" class="headerlink" title="Lambda"></a>Lambda</h1><p>下面是一份关于 Java Lambda 表达式的完整说明，涵盖了其语法、用途、常见场景及注意事项，帮助你全面理解这一 Java 8 引入的重要特性。</p>
+<hr>
+<h2 id="一、Lambda-表达式简介"><a href="#一、Lambda-表达式简介" class="headerlink" title="一、Lambda 表达式简介"></a>一、Lambda 表达式简介</h2><p>Lambda 表达式是 Java 8 引入的一种语法，用于表示匿名函数（即没有名字的方法）。它允许你以一种简洁、声明式的方式将行为（代码块）作为参数传递给方法，从而大大减少样板代码，并使代码更具函数式风格。</p>
+<ul>
+<li><p>主要作用</p>
+<p>  ：</p>
+<ul>
+<li>简化代码：减少匿名内部类的冗余代码。</li>
+<li>支持函数式编程：使得代码可以像操作数据一样操作行为。</li>
+<li>与 Stream API 配合：为集合操作提供便捷的过滤、映射、归约等功能。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="二、Lambda-表达式的语法"><a href="#二、Lambda-表达式的语法" class="headerlink" title="二、Lambda 表达式的语法"></a>二、Lambda 表达式的语法</h2><p>Lambda 表达式的基本语法格式如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">(parameters) -&gt; expression</span><br></pre></td></tr></table></figure>
+
+<p>或者包含多条语句的代码块：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">(parameters) -&gt; &#123;</span><br><span class="line">    <span class="comment">// 多条语句</span></span><br><span class="line">    statement1;</span><br><span class="line">    statement2;</span><br><span class="line">    <span class="comment">// ……</span></span><br><span class="line">    <span class="keyword">return</span> result;  <span class="comment">// 如果需要返回值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>参数列表</strong>：可以省略参数类型（由编译器推断），如果只有一个参数，也可以省略圆括号。</li>
+<li>**箭头符号 (<code>-&gt;</code>)**：将参数与执行体分隔。</li>
+<li><strong>表达式或代码块</strong>：表达式形式会自动返回其计算结果；代码块需要使用 <code>return</code> 明确返回值（如果方法签名要求返回值）。</li>
+</ul>
+<p>例如，对一个字符串列表进行排序可以写成：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; names = Arrays.asList(<span class="string">&quot;Tom&quot;</span>, <span class="string">&quot;Alice&quot;</span>, <span class="string">&quot;Bob&quot;</span>);</span><br><span class="line">names.sort((s1, s2) -&gt; s1.compareTo(s2));</span><br></pre></td></tr></table></figure>
+
+<p>如果只有一个参数，则可以简化为：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">list.forEach(s -&gt; System.out.println(s));</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="三、函数式接口（Functional-Interface）"><a href="#三、函数式接口（Functional-Interface）" class="headerlink" title="三、函数式接口（Functional Interface）"></a>三、函数式接口（Functional Interface）</h2><p>Lambda 表达式只能用于实现函数式接口。所谓函数式接口，就是只包含一个抽象方法的接口。Java 标准库中已有大量常用的函数式接口，如：</p>
+<ul>
+<li><strong>Runnable</strong>（无参数，无返回值）</li>
+<li><strong>Comparator</strong>（接受两个参数，返回比较结果）</li>
+<li><strong>Consumer</strong>（接受一个参数，无返回值）</li>
+<li><strong>Supplier</strong>（无参数，返回一个结果）</li>
+<li>**Function&lt;T,R&gt;**（接受一个参数，返回一个结果）</li>
+</ul>
+<p>你还可以使用 <code>@FunctionalInterface</code> 注解来标记接口，以确保其符合函数式接口的要求。</p>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">MyFunction</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="title function_">operate</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后可以用 Lambda 表达式实现这个接口：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">MyFunction</span> <span class="variable">add</span> <span class="operator">=</span> (a, b) -&gt; a + b;</span><br><span class="line">System.out.println(add.operate(<span class="number">3</span>, <span class="number">4</span>));  <span class="comment">// 输出 7</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="四、Lambda-表达式的使用场景及作用"><a href="#四、Lambda-表达式的使用场景及作用" class="headerlink" title="四、Lambda 表达式的使用场景及作用"></a>四、Lambda 表达式的使用场景及作用</h2><h3 id="1-简化代码"><a href="#1-简化代码" class="headerlink" title="1. 简化代码"></a>1. 简化代码</h3><p>使用 Lambda 表达式，可以大幅简化匿名内部类的写法。比如，原来的 Runnable：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Runnable</span> <span class="variable">r</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Runnable</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>可以简化为：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Runnable</span> <span class="variable">r</span> <span class="operator">=</span> () -&gt; System.out.println(<span class="string">&quot;Hello, world!&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-与集合及-Stream-API-结合"><a href="#2-与集合及-Stream-API-结合" class="headerlink" title="2. 与集合及 Stream API 结合"></a>2. 与集合及 Stream API 结合</h3><p>在集合操作中，Lambda 表达式通常与 Stream API 配合使用，能以声明式风格完成过滤、映射、排序等操作。例如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;Integer&gt; numbers = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>);</span><br><span class="line">List&lt;Integer&gt; evens = numbers.stream()</span><br><span class="line">    .filter(n -&gt; n % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">    .collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+
+<p>这种写法使得数据操作更直观、易读。</p>
+<h3 id="3-事件处理及回调"><a href="#3-事件处理及回调" class="headerlink" title="3. 事件处理及回调"></a>3. 事件处理及回调</h3><p>在 GUI 开发或异步编程中，Lambda 表达式可以用于注册事件监听器、回调函数等。例如，在 Swing 中：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">button.addActionListener(e -&gt; System.out.println(<span class="string">&quot;Button clicked!&quot;</span>));</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-多线程"><a href="#4-多线程" class="headerlink" title="4. 多线程"></a>4. 多线程</h3><p>在多线程环境下，Lambda 表达式常用于简化线程创建，比如传入 Runnable 参数：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">    <span class="comment">// 执行任务</span></span><br><span class="line">    System.out.println(<span class="string">&quot;Running in a thread&quot;</span>);</span><br><span class="line">&#125;).start();</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="五、Lambda-表达式中的变量作用域"><a href="#五、Lambda-表达式中的变量作用域" class="headerlink" title="五、Lambda 表达式中的变量作用域"></a>五、Lambda 表达式中的变量作用域</h2><p>Lambda 表达式可以访问其作用域内的局部变量，但这些变量必须是“有效最终”（effectively final）的，也就是说，在 Lambda 表达式内不能对其修改。这一点与匿名内部类相同，有助于确保线程安全和一致性。</p>
+<hr>
+<h2 id="六、方法引用与构造器引用"><a href="#六、方法引用与构造器引用" class="headerlink" title="六、方法引用与构造器引用"></a>六、方法引用与构造器引用</h2><p>为了使 Lambda 表达式更简洁，Java 还提供了方法引用和构造器引用的语法：</p>
+<ul>
+<li><p>方法引用</p>
+<p>  ：使用 </p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ClassName::methodName</span><br></pre></td></tr></table></figure>
+
+<p>   替代 Lambda 表达式，例如：</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; names = Arrays.asList(<span class="string">&quot;Alice&quot;</span>, <span class="string">&quot;Bob&quot;</span>, <span class="string">&quot;Charlie&quot;</span>);</span><br><span class="line">names.forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>构造器引用</p>
+<p>  ：使用 </p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ClassName::new</span><br></pre></td></tr></table></figure>
+
+<p>  ，例如：</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Supplier&lt;ArrayList&lt;String&gt;&gt; supplier = ArrayList::<span class="keyword">new</span>;</span><br><span class="line">ArrayList&lt;String&gt; list = supplier.get();</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="七、完整示例"><a href="#七、完整示例" class="headerlink" title="七、完整示例"></a>七、完整示例</h2><p>下面是一个综合示例，演示如何用 Lambda 表达式实现对一个学生集合的筛选、排序及映射操作：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.Collectors;</span><br><span class="line"></span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">ScoreCalculator</span> &#123;</span><br><span class="line">    <span class="type">double</span> <span class="title function_">calculate</span><span class="params">(<span class="type">double</span> score1, <span class="type">double</span> score2)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">double</span> score;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Student</span><span class="params">(String name, <span class="type">int</span> age, <span class="type">double</span> score)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">        <span class="built_in">this</span>.score = score;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123; <span class="keyword">return</span> name; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getAge</span><span class="params">()</span> &#123; <span class="keyword">return</span> age; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">double</span> <span class="title function_">getScore</span><span class="params">()</span> &#123; <span class="keyword">return</span> score; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Student&#123;name=&#x27;&quot;</span> + name + <span class="string">&quot;&#x27;, age=&quot;</span> + age + <span class="string">&quot;, score=&quot;</span> + score + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LambdaDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        List&lt;Student&gt; students = Arrays.asList(</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;Alice&quot;</span>, <span class="number">20</span>, <span class="number">90.0</span>),</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;Bob&quot;</span>, <span class="number">22</span>, <span class="number">85.5</span>),</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;Charlie&quot;</span>, <span class="number">19</span>, <span class="number">88.5</span>),</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;David&quot;</span>, <span class="number">21</span>, <span class="number">92.0</span>),</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;Eva&quot;</span>, <span class="number">18</span>, <span class="number">94.5</span>)</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 过滤出年龄大于18且成绩不低于90的学生，并按成绩降序排序</span></span><br><span class="line">        List&lt;Student&gt; filtered = students.stream()</span><br><span class="line">            .filter(s -&gt; s.getAge() &gt; <span class="number">18</span> &amp;&amp; s.getScore() &gt;= <span class="number">90.0</span>)</span><br><span class="line">            .sorted(Comparator.comparingDouble(Student::getScore).reversed())</span><br><span class="line">            .collect(Collectors.toList());</span><br><span class="line"></span><br><span class="line">        filtered.forEach(System.out::println);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用自定义函数式接口计算两个分数的平均值</span></span><br><span class="line">        <span class="type">ScoreCalculator</span> <span class="variable">avgCalc</span> <span class="operator">=</span> (s1, s2) -&gt; (s1 + s2) / <span class="number">2</span>;</span><br><span class="line">        System.out.println(<span class="string">&quot;平均成绩：&quot;</span> + avgCalc.calculate(<span class="number">90.0</span>, <span class="number">92.0</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这段代码利用 Lambda 表达式对学生数据进行筛选、排序和打印，同时还展示了如何用 Lambda 实现一个自定义的函数式接口。</p>
+<hr>
+<h2 id="八、总结"><a href="#八、总结" class="headerlink" title="八、总结"></a>八、总结</h2><p>Java Lambda 表达式使代码更加简洁、灵活，能够将行为作为参数传递，从而实现函数式编程风格。它不仅极大地简化了匿名内部类的写法，还与 Stream API、事件处理、多线程等场景完美结合，帮助开发者编写出更高效、更易读的代码。在使用时请注意 Lambda 表达式中变量的作用域（必须是有效最终的）以及与函数式接口的配合使用。</p>
+<p>希望这份详细说明能够帮助你全面掌握 Java Lambda 表达式的用法及其作用。 Happy coding!</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
