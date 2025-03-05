@@ -619,6 +619,43 @@
       </tags>
   </entry>
   <entry>
+    <title>Java-JDK安装</title>
+    <url>/2024/10/10/2024-10-10-Java-JDK%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h3 id="Windows安装Java-11的完整教程"><a href="#Windows安装Java-11的完整教程" class="headerlink" title="Windows安装Java 11的完整教程"></a>Windows安装Java 11的完整教程</h3><p>以下是详细的步骤来帮助你在Windows系统中安装Java 11并配置环境变量。</p>
+<h4 id="1-下载Java-11-JDK"><a href="#1-下载Java-11-JDK" class="headerlink" title="1. 下载Java 11 JDK"></a>1. 下载Java 11 JDK</h4><ol>
+<li>打开你的浏览器，访问<a href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html">Oracle JDK下载页面</a></li>
+<li>在页面中找到<code>Windows安装包</code>，选择<code>Windows x64</code> <code>Installer</code> 并下载。 <span id="more"></span><br> <img src="/../images/jdk11_install.png"></li>
+</ol>
+<h4 id="2-安装Java-11-JDK"><a href="#2-安装Java-11-JDK" class="headerlink" title="2. 安装Java 11 JDK"></a>2. 安装Java 11 JDK</h4><ol>
+<li>下载完成后，双击安装文件（<code>.exe</code>）启动安装向导。</li>
+<li>在安装过程中，选择安装路径（默认是<code>C:\Program Files\Java\jdk-11.x.x</code>，可以更改路径）。点击<code>Next</code>继续。</li>
+<li>等待安装完成，点击<code>Close</code>。</li>
+</ol>
+<h4 id="3-配置环境变量"><a href="#3-配置环境变量" class="headerlink" title="3. 配置环境变量"></a>3. 配置环境变量</h4><ol>
+<li>右键点击<code>此电脑</code>或<code>计算机</code>，选择<code>属性</code>。<br> <img src="/../images/ENV-set1.png"></li>
+<li>选择<code>高级系统设置</code>，点击弹出窗口中的<code>环境变量</code>。<br> <img src="/../images/ENV-set2.png"><br> <img src="/../images/ENV-set3.png"></li>
+<li>在系统变量下点击下<code>新建</code><br> <img src="/../images/ENV-set4.png"></li>
+<li>在弹出的窗口内的变量名输入<code>JAVA_HOME</code>, 在变量值输入<code>C:\Program Files\Java\jdk-11</code><br> <img src="/../images/ENV-set5.png"><br> 输入完点击<code>确定</code> </li>
+<li>在<code>系统变量</code>部分找到并选择<code>Path</code>，然后点击<code>编辑</code>。<br> <img src="/../images/ENV-set6.png"></li>
+<li>点击<code>新建</code>，并添加以下：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">%JAVA_HOME%\bin</span><br></pre></td></tr></table></figure>
+点击<code>确定</code>保存修改。</li>
+</ol>
+<h4 id="4-验证Java安装"><a href="#4-验证Java安装" class="headerlink" title="4. 验证Java安装"></a>4. 验证Java安装</h4><ol>
+<li>打开<code>命令提示符</code>（按下<code>Windows键 + R</code>，输入<code>cmd</code>并回车）。</li>
+<li>输入以下命令检查Java是否安装成功：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
+如果成功，你会看到类似如下输出，显示Java 11的版本信息：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java version &quot;11.x.x&quot;</span><br><span class="line">Java(TM) SE Runtime Environment 18.x.x (build 11.x.x)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 11.x.x, mixed mode)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="5-验证JAVA-HOME设置"><a href="#5-验证JAVA-HOME设置" class="headerlink" title="5. 验证JAVA_HOME设置"></a>5. 验证<code>JAVA_HOME</code>设置</h4><ol>
+<li>在<code>命令提示符</code>中输入以下命令，确认<code>JAVA_HOME</code>是否设置正确：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo %JAVA_HOME%</span><br></pre></td></tr></table></figure>
+它应该返回你的JDK安装路径，如：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C:\Program Files\Java\jdk-11.x.x</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>至此，你已经成功在Windows系统上安装并配置了Java 11。</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java-4</title>
     <url>/2024/09/30/2024-09-30-Java-4/</url>
     <content><![CDATA[<h2 id="Java-数组"><a href="#Java-数组" class="headerlink" title="Java 数组"></a>Java 数组</h2><p>数组对于每一门编程语言来说都是重要的数据结构之一，当然不同语言对数组的实现及处理也不尽相同。</p>
@@ -777,43 +814,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Java-JDK安装</title>
-    <url>/2024/10/10/2024-10-10-Java-JDK%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h3 id="Windows安装Java-11的完整教程"><a href="#Windows安装Java-11的完整教程" class="headerlink" title="Windows安装Java 11的完整教程"></a>Windows安装Java 11的完整教程</h3><p>以下是详细的步骤来帮助你在Windows系统中安装Java 11并配置环境变量。</p>
-<h4 id="1-下载Java-11-JDK"><a href="#1-下载Java-11-JDK" class="headerlink" title="1. 下载Java 11 JDK"></a>1. 下载Java 11 JDK</h4><ol>
-<li>打开你的浏览器，访问<a href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html">Oracle JDK下载页面</a></li>
-<li>在页面中找到<code>Windows安装包</code>，选择<code>Windows x64</code> <code>Installer</code> 并下载。 <span id="more"></span><br> <img src="/../images/jdk11_install.png"></li>
-</ol>
-<h4 id="2-安装Java-11-JDK"><a href="#2-安装Java-11-JDK" class="headerlink" title="2. 安装Java 11 JDK"></a>2. 安装Java 11 JDK</h4><ol>
-<li>下载完成后，双击安装文件（<code>.exe</code>）启动安装向导。</li>
-<li>在安装过程中，选择安装路径（默认是<code>C:\Program Files\Java\jdk-11.x.x</code>，可以更改路径）。点击<code>Next</code>继续。</li>
-<li>等待安装完成，点击<code>Close</code>。</li>
-</ol>
-<h4 id="3-配置环境变量"><a href="#3-配置环境变量" class="headerlink" title="3. 配置环境变量"></a>3. 配置环境变量</h4><ol>
-<li>右键点击<code>此电脑</code>或<code>计算机</code>，选择<code>属性</code>。<br> <img src="/../images/ENV-set1.png"></li>
-<li>选择<code>高级系统设置</code>，点击弹出窗口中的<code>环境变量</code>。<br> <img src="/../images/ENV-set2.png"><br> <img src="/../images/ENV-set3.png"></li>
-<li>在系统变量下点击下<code>新建</code><br> <img src="/../images/ENV-set4.png"></li>
-<li>在弹出的窗口内的变量名输入<code>JAVA_HOME</code>, 在变量值输入<code>C:\Program Files\Java\jdk-11</code><br> <img src="/../images/ENV-set5.png"><br> 输入完点击<code>确定</code> </li>
-<li>在<code>系统变量</code>部分找到并选择<code>Path</code>，然后点击<code>编辑</code>。<br> <img src="/../images/ENV-set6.png"></li>
-<li>点击<code>新建</code>，并添加以下：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">%JAVA_HOME%\bin</span><br></pre></td></tr></table></figure>
-点击<code>确定</code>保存修改。</li>
-</ol>
-<h4 id="4-验证Java安装"><a href="#4-验证Java安装" class="headerlink" title="4. 验证Java安装"></a>4. 验证Java安装</h4><ol>
-<li>打开<code>命令提示符</code>（按下<code>Windows键 + R</code>，输入<code>cmd</code>并回车）。</li>
-<li>输入以下命令检查Java是否安装成功：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
-如果成功，你会看到类似如下输出，显示Java 11的版本信息：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java version &quot;11.x.x&quot;</span><br><span class="line">Java(TM) SE Runtime Environment 18.x.x (build 11.x.x)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 11.x.x, mixed mode)</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h4 id="5-验证JAVA-HOME设置"><a href="#5-验证JAVA-HOME设置" class="headerlink" title="5. 验证JAVA_HOME设置"></a>5. 验证<code>JAVA_HOME</code>设置</h4><ol>
-<li>在<code>命令提示符</code>中输入以下命令，确认<code>JAVA_HOME</code>是否设置正确：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo %JAVA_HOME%</span><br></pre></td></tr></table></figure>
-它应该返回你的JDK安装路径，如：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C:\Program Files\Java\jdk-11.x.x</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>至此，你已经成功在Windows系统上安装并配置了Java 11。</p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java-5</title>
     <url>/2024/11/05/2024-11-05-Java-5/</url>
     <content><![CDATA[<h2 id="String-类"><a href="#String-类" class="headerlink" title="String 类"></a>String 类</h2><p>字符串广泛应用 在 Java 编程中，在 Java 中字符串属于对象，Java 提供了 String 类来创建和操作字符串。</p>
@@ -885,6 +885,17 @@
 ]]></content>
       <tags>
         <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>nvm使用</title>
+    <url>/2024/11/21/2024-11-21-nvm%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">#  查看可安装的node版本</span><br><span class="line">nvm list available</span><br><span class="line"></span><br><span class="line">#  安装指定版本node</span><br><span class="line">nvm install 版本号</span><br><span class="line"></span><br><span class="line">#  查看已经安装的版本</span><br><span class="line">nvm list installed </span><br><span class="line"></span><br><span class="line">#  查看已安装版本的node</span><br><span class="line">nvm list / nvm ls</span><br><span class="line"></span><br><span class="line">#  切换使用指定的版本的node</span><br><span class="line">nvm use 已安装版本号</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>nvm</tag>
+        <tag>node</tag>
       </tags>
   </entry>
   <entry>
@@ -1130,14 +1141,48 @@
       </tags>
   </entry>
   <entry>
-    <title>nvm使用</title>
-    <url>/2024/11/21/2024-11-21-nvm%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">#  查看可安装的node版本</span><br><span class="line">nvm list available</span><br><span class="line"></span><br><span class="line">#  安装指定版本node</span><br><span class="line">nvm install 版本号</span><br><span class="line"></span><br><span class="line">#  查看已经安装的版本</span><br><span class="line">nvm list installed </span><br><span class="line"></span><br><span class="line">#  查看已安装版本的node</span><br><span class="line">nvm list / nvm ls</span><br><span class="line"></span><br><span class="line">#  切换使用指定的版本的node</span><br><span class="line">nvm use 已安装版本号</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    <title>MySQL8 重置密码</title>
+    <url>/2025/03/05/MySQL8-%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81/</url>
+    <content><![CDATA[<h1 id="MySQL8-重置密码"><a href="#MySQL8-重置密码" class="headerlink" title="MySQL8 重置密码"></a>MySQL8 重置密码</h1><h2 id="前置说明"><a href="#前置说明" class="headerlink" title="前置说明"></a>前置说明</h2><p>本文使用系统为 <code>centos7</code>, MySQL版本为 8.4 (除8以下适用)</p>
+<blockquote>
+<p>ps: 该方法为忘记密码且无法使用安全方式启动mysql的情况下使用, 若能以安全方式启动则无需该方法</p>
+</blockquote>
+<h2 id="重置"><a href="#重置" class="headerlink" title="重置"></a>重置</h2><ol>
+<li><p>停止 MySQL</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl stop mysqld</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>备份数据目录</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">cp</span> -r /var/lib/mysql /var/lib/mysql_backup</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重新初始化 MySQL（会删除所有数据）</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> mysqld --initialize --user=mysql</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动 MySQL 并获取临时密码</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl start mysqld</span><br><span class="line"><span class="built_in">sudo</span> grep <span class="string">&#x27;temporary password&#x27;</span> /var/log/mysqld.log</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>输出行最后的<code>:</code> 后面就是临时密码了</p>
+</blockquote>
+</li>
+<li><p>使用临时密码登录</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 在<code>Enter Password:</code> 后输入临时密码</p>
+</blockquote>
+</li>
+<li><p>重置密码</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 把新密码替换为自己的, mysql8默认的密码检查比较严格, 不要设置的太简单</span></span><br><span class="line">ALTER USER <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED BY <span class="string">&#x27;新密码&#x27;</span>;</span><br><span class="line"><span class="comment"># 强制刷新权限</span></span><br><span class="line">FLUSH PRIVILEGES;</span><br><span class="line"><span class="comment"># 退出 mysql shell</span></span><br><span class="line">EXIT;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启 MySQL</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl restart mysqld</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>登录 MySQL</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql -u root -p<span class="string">&#x27;新密码&#x27;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
 ]]></content>
       <tags>
-        <tag>nvm</tag>
-        <tag>node</tag>
+        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -1359,6 +1404,35 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd zuanboot</span><br><span class="line">docker build -t zuanboot .</span><br><span class="line">docker run -d --name zuanboot -v $(pwd):/app -p 8900:58000 zuanboot:latest</span><br></pre></td></tr></table></figure>]]></content>
   </entry>
   <entry>
+    <title>windows桌面美化</title>
+    <url>/2024/11/23/windows%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/</url>
+    <content><![CDATA[<h2 id="流程简介"><a href="#流程简介" class="headerlink" title="流程简介"></a>流程简介</h2><ol>
+<li><p>使用到的工具:</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. rainmeter # 主题</span><br><span class="line">2. 致美化主题: welfare(可选)</span><br><span class="line">3. winstep nexus</span><br><span class="line">4. wallpaper engine</span><br></pre></td></tr></table></figure></li>
+</ol>
+<span id="more"></span>
+<ol start="2">
+<li><p>sop: </p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 下载rainmeter并安装</span><br><span class="line">2. 下载welfare,并安装</span><br><span class="line">3. 打开rainmeter设置, 加载welfare主题</span><br><span class="line">3. 下载winstep nexus并安装且运行, </span><br></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p> <strong>注意事项:</strong> </p>
+<ol>
+<li><code>welfare</code> 的安装前必须先下载rainmeter</li>
+<li>winstep nexus要使用科学上网</li>
+<li></li>
+</ol>
+</blockquote>
+<h3 id="1-rainmeter"><a href="#1-rainmeter" class="headerlink" title="1. rainmeter"></a>1. rainmeter</h3><ol>
+<li><p><a href="https://www.rainmeter.net/">下载地址</a> </p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.rainmeter.net/</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>windows</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Meverikc</title>
     <url>/2024/11/21/index/</url>
     <content><![CDATA[<p ><h3 style="text-align: center;">Welcome to my blog!</h3></p>
@@ -1393,34 +1467,5 @@
 <div class="note info">
             <ol start="3"><li><a href="/2024/09/20/windows%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/">windows桌面美化</a></li></ol>
           </div></div></div></div>]]></content>
-  </entry>
-  <entry>
-    <title>windows桌面美化</title>
-    <url>/2024/11/23/windows%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/</url>
-    <content><![CDATA[<h2 id="流程简介"><a href="#流程简介" class="headerlink" title="流程简介"></a>流程简介</h2><ol>
-<li><p>使用到的工具:</p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. rainmeter # 主题</span><br><span class="line">2. 致美化主题: welfare(可选)</span><br><span class="line">3. winstep nexus</span><br><span class="line">4. wallpaper engine</span><br></pre></td></tr></table></figure></li>
-</ol>
-<span id="more"></span>
-<ol start="2">
-<li><p>sop: </p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 下载rainmeter并安装</span><br><span class="line">2. 下载welfare,并安装</span><br><span class="line">3. 打开rainmeter设置, 加载welfare主题</span><br><span class="line">3. 下载winstep nexus并安装且运行, </span><br></pre></td></tr></table></figure></li>
-</ol>
-<blockquote>
-<p> <strong>注意事项:</strong> </p>
-<ol>
-<li><code>welfare</code> 的安装前必须先下载rainmeter</li>
-<li>winstep nexus要使用科学上网</li>
-<li></li>
-</ol>
-</blockquote>
-<h3 id="1-rainmeter"><a href="#1-rainmeter" class="headerlink" title="1. rainmeter"></a>1. rainmeter</h3><ol>
-<li><p><a href="https://www.rainmeter.net/">下载地址</a> </p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.rainmeter.net/</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <tags>
-        <tag>windows</tag>
-      </tags>
   </entry>
 </search>

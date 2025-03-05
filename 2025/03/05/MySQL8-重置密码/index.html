@@ -24,20 +24,20 @@
     var CONFIG = {"hostname":"meverikc.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Hexo NexT主题优化                           docker镜像挂了之后的解决方法                           windows桌面美化">
-<meta property="og:type" content="website">
-<meta property="og:title" content="other">
-<meta property="og:url" content="https://meverikc.github.io/other/">
+  <meta name="description" content="MySQL8 重置密码前置说明本文使用系统为 centos7, MySQL版本为 8.4 (除8以下适用)  ps: 该方法为忘记密码且无法使用安全方式启动mysql的情况下使用, 若能以安全方式启动则无需该方法  重置 停止 MySQL  1sudo systemctl stop mysqld  备份数据目录  1sudo cp -r &#x2F;var&#x2F;lib&#x2F;mysql &#x2F;var&#x2F;lib&#x2F;mysql_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL8 重置密码">
+<meta property="og:url" content="https://meverikc.github.io/2025/03/05/MySQL8-%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81/">
 <meta property="og:site_name" content="MFIKC">
-<meta property="og:description" content="Hexo NexT主题优化                           docker镜像挂了之后的解决方法                           windows桌面美化">
+<meta property="og:description" content="MySQL8 重置密码前置说明本文使用系统为 centos7, MySQL版本为 8.4 (除8以下适用)  ps: 该方法为忘记密码且无法使用安全方式启动mysql的情况下使用, 若能以安全方式启动则无需该方法  重置 停止 MySQL  1sudo systemctl stop mysqld  备份数据目录  1sudo cp -r &#x2F;var&#x2F;lib&#x2F;mysql &#x2F;var&#x2F;lib&#x2F;mysql_">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-11-20T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-11-23T07:16:37.254Z">
+<meta property="article:published_time" content="2025-03-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-05T09:37:04.717Z">
 <meta property="article:author" content="MeverikC">
-<meta property="article:tag" content="前端,后端,运维">
+<meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://meverikc.github.io/other/">
+<link rel="canonical" href="https://meverikc.github.io/2025/03/05/MySQL8-%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81/">
 
 
 <script id="page-configurations">
@@ -45,13 +45,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>other | MFIKC
-</title>
+  <title>MySQL8 重置密码 | MFIKC</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5NCKWQXZMW"></script>
     <script data-pjax>
@@ -233,74 +232,120 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
 
-      
-      
-
-      
-      
-
-      
-
-        
-        <ul id="sub-menu" class="sub-menu menu">
-          
-            
-          
-        </ul>
-        
-
-        
-        
-      
-  
-
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://meverikc.github.io/2025/03/05/MySQL8-%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="MeverikC">
+      <meta itemprop="description" content="记录个人学习记录及一些电脑操作问题, 后续会持续更新, 敬请关注">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MFIKC">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL8 重置密码
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">other
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
 
-<div class="post-meta">
+              <time title="创建时间：2025-03-05 00:00:00 / 修改时间：17:37:04" itemprop="dateCreated datePublished" datetime="2025-03-05T00:00:00+08:00">2025-03-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="MySQL8-重置密码"><a href="#MySQL8-重置密码" class="headerlink" title="MySQL8 重置密码"></a>MySQL8 重置密码</h1><h2 id="前置说明"><a href="#前置说明" class="headerlink" title="前置说明"></a>前置说明</h2><p>本文使用系统为 <code>centos7</code>, MySQL版本为 8.4 (除8以下适用)</p>
+<blockquote>
+<p>ps: 该方法为忘记密码且无法使用安全方式启动mysql的情况下使用, 若能以安全方式启动则无需该方法</p>
+</blockquote>
+<h2 id="重置"><a href="#重置" class="headerlink" title="重置"></a>重置</h2><ol>
+<li><p>停止 MySQL</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl stop mysqld</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>备份数据目录</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">cp</span> -r /var/lib/mysql /var/lib/mysql_backup</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重新初始化 MySQL（会删除所有数据）</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> mysqld --initialize --user=mysql</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动 MySQL 并获取临时密码</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl start mysqld</span><br><span class="line"><span class="built_in">sudo</span> grep <span class="string">&#x27;temporary password&#x27;</span> /var/log/mysqld.log</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>输出行最后的<code>:</code> 后面就是临时密码了</p>
+</blockquote>
+</li>
+<li><p>使用临时密码登录</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 在<code>Enter Password:</code> 后输入临时密码</p>
+</blockquote>
+</li>
+<li><p>重置密码</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 把新密码替换为自己的, mysql8默认的密码检查比较严格, 不要设置的太简单</span></span><br><span class="line">ALTER USER <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED BY <span class="string">&#x27;新密码&#x27;</span>;</span><br><span class="line"><span class="comment"># 强制刷新权限</span></span><br><span class="line">FLUSH PRIVILEGES;</span><br><span class="line"><span class="comment"># 退出 mysql shell</span></span><br><span class="line">EXIT;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启 MySQL</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl restart mysqld</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>登录 MySQL</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p<span class="string">&#x27;新密码&#x27;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/MySQL/" rel="tag"><i class="fa fa-tag"></i> MySQL</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/02/13/Stream&Lambda/" rel="prev" title="Stream&Lambda">
+      <i class="fa fa-chevron-left"></i> Stream&Lambda
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <div class="note info">
-            <p><a href="/2024/09/19/2024-09-19-%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96/">Hexo NexT主题优化</a> </p>
-          </div>
-
-<div class="note info">
-            <p><a href="/2024/09/29/docker%E9%95%9C%E5%83%8F%E6%8C%82%E4%BA%86%E4%B9%8B%E5%90%8E%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">docker镜像挂了之后的解决方法</a> </p>
-          </div>
-
-<div class="note info">
-            <p><a href="/2024/09/20/windows%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/">windows桌面美化</a> </p>
-          </div>
-
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
 
 
           </div>
@@ -351,6 +396,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL8-%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">MySQL8 重置密码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E8%AF%B4%E6%98%8E"><span class="nav-number">1.1.</span> <span class="nav-text">前置说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E7%BD%AE"><span class="nav-number">1.2.</span> <span class="nav-text">重置</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
