@@ -1,6 +1,401 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Linux 常用命令</title>
+    <url>/2025/06/03/2024-09-19-Linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<p>下面是 <strong>CentOS 7 常用命令大全</strong>，按功能分类整理，适合日常运维、开发和系统管理使用：</p>
+<hr>
+<h3 id="一、系统信息相关"><a href="#一、系统信息相关" class="headerlink" title="一、系统信息相关"></a>一、系统信息相关</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>uname -a</code></td>
+<td>显示系统内核信息</td>
+</tr>
+<tr>
+<td><code>cat /etc/redhat-release</code></td>
+<td>查看 CentOS 版本</td>
+</tr>
+<tr>
+<td><code>hostname</code></td>
+<td>显示或设置主机名</td>
+</tr>
+<tr>
+<td><code>uptime</code></td>
+<td>查看系统运行时间和负载</td>
+</tr>
+<tr>
+<td><code>top</code></td>
+<td>实时显示系统资源使用情况</td>
+</tr>
+<tr>
+<td><code>htop</code></td>
+<td>更友好的资源监视（需安装）</td>
+</tr>
+<tr>
+<td><code>free -m</code></td>
+<td>查看内存使用情况</td>
+</tr>
+<tr>
+<td><code>df -h</code></td>
+<td>查看磁盘使用情况</td>
+</tr>
+<tr>
+<td><code>du -sh *</code></td>
+<td>查看当前目录各文件夹大小</td>
+</tr>
+<tr>
+<td><code>vmstat</code></td>
+<td>查看虚拟内存信息</td>
+</tr>
+<tr>
+<td><code>iostat</code></td>
+<td>查看磁盘 I&#x2F;O 状况（需安装 sysstat）</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="二、用户与权限管理"><a href="#二、用户与权限管理" class="headerlink" title="二、用户与权限管理"></a>二、用户与权限管理</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>adduser &lt;用户名&gt;</code></td>
+<td>添加用户</td>
+</tr>
+<tr>
+<td><code>passwd &lt;用户名&gt;</code></td>
+<td>设置用户密码</td>
+</tr>
+<tr>
+<td><code>userdel &lt;用户名&gt;</code></td>
+<td>删除用户</td>
+</tr>
+<tr>
+<td><code>usermod -aG &lt;组名&gt; &lt;用户名&gt;</code></td>
+<td>将用户加入某个组</td>
+</tr>
+<tr>
+<td><code>id &lt;用户名&gt;</code></td>
+<td>查看用户 UID、GID 等信息</td>
+</tr>
+<tr>
+<td><code>groups &lt;用户名&gt;</code></td>
+<td>查看用户所属组</td>
+</tr>
+<tr>
+<td><code>chown user:group file</code></td>
+<td>更改文件所有者</td>
+</tr>
+<tr>
+<td><code>chmod 755 file</code></td>
+<td>更改文件权限</td>
+</tr>
+<tr>
+<td><code>su - &lt;用户名&gt;</code></td>
+<td>切换用户</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="三、网络相关"><a href="#三、网络相关" class="headerlink" title="三、网络相关"></a>三、网络相关</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ip a</code> 或 <code>ifconfig</code></td>
+<td>查看 IP 地址</td>
+</tr>
+<tr>
+<td><code>ip route</code> 或 <code>route -n</code></td>
+<td>查看路由信息</td>
+</tr>
+<tr>
+<td><code>ping &lt;地址&gt;</code></td>
+<td>检查网络连通性</td>
+</tr>
+<tr>
+<td><code>traceroute &lt;地址&gt;</code></td>
+<td>路由追踪（需安装）</td>
+</tr>
+<tr>
+<td><code>netstat -tuln</code></td>
+<td>查看端口监听状态</td>
+</tr>
+<tr>
+<td><code>ss -tuln</code></td>
+<td>更快的 netstat 替代品</td>
+</tr>
+<tr>
+<td><code>curl &lt;网址&gt;</code></td>
+<td>访问网页接口</td>
+</tr>
+<tr>
+<td><code>wget &lt;网址&gt;</code></td>
+<td>下载文件</td>
+</tr>
+<tr>
+<td><code>nmcli</code></td>
+<td>网络管理工具命令行</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="四、服务管理（Systemd）"><a href="#四、服务管理（Systemd）" class="headerlink" title="四、服务管理（Systemd）"></a>四、服务管理（Systemd）</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>systemctl start &lt;服务名&gt;</code></td>
+<td>启动服务</td>
+</tr>
+<tr>
+<td><code>systemctl stop &lt;服务名&gt;</code></td>
+<td>停止服务</td>
+</tr>
+<tr>
+<td><code>systemctl restart &lt;服务名&gt;</code></td>
+<td>重启服务</td>
+</tr>
+<tr>
+<td><code>systemctl status &lt;服务名&gt;</code></td>
+<td>查看服务状态</td>
+</tr>
+<tr>
+<td><code>systemctl enable &lt;服务名&gt;</code></td>
+<td>开机启动服务</td>
+</tr>
+<tr>
+<td><code>systemctl disable &lt;服务名&gt;</code></td>
+<td>取消开机启动</td>
+</tr>
+<tr>
+<td><code>systemctl list-units --type=service</code></td>
+<td>列出服务</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="五、软件包管理（YUM）"><a href="#五、软件包管理（YUM）" class="headerlink" title="五、软件包管理（YUM）"></a>五、软件包管理（YUM）</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>yum install &lt;软件包&gt;</code></td>
+<td>安装软件包</td>
+</tr>
+<tr>
+<td><code>yum remove &lt;软件包&gt;</code></td>
+<td>卸载软件包</td>
+</tr>
+<tr>
+<td><code>yum update</code></td>
+<td>更新所有软件</td>
+</tr>
+<tr>
+<td><code>yum search &lt;关键词&gt;</code></td>
+<td>搜索软件包</td>
+</tr>
+<tr>
+<td><code>yum info &lt;软件包&gt;</code></td>
+<td>查看软件包信息</td>
+</tr>
+<tr>
+<td><code>yum list installed</code></td>
+<td>查看已安装软件</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="六、文件操作"><a href="#六、文件操作" class="headerlink" title="六、文件操作"></a>六、文件操作</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ls -l</code></td>
+<td>查看当前目录文件</td>
+</tr>
+<tr>
+<td><code>cd &lt;路径&gt;</code></td>
+<td>进入目录</td>
+</tr>
+<tr>
+<td><code>pwd</code></td>
+<td>显示当前路径</td>
+</tr>
+<tr>
+<td><code>cp file1 file2</code></td>
+<td>复制文件</td>
+</tr>
+<tr>
+<td><code>mv file1 file2</code></td>
+<td>移动&#x2F;重命名文件</td>
+</tr>
+<tr>
+<td><code>rm file</code></td>
+<td>删除文件</td>
+</tr>
+<tr>
+<td><code>rm -rf dir</code></td>
+<td>删除目录</td>
+</tr>
+<tr>
+<td><code>touch file</code></td>
+<td>创建新文件</td>
+</tr>
+<tr>
+<td><code>mkdir -p dir</code></td>
+<td>创建目录</td>
+</tr>
+<tr>
+<td><code>cat file</code></td>
+<td>查看文件内容</td>
+</tr>
+<tr>
+<td><code>tail -f file</code></td>
+<td>实时查看日志尾部</td>
+</tr>
+<tr>
+<td><code>less file</code></td>
+<td>分页查看内容</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="七、防火墙与安全（firewalld-SELinux）"><a href="#七、防火墙与安全（firewalld-SELinux）" class="headerlink" title="七、防火墙与安全（firewalld + SELinux）"></a>七、防火墙与安全（firewalld + SELinux）</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>systemctl status firewalld</code></td>
+<td>查看防火墙状态</td>
+</tr>
+<tr>
+<td><code>firewall-cmd --state</code></td>
+<td>查看防火墙是否运行</td>
+</tr>
+<tr>
+<td><code>firewall-cmd --zone=public --add-port=8080/tcp --permanent</code></td>
+<td>开放端口</td>
+</tr>
+<tr>
+<td><code>firewall-cmd --reload</code></td>
+<td>重新加载防火墙规则</td>
+</tr>
+<tr>
+<td><code>getenforce</code></td>
+<td>查看 SELinux 状态</td>
+</tr>
+<tr>
+<td><code>setenforce 0</code></td>
+<td>暂时关闭 SELinux</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="八、计划任务（cron）"><a href="#八、计划任务（cron）" class="headerlink" title="八、计划任务（cron）"></a>八、计划任务（cron）</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>crontab -e</code></td>
+<td>编辑当前用户的计划任务</td>
+</tr>
+<tr>
+<td><code>crontab -l</code></td>
+<td>查看计划任务</td>
+</tr>
+<tr>
+<td><code>crontab -r</code></td>
+<td>删除计划任务</td>
+</tr>
+<tr>
+<td><code>systemctl status crond</code></td>
+<td>查看 cron 服务状态</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="九、日志相关"><a href="#九、日志相关" class="headerlink" title="九、日志相关"></a>九、日志相关</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>journalctl -xe</code></td>
+<td>查看系统日志（systemd）</td>
+</tr>
+<tr>
+<td><code>tail -f /var/log/messages</code></td>
+<td>查看系统日志</td>
+</tr>
+<tr>
+<td><code>tail -f /var/log/secure</code></td>
+<td>安全相关日志</td>
+</tr>
+<tr>
+<td><code>tail -f /var/log/yum.log</code></td>
+<td>YUM 安装日志</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="十、其他常用命令"><a href="#十、其他常用命令" class="headerlink" title="十、其他常用命令"></a>十、其他常用命令</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>reboot</code></td>
+<td>重启系统</td>
+</tr>
+<tr>
+<td><code>shutdown -h now</code></td>
+<td>立即关机</td>
+</tr>
+<tr>
+<td><code>history</code></td>
+<td>查看历史命令</td>
+</tr>
+<tr>
+<td><code>alias ll=&#39;ls -l&#39;</code></td>
+<td>设置别名</td>
+</tr>
+<tr>
+<td><code>tar -zxvf file.tar.gz</code></td>
+<td>解压 tar.gz 文件</td>
+</tr>
+<tr>
+<td><code>zip/unzip</code></td>
+<td>打包压缩&#x2F;解压 zip 文件（需安装）</td>
+</tr>
+</tbody></table>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo NexT主题优化</title>
     <url>/2024/09/19/2024-09-19-%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96/</url>
     <content><![CDATA[<h3 id="1-使用next主题"><a href="#1-使用next主题" class="headerlink" title="1.使用next主题"></a>1.使用next主题</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 更新npm</span><br><span class="line">npm update</span><br><span class="line"></span><br><span class="line"># 若不存在hexo则执行</span><br><span class="line">npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line"># 存在直接执行</span><br><span class="line">hexo init my-blog</span><br><span class="line">cd my-blog</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"># 在`my-blog`目录下 安装next主题</span><br><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line"></span><br><span class="line"># 打开`blog\_config.yml`, 修改`themes`为`next`</span><br><span class="line">theme: next</span><br><span class="line"></span><br><span class="line"># 找到`#site`</span><br><span class="line">title: MFIKC</span><br><span class="line">subtitle: 个人博客</span><br><span class="line">description: 涉及前端、后端、运维</span><br><span class="line">keywords: 前端,后端,运维</span><br><span class="line">author: MeverikC</span><br><span class="line">language: zh-CN</span><br><span class="line">timezone: &#x27;Asia/Shanghai&#x27;</span><br></pre></td></tr></table></figure>
@@ -656,6 +1051,80 @@
       </tags>
   </entry>
   <entry>
+    <title>Java-5</title>
+    <url>/2024/11/05/2024-11-05-Java-5/</url>
+    <content><![CDATA[<h2 id="String-类"><a href="#String-类" class="headerlink" title="String 类"></a>String 类</h2><p>字符串广泛应用 在 Java 编程中，在 Java 中字符串属于对象，Java 提供了 String 类来创建和操作字符串。</p>
+<hr>
+<h3 id="1-创建字符串"><a href="#1-创建字符串" class="headerlink" title="1. 创建字符串"></a>1. 创建字符串</h3><p>创建字符串最简单的方式如下:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;Hello,World!&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p>在代码中遇到字符串常量时，这里的值是 “<strong>Hello,World!</strong>“，编译器会使用该值创建一个 String 对象。</p>
+<p>和其它对象一样，可以使用关键字和构造方法来创建 String 对象。</p>
+<p>用构造函数创建字符串：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;Hello,World!&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>String 创建的字符串存储在公共池中，而 new 创建的字符串对象在堆上：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="string">&quot;Hello,World!&quot;</span>;               <span class="comment">// String 直接创建</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> <span class="string">&quot;Hello,World!&quot;</span>;               <span class="comment">// String 直接创建</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s3</span> <span class="operator">=</span> s1;                    		  <span class="comment">// 相同引用</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s4</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;Hello,World!&quot;</span>);   <span class="comment">// String 对象创建</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s5</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;Hello,World!&quot;</span>);   <span class="comment">// String 对象创建</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/java-5_1.png"></p>
+<p>String 类有 11 种构造方法，这些方法提供不同的参数来初始化字符串，比如提供一个字符数组参数:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StringDemo</span>&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span>&#123;</span><br><span class="line">      <span class="type">char</span>[] helloArray = &#123; <span class="string">&#x27;H&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;o&#x27;</span>&#125;;</span><br><span class="line">      <span class="type">String</span> <span class="variable">helloString</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(helloArray);  </span><br><span class="line">      System.out.println( helloString );</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上实例编译运行结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Hello</span><br></pre></td></tr></table></figure>
+
+<p>**注意:**String 类是不可改变的，所以你一旦创建了 String 对象，那它的值就无法改变了（详看笔记部分解析）。</p>
+<p>如果需要对字符串做很多修改，那么应该选择使用 <a href="">StringBuffer &amp; StringBuilder 类</a>。</p>
+<h3 id="2-字符串长度"><a href="#2-字符串长度" class="headerlink" title="2. 字符串长度"></a>2. 字符串长度</h3><p>用于获取有关对象的信息的方法称为访问器方法。</p>
+<p>String 类的一个访问器方法是 length() 方法，它返回字符串对象包含的字符数。</p>
+<p>下面的代码执行后，len 变量等于 14:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StringDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">site</span> <span class="operator">=</span> <span class="string">&quot;www.baidu.com&quot;</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> site.length();</span><br><span class="line">        System.out.println( <span class="string">&quot;百度网址长度 : &quot;</span> + len );</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上实例编译运行结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">百度网址长度 : 14</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-连接字符串"><a href="#3-连接字符串" class="headerlink" title="3. 连接字符串"></a>3. 连接字符串</h3><p>String 类提供了连接两个字符串的方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">string1.concat(string2);</span><br></pre></td></tr></table></figure>
+
+<p>返回 string2 连接 string1 的新字符串。也可以对字符串常量使用 concat() 方法，如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;我的名字是 &quot;</span>.concat(<span class="string">&quot;john&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>更常用的是使用’+’操作符来连接字符串，如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;Hello,&quot;</span> + <span class="string">&quot; john&quot;</span> + <span class="string">&quot;!&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>结果如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Hello, john!</span><br></pre></td></tr></table></figure>
+
+<p>下面是一个例子:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StringDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span> &#123;     </span><br><span class="line">        <span class="type">String</span> <span class="variable">string1</span> <span class="operator">=</span> <span class="string">&quot;百度网址：&quot;</span>;     </span><br><span class="line">        System.out.println(<span class="string">&quot;1、&quot;</span> + string1 + <span class="string">&quot;www.baidu.com&quot;</span>);  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上实例编译运行结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、百度网址：www.baidu.com</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-创建格式化字符串"><a href="#4-创建格式化字符串" class="headerlink" title="4. 创建格式化字符串"></a>4. 创建格式化字符串</h3><p>我们知道输出格式化数字可以使用 printf() 和 format() 方法。</p>
+<p>String 类使用静态方法 format() 返回一个String 对象而不是 PrintStream 对象。</p>
+<p>String 类的静态方法 format() 能用来创建可复用的格式化字符串，而不仅仅是用于一次打印输出。</p>
+<p>如下所示：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">System.out.printf(<span class="string">&quot;浮点型变量的值为 &quot;</span> +</span><br><span class="line">                  <span class="string">&quot;%f, 整型变量的值为 &quot;</span> +</span><br><span class="line">                  <span class="string">&quot; %d, 字符串变量的值为 &quot;</span> +</span><br><span class="line">                  <span class="string">&quot;is %s&quot;</span>, floatVar, intVar, stringVar);</span><br></pre></td></tr></table></figure>
+
+<p>你也可以这样写</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String fs;</span><br><span class="line">fs = String.format(<span class="string">&quot;浮点型变量的值为 &quot;</span> +</span><br><span class="line">                   <span class="string">&quot;%f, 整型变量的值为 &quot;</span> +</span><br><span class="line">                   <span class="string">&quot; %d, 字符串变量的值为 &quot;</span> +</span><br><span class="line">                   <span class="string">&quot; %s&quot;</span>, floatVar, intVar, stringVar);</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-String-方法"><a href="#5-String-方法" class="headerlink" title="5. String 方法"></a>5. String 方法</h3><p>下面是 String 类支持的方法，更多详细，参看 Java String API文档:</p>
+<p><a href="https://docs.oracle.com/en/java/javase/11/docs/api/index.html">官方文档</a></p>
+<p><a href="http://meverikc.top:8080/javaapi">中文在线文档</a></p>
+<p><a href="http://www.meverikc.top:8080/javaapi/java.base/java/lang/String.html#method.summary">String类内容</a></p>
+<p><a href="https://github.com/MeverikC/meverikc.github.io/releases/tag/latest">中文文档下载</a> </p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java-4</title>
     <url>/2024/09/30/2024-09-30-Java-4/</url>
     <content><![CDATA[<h2 id="Java-数组"><a href="#Java-数组" class="headerlink" title="Java 数组"></a>Java 数组</h2><p>数组对于每一门编程语言来说都是重要的数据结构之一，当然不同语言对数组的实现及处理也不尽相同。</p>
@@ -811,91 +1280,6 @@
 ]]></content>
       <tags>
         <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java-5</title>
-    <url>/2024/11/05/2024-11-05-Java-5/</url>
-    <content><![CDATA[<h2 id="String-类"><a href="#String-类" class="headerlink" title="String 类"></a>String 类</h2><p>字符串广泛应用 在 Java 编程中，在 Java 中字符串属于对象，Java 提供了 String 类来创建和操作字符串。</p>
-<hr>
-<h3 id="1-创建字符串"><a href="#1-创建字符串" class="headerlink" title="1. 创建字符串"></a>1. 创建字符串</h3><p>创建字符串最简单的方式如下:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;Hello,World!&quot;</span>;</span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<p>在代码中遇到字符串常量时，这里的值是 “<strong>Hello,World!</strong>“，编译器会使用该值创建一个 String 对象。</p>
-<p>和其它对象一样，可以使用关键字和构造方法来创建 String 对象。</p>
-<p>用构造函数创建字符串：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;Hello,World!&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>String 创建的字符串存储在公共池中，而 new 创建的字符串对象在堆上：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="string">&quot;Hello,World!&quot;</span>;               <span class="comment">// String 直接创建</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> <span class="string">&quot;Hello,World!&quot;</span>;               <span class="comment">// String 直接创建</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s3</span> <span class="operator">=</span> s1;                    		  <span class="comment">// 相同引用</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s4</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;Hello,World!&quot;</span>);   <span class="comment">// String 对象创建</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s5</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;Hello,World!&quot;</span>);   <span class="comment">// String 对象创建</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="/../images/java-5_1.png"></p>
-<p>String 类有 11 种构造方法，这些方法提供不同的参数来初始化字符串，比如提供一个字符数组参数:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StringDemo</span>&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span>&#123;</span><br><span class="line">      <span class="type">char</span>[] helloArray = &#123; <span class="string">&#x27;H&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;o&#x27;</span>&#125;;</span><br><span class="line">      <span class="type">String</span> <span class="variable">helloString</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(helloArray);  </span><br><span class="line">      System.out.println( helloString );</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>以上实例编译运行结果如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Hello</span><br></pre></td></tr></table></figure>
-
-<p>**注意:**String 类是不可改变的，所以你一旦创建了 String 对象，那它的值就无法改变了（详看笔记部分解析）。</p>
-<p>如果需要对字符串做很多修改，那么应该选择使用 <a href="">StringBuffer &amp; StringBuilder 类</a>。</p>
-<h3 id="2-字符串长度"><a href="#2-字符串长度" class="headerlink" title="2. 字符串长度"></a>2. 字符串长度</h3><p>用于获取有关对象的信息的方法称为访问器方法。</p>
-<p>String 类的一个访问器方法是 length() 方法，它返回字符串对象包含的字符数。</p>
-<p>下面的代码执行后，len 变量等于 14:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StringDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">site</span> <span class="operator">=</span> <span class="string">&quot;www.baidu.com&quot;</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> site.length();</span><br><span class="line">        System.out.println( <span class="string">&quot;百度网址长度 : &quot;</span> + len );</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>以上实例编译运行结果如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">百度网址长度 : 14</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-连接字符串"><a href="#3-连接字符串" class="headerlink" title="3. 连接字符串"></a>3. 连接字符串</h3><p>String 类提供了连接两个字符串的方法：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">string1.concat(string2);</span><br></pre></td></tr></table></figure>
-
-<p>返回 string2 连接 string1 的新字符串。也可以对字符串常量使用 concat() 方法，如：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;我的名字是 &quot;</span>.concat(<span class="string">&quot;john&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>更常用的是使用’+’操作符来连接字符串，如：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;Hello,&quot;</span> + <span class="string">&quot; john&quot;</span> + <span class="string">&quot;!&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>结果如下:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Hello, john!</span><br></pre></td></tr></table></figure>
-
-<p>下面是一个例子:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StringDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span> &#123;     </span><br><span class="line">        <span class="type">String</span> <span class="variable">string1</span> <span class="operator">=</span> <span class="string">&quot;百度网址：&quot;</span>;     </span><br><span class="line">        System.out.println(<span class="string">&quot;1、&quot;</span> + string1 + <span class="string">&quot;www.baidu.com&quot;</span>);  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>以上实例编译运行结果如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、百度网址：www.baidu.com</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-创建格式化字符串"><a href="#4-创建格式化字符串" class="headerlink" title="4. 创建格式化字符串"></a>4. 创建格式化字符串</h3><p>我们知道输出格式化数字可以使用 printf() 和 format() 方法。</p>
-<p>String 类使用静态方法 format() 返回一个String 对象而不是 PrintStream 对象。</p>
-<p>String 类的静态方法 format() 能用来创建可复用的格式化字符串，而不仅仅是用于一次打印输出。</p>
-<p>如下所示：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">System.out.printf(<span class="string">&quot;浮点型变量的值为 &quot;</span> +</span><br><span class="line">                  <span class="string">&quot;%f, 整型变量的值为 &quot;</span> +</span><br><span class="line">                  <span class="string">&quot; %d, 字符串变量的值为 &quot;</span> +</span><br><span class="line">                  <span class="string">&quot;is %s&quot;</span>, floatVar, intVar, stringVar);</span><br></pre></td></tr></table></figure>
-
-<p>你也可以这样写</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String fs;</span><br><span class="line">fs = String.format(<span class="string">&quot;浮点型变量的值为 &quot;</span> +</span><br><span class="line">                   <span class="string">&quot;%f, 整型变量的值为 &quot;</span> +</span><br><span class="line">                   <span class="string">&quot; %d, 字符串变量的值为 &quot;</span> +</span><br><span class="line">                   <span class="string">&quot; %s&quot;</span>, floatVar, intVar, stringVar);</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-String-方法"><a href="#5-String-方法" class="headerlink" title="5. String 方法"></a>5. String 方法</h3><p>下面是 String 类支持的方法，更多详细，参看 Java String API文档:</p>
-<p><a href="https://docs.oracle.com/en/java/javase/11/docs/api/index.html">官方文档</a></p>
-<p><a href="http://meverikc.top:8080/javaapi">中文在线文档</a></p>
-<p><a href="http://www.meverikc.top:8080/javaapi/java.base/java/lang/String.html#method.summary">String类内容</a></p>
-<p><a href="https://github.com/MeverikC/meverikc.github.io/releases/tag/latest">中文文档下载</a> </p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>nvm使用</title>
-    <url>/2024/11/21/2024-11-21-nvm%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">#  查看可安装的node版本</span><br><span class="line">nvm list available</span><br><span class="line"></span><br><span class="line">#  安装指定版本node</span><br><span class="line">nvm install 版本号</span><br><span class="line"></span><br><span class="line">#  查看已经安装的版本</span><br><span class="line">nvm list installed </span><br><span class="line"></span><br><span class="line">#  查看已安装版本的node</span><br><span class="line">nvm list / nvm ls</span><br><span class="line"></span><br><span class="line">#  切换使用指定的版本的node</span><br><span class="line">nvm use 已安装版本号</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>nvm</tag>
-        <tag>node</tag>
       </tags>
   </entry>
   <entry>
@@ -1138,6 +1522,17 @@
 ]]></content>
       <tags>
         <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>nvm使用</title>
+    <url>/2024/11/21/2024-11-21-nvm%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">#  查看可安装的node版本</span><br><span class="line">nvm list available</span><br><span class="line"></span><br><span class="line">#  安装指定版本node</span><br><span class="line">nvm install 版本号</span><br><span class="line"></span><br><span class="line">#  查看已经安装的版本</span><br><span class="line">nvm list installed </span><br><span class="line"></span><br><span class="line">#  查看已安装版本的node</span><br><span class="line">nvm list / nvm ls</span><br><span class="line"></span><br><span class="line">#  切换使用指定的版本的node</span><br><span class="line">nvm use 已安装版本号</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>nvm</tag>
+        <tag>node</tag>
       </tags>
   </entry>
   <entry>
@@ -1404,35 +1799,6 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd zuanboot</span><br><span class="line">docker build -t zuanboot .</span><br><span class="line">docker run -d --name zuanboot -v $(pwd):/app -p 8900:58000 zuanboot:latest</span><br></pre></td></tr></table></figure>]]></content>
   </entry>
   <entry>
-    <title>windows桌面美化</title>
-    <url>/2024/11/23/windows%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/</url>
-    <content><![CDATA[<h2 id="流程简介"><a href="#流程简介" class="headerlink" title="流程简介"></a>流程简介</h2><ol>
-<li><p>使用到的工具:</p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. rainmeter # 主题</span><br><span class="line">2. 致美化主题: welfare(可选)</span><br><span class="line">3. winstep nexus</span><br><span class="line">4. wallpaper engine</span><br></pre></td></tr></table></figure></li>
-</ol>
-<span id="more"></span>
-<ol start="2">
-<li><p>sop: </p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 下载rainmeter并安装</span><br><span class="line">2. 下载welfare,并安装</span><br><span class="line">3. 打开rainmeter设置, 加载welfare主题</span><br><span class="line">3. 下载winstep nexus并安装且运行, </span><br></pre></td></tr></table></figure></li>
-</ol>
-<blockquote>
-<p> <strong>注意事项:</strong> </p>
-<ol>
-<li><code>welfare</code> 的安装前必须先下载rainmeter</li>
-<li>winstep nexus要使用科学上网</li>
-<li></li>
-</ol>
-</blockquote>
-<h3 id="1-rainmeter"><a href="#1-rainmeter" class="headerlink" title="1. rainmeter"></a>1. rainmeter</h3><ol>
-<li><p><a href="https://www.rainmeter.net/">下载地址</a> </p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.rainmeter.net/</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <tags>
-        <tag>windows</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Meverikc</title>
     <url>/2024/11/21/index/</url>
     <content><![CDATA[<p ><h3 style="text-align: center;">Welcome to my blog!</h3></p>
@@ -1467,5 +1833,34 @@
 <div class="note info">
             <ol start="3"><li><a href="/2024/09/20/windows%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/">windows桌面美化</a></li></ol>
           </div></div></div></div>]]></content>
+  </entry>
+  <entry>
+    <title>windows桌面美化</title>
+    <url>/2024/11/23/windows%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/</url>
+    <content><![CDATA[<h2 id="流程简介"><a href="#流程简介" class="headerlink" title="流程简介"></a>流程简介</h2><ol>
+<li><p>使用到的工具:</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. rainmeter # 主题</span><br><span class="line">2. 致美化主题: welfare(可选)</span><br><span class="line">3. winstep nexus</span><br><span class="line">4. wallpaper engine</span><br></pre></td></tr></table></figure></li>
+</ol>
+<span id="more"></span>
+<ol start="2">
+<li><p>sop: </p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 下载rainmeter并安装</span><br><span class="line">2. 下载welfare,并安装</span><br><span class="line">3. 打开rainmeter设置, 加载welfare主题</span><br><span class="line">3. 下载winstep nexus并安装且运行, </span><br></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p> <strong>注意事项:</strong> </p>
+<ol>
+<li><code>welfare</code> 的安装前必须先下载rainmeter</li>
+<li>winstep nexus要使用科学上网</li>
+<li></li>
+</ol>
+</blockquote>
+<h3 id="1-rainmeter"><a href="#1-rainmeter" class="headerlink" title="1. rainmeter"></a>1. rainmeter</h3><ol>
+<li><p><a href="https://www.rainmeter.net/">下载地址</a> </p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.rainmeter.net/</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>windows</tag>
+      </tags>
   </entry>
 </search>
