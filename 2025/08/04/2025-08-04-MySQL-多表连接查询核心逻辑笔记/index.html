@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/m.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/m.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/m.png">
+  <link rel="mask-icon" href="/images/m.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"meverikc.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="MySQL 多表连接查询核心逻辑笔记一、背景表结构与数据1. 表结构创建12345678-- 双字段都有索引create table a(a1 int primary key, a2 int ,index(a2));  -- 三字段，双字段有索引create table c(c1 int primary key, c2 int ,index(c2), c3 int);  -- 有主键索引creat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL 多表连接查询核心逻辑笔记">
+<meta property="og:url" content="https://meverikc.github.io/2025/08/04/2025-08-04-MySQL-%E5%A4%9A%E8%A1%A8%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2%E6%A0%B8%E5%BF%83%E9%80%BB%E8%BE%91%E7%AC%94%E8%AE%B0/">
+<meta property="og:site_name" content="MFIKC">
+<meta property="og:description" content="MySQL 多表连接查询核心逻辑笔记一、背景表结构与数据1. 表结构创建12345678-- 双字段都有索引create table a(a1 int primary key, a2 int ,index(a2));  -- 三字段，双字段有索引create table c(c1 int primary key, c2 int ,index(c2), c3 int);  -- 有主键索引creat">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-08-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-04T09:59:54.838Z">
+<meta property="article:author" content="MeverikC">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://meverikc.github.io/2025/08/04/2025-08-04-MySQL-%E5%A4%9A%E8%A1%A8%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2%E6%A0%B8%E5%BF%83%E9%80%BB%E8%BE%91%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>MySQL 多表连接查询核心逻辑笔记 | MFIKC</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5NCKWQXZMW"></script>
+    <script data-pjax>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-5NCKWQXZMW');
+    </script>
+
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a9d6dfd1deeea5f7f077565d10ddd79f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">MFIKC</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-java">
+
+    <a href="/java/" rel="section"><i class="bi bi-filetype-java fa-fw"></i>Java</a>
+
+  </li>
+
+
+      
+        
+            
+  <li class="menu-item menu-item-recreation">
+
+    <a href="/recreation/" rel="section"><i class="fa fa-dice fa-fw"></i>recreation</a>
+
+  </li>
+
+
+      
+        <li class="menu-item menu-item-hello-algo">
+
+    <a href="/hello-algo/" rel="section"><i class="bi bi-cpu fa-fw"></i>hello-algo</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-other">
+
+    <a href="/other/" rel="section"><i class="bi bi-three-dots fa-fw"></i>Other</a>
+
+  </li>
+
+
+      
+        <li class="menu-item menu-item-editor">
+
+    <a href="/md_editor/" rel="section"><i class="fa fa-edit fa-fw"></i>editor</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://meverikc.github.io/2025/08/04/2025-08-04-MySQL-%E5%A4%9A%E8%A1%A8%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2%E6%A0%B8%E5%BF%83%E9%80%BB%E8%BE%91%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="MeverikC">
+      <meta itemprop="description" content="记录个人学习记录及一些电脑操作问题, 后续会持续更新, 敬请关注">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MFIKC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL 多表连接查询核心逻辑笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-08-04 00:00:00 / 修改时间：17:59:54" itemprop="dateCreated datePublished" datetime="2025-08-04T00:00:00+08:00">2025-08-04</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="MySQL-多表连接查询核心逻辑笔记"><a href="#MySQL-多表连接查询核心逻辑笔记" class="headerlink" title="MySQL 多表连接查询核心逻辑笔记"></a>MySQL 多表连接查询核心逻辑笔记</h1><h2 id="一、背景表结构与数据"><a href="#一、背景表结构与数据" class="headerlink" title="一、背景表结构与数据"></a>一、背景表结构与数据</h2><h3 id="1-表结构创建"><a href="#1-表结构创建" class="headerlink" title="1. 表结构创建"></a>1. 表结构创建</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 双字段都有索引</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> a(a1 <span class="type">int</span> <span class="keyword">primary</span> key, a2 <span class="type">int</span> ,index(a2));  </span><br><span class="line"><span class="comment">-- 三字段，双字段有索引</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> c(c1 <span class="type">int</span> <span class="keyword">primary</span> key, c2 <span class="type">int</span> ,index(c2), c3 <span class="type">int</span>);  </span><br><span class="line"><span class="comment">-- 有主键索引</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> b(b1 <span class="type">int</span> <span class="keyword">primary</span> key, b2 <span class="type">int</span>);  </span><br><span class="line"><span class="comment">-- 无索引</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> d(d1 <span class="type">int</span>, d2 <span class="type">int</span>);  </span><br></pre></td></tr></table></figure>
+
+<h3 id="2-插入数据"><a href="#2-插入数据" class="headerlink" title="2. 插入数据"></a>2. 插入数据</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> a <span class="keyword">values</span>(<span class="number">1</span>,<span class="number">1</span>),(<span class="number">2</span>,<span class="number">2</span>),(<span class="number">3</span>,<span class="number">3</span>),(<span class="number">4</span>,<span class="number">4</span>),(<span class="number">5</span>,<span class="number">5</span>),(<span class="number">6</span>,<span class="number">6</span>),(<span class="number">7</span>,<span class="number">7</span>),(<span class="number">8</span>,<span class="number">8</span>),(<span class="number">9</span>,<span class="number">9</span>),(<span class="number">10</span>,<span class="number">10</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> b <span class="keyword">values</span>(<span class="number">1</span>,<span class="number">1</span>),(<span class="number">2</span>,<span class="number">2</span>),(<span class="number">3</span>,<span class="number">3</span>),(<span class="number">4</span>,<span class="number">4</span>),(<span class="number">5</span>,<span class="number">5</span>),(<span class="number">6</span>,<span class="number">6</span>),(<span class="number">7</span>,<span class="number">7</span>),(<span class="number">8</span>,<span class="number">8</span>),(<span class="number">9</span>,<span class="number">9</span>),(<span class="number">10</span>,<span class="number">10</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> c <span class="keyword">values</span>(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>),(<span class="number">2</span>,<span class="number">4</span>,<span class="number">4</span>),(<span class="number">3</span>,<span class="number">6</span>,<span class="number">6</span>),(<span class="number">4</span>,<span class="number">5</span>,<span class="number">5</span>),(<span class="number">5</span>,<span class="number">3</span>,<span class="number">3</span>),(<span class="number">6</span>,<span class="number">3</span>,<span class="number">3</span>),(<span class="number">7</span>,<span class="number">2</span>,<span class="number">2</span>),(<span class="number">8</span>,<span class="number">8</span>,<span class="number">8</span>),(<span class="number">9</span>,<span class="number">5</span>,<span class="number">5</span>),(<span class="number">10</span>,<span class="number">3</span>,<span class="number">3</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> d <span class="keyword">values</span>(<span class="number">1</span>,<span class="number">1</span>),(<span class="number">2</span>,<span class="number">2</span>),(<span class="number">3</span>,<span class="number">3</span>),(<span class="number">4</span>,<span class="number">4</span>),(<span class="number">5</span>,<span class="number">5</span>),(<span class="number">6</span>,<span class="number">6</span>),(<span class="number">7</span>,<span class="number">7</span>),(<span class="number">8</span>,<span class="number">8</span>),(<span class="number">9</span>,<span class="number">9</span>),(<span class="number">10</span>,<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、驱动表的选择"><a href="#二、驱动表的选择" class="headerlink" title="二、驱动表的选择"></a>二、驱动表的选择</h2><h3 id="1-驱动表概念"><a href="#1-驱动表概念" class="headerlink" title="1. 驱动表概念"></a>1. 驱动表概念</h3><p>多表关联查询时，第一个被处理的表，决定连接顺序和查询性能。</p>
+<h3 id="2-选择原则"><a href="#2-选择原则" class="headerlink" title="2. 选择原则"></a>2. 选择原则</h3><ul>
+<li>核心：在不影响最终结果集的前提下，优先选择<strong>结果集最小的表</strong>作为驱动表。</li>
+<li>限制：外连接（如 left join&#x2F;right join）中，驱动表选择可能影响结果，需谨慎。</li>
+</ul>
+<h3 id="3-结果集计算方式"><a href="#3-结果集计算方式" class="headerlink" title="3. 结果集计算方式"></a>3. 结果集计算方式</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">预估结果集 = 每行查询字节数 × 预估的行数</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>每行查询字节数：select 字段的字节大小总和。</li>
+<li>预估行数规则：<ul>
+<li>无 where 筛选条件：默认全表。</li>
+<li>有 where 条件但无法用索引：默认全表。</li>
+<li>有 where 条件且可用索引：根据索引预估行数。</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-案例分析"><a href="#4-案例分析" class="headerlink" title="4. 案例分析"></a>4. 案例分析</h3><h4 id="案例-1"><a href="#案例-1" class="headerlink" title="案例 1"></a>案例 1</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> a.<span class="operator">*</span>,c.c2 <span class="keyword">from</span> a <span class="keyword">join</span> c <span class="keyword">on</span> a.a2<span class="operator">=</span>c.c2 <span class="keyword">where</span> a.a1<span class="operator">&gt;</span><span class="number">5</span> <span class="keyword">and</span> c.c1<span class="operator">&gt;</span><span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>explain 显示驱动表为 c（根据结果集大小选择）。</li>
+</ul>
+<h4 id="案例-2"><a href="#案例-2" class="headerlink" title="案例 2"></a>案例 2</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> a.<span class="operator">*</span>,c.<span class="operator">*</span> <span class="keyword">from</span> a <span class="keyword">join</span> c <span class="keyword">on</span> a.a2<span class="operator">=</span>c.c2 <span class="keyword">where</span> a.a1<span class="operator">&gt;</span><span class="number">5</span> <span class="keyword">and</span> c.c1<span class="operator">&gt;</span><span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>驱动表仍为 c：虽 c.* 数据量更大，但避免了 a 作为驱动表时的回表操作，性能更优。</li>
+<li>结论：结果集是主要因素，但非唯一（需结合回表等操作综合判断）。</li>
+</ul>
+<h2 id="三、两表关联的内在逻辑"><a href="#三、两表关联的内在逻辑" class="headerlink" title="三、两表关联的内在逻辑"></a>三、两表关联的内在逻辑</h2><p>MySQL 使用<strong>Nested-Loop join</strong>（嵌套循环连接），根据是否使用索引分为不同算法。</p>
+<h3 id="1-有索引关联（被驱动表可用索引）"><a href="#1-有索引关联（被驱动表可用索引）" class="headerlink" title="1. 有索引关联（被驱动表可用索引）"></a>1. 有索引关联（被驱动表可用索引）</h3><h4 id="（1）Index-Nested-Loop-join"><a href="#（1）Index-Nested-Loop-join" class="headerlink" title="（1）Index Nested-Loop join"></a>（1）Index Nested-Loop join</h4><ul>
+<li>流程：驱动表逐条取记录，通过索引关联被驱动表，需回表时用主键查询完整数据，结果放入 net buffer（由<code>net_buffer_length</code>控制，默认 1M）。</li>
+<li>特点：无需 join buffer，逐条处理，可能有多次随机回表查询。</li>
+</ul>
+<h4 id="（2）Batched-Key-Access-BKA-join"><a href="#（2）Batched-Key-Access-BKA-join" class="headerlink" title="（2）Batched Key Access (BKA) join"></a>（2）Batched Key Access (BKA) join</h4><ul>
+<li><p>优化点：将随机回表转为顺序查询（依赖 MRR）。</p>
+</li>
+<li><p>流程：</p>
+<ol>
+<li>驱动表符合条件的记录批量放入 join buffer。</li>
+<li>关联被驱动表索引，主键存入 read_rnd_buffer。</li>
+<li>按主键排序 read_rnd_buffer，顺序回表查询。</li>
+</ol>
+</li>
+<li><p>启用方式：</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> optimizer_switch<span class="operator">=</span><span class="string">&#x27;mrr=on,mrr_cost_based=off,batched_key_access=on&#x27;</span>;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2-无索引关联（被驱动表无可用索引）"><a href="#2-无索引关联（被驱动表无可用索引）" class="headerlink" title="2. 无索引关联（被驱动表无可用索引）"></a>2. 无索引关联（被驱动表无可用索引）</h3><h4 id="（1）Simple-Nested-Loop-join"><a href="#（1）Simple-Nested-Loop-join" class="headerlink" title="（1）Simple Nested-Loop join"></a>（1）Simple Nested-Loop join</h4><ul>
+<li>流程：驱动表逐条取记录，全表扫描被驱动表匹配，性能差（驱动表每行对应一次全表扫描）。</li>
+</ul>
+<h4 id="（2）Block-Nested-Loop-BNL-join"><a href="#（2）Block-Nested-Loop-BNL-join" class="headerlink" title="（2）Block Nested-Loop (BNL) join"></a>（2）Block Nested-Loop (BNL) join</h4><ul>
+<li>优化点：批量处理驱动表数据，减少被驱动表扫描次数。</li>
+<li>流程：<ol>
+<li>驱动表数据批量放入 join buffer（上限为 buffer 大小）。</li>
+<li>全表扫描被驱动表，与 buffer 中所有行匹配，匹配成功则放入结果集。</li>
+</ol>
+</li>
+<li>特点：无 read_rnd_buffer，依赖 join buffer 减少扫描次数。</li>
+</ul>
+<h2 id="四、多表连接的执行流程"><a href="#四、多表连接的执行流程" class="headerlink" title="四、多表连接的执行流程"></a>四、多表连接的执行流程</h2><h3 id="1-核心逻辑"><a href="#1-核心逻辑" class="headerlink" title="1. 核心逻辑"></a>1. 核心逻辑</h3><p>采用<strong>嵌套循环</strong>而非 “先两表连接再关联第三表”，形式类似：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> row1 in table1 filtered by where&#123;</span><br><span class="line">  <span class="keyword">for</span> row2 in table2 associated by table1.index1 filtered by where&#123;</span><br><span class="line">    <span class="keyword">for</span> row3 in table3 associated by table2.index2 filtered by where&#123;</span><br><span class="line">      put into net-buffer then send to client;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-不同算法的处理方式"><a href="#2-不同算法的处理方式" class="headerlink" title="2. 不同算法的处理方式"></a>2. 不同算法的处理方式</h3><ul>
+<li><strong>Index Nested-Loop</strong>：逐条处理驱动表记录，依次关联后续表，需回表时单独查询。</li>
+<li><strong>BKA&#x2F;BNL</strong>：批量处理驱动表数据（利用 join buffer），每个 join 关键字对应一个 buffer，分批次关联后续表。</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>驱动表选择：优先结果集小的表，结合回表等操作综合判断。</li>
+<li>两表关联：有索引用 Index Nested-Loop 或 BKA（优化回表），无索引用 BNL（减少扫描次数）。</li>
+<li>多表连接：嵌套循环执行，按连接顺序依次关联，批量算法利用 buffer 提升效率。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/MySQL/" rel="tag"><i class="fa fa-tag"></i> MySQL</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/06/03/2024-09-19-Linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" rel="prev" title="Linux 常用命令">
+      <i class="fa fa-chevron-left"></i> Linux 常用命令
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL-%E5%A4%9A%E8%A1%A8%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2%E6%A0%B8%E5%BF%83%E9%80%BB%E8%BE%91%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">MySQL 多表连接查询核心逻辑笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%83%8C%E6%99%AF%E8%A1%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E6%95%B0%E6%8D%AE"><span class="nav-number">1.1.</span> <span class="nav-text">一、背景表结构与数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%A1%A8%E7%BB%93%E6%9E%84%E5%88%9B%E5%BB%BA"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 表结构创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 插入数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E9%A9%B1%E5%8A%A8%E8%A1%A8%E7%9A%84%E9%80%89%E6%8B%A9"><span class="nav-number">1.2.</span> <span class="nav-text">二、驱动表的选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%A9%B1%E5%8A%A8%E8%A1%A8%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 驱动表概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%80%89%E6%8B%A9%E5%8E%9F%E5%88%99"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 选择原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%BB%93%E6%9E%9C%E9%9B%86%E8%AE%A1%E7%AE%97%E6%96%B9%E5%BC%8F"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. 结果集计算方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90"><span class="nav-number">1.2.4.</span> <span class="nav-text">4. 案例分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B-1"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">案例 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B-2"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">案例 2</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%B8%A4%E8%A1%A8%E5%85%B3%E8%81%94%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91"><span class="nav-number">1.3.</span> <span class="nav-text">三、两表关联的内在逻辑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%9C%89%E7%B4%A2%E5%BC%95%E5%85%B3%E8%81%94%EF%BC%88%E8%A2%AB%E9%A9%B1%E5%8A%A8%E8%A1%A8%E5%8F%AF%E7%94%A8%E7%B4%A2%E5%BC%95%EF%BC%89"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 有索引关联（被驱动表可用索引）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%881%EF%BC%89Index-Nested-Loop-join"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">（1）Index Nested-Loop join</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%882%EF%BC%89Batched-Key-Access-BKA-join"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">（2）Batched Key Access (BKA) join</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%97%A0%E7%B4%A2%E5%BC%95%E5%85%B3%E8%81%94%EF%BC%88%E8%A2%AB%E9%A9%B1%E5%8A%A8%E8%A1%A8%E6%97%A0%E5%8F%AF%E7%94%A8%E7%B4%A2%E5%BC%95%EF%BC%89"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. 无索引关联（被驱动表无可用索引）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%881%EF%BC%89Simple-Nested-Loop-join"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">（1）Simple Nested-Loop join</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%882%EF%BC%89Block-Nested-Loop-BNL-join"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">（2）Block Nested-Loop (BNL) join</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%A4%9A%E8%A1%A8%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="nav-number">1.4.</span> <span class="nav-text">四、多表连接的执行流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A0%B8%E5%BF%83%E9%80%BB%E8%BE%91"><span class="nav-number">1.4.1.</span> <span class="nav-text">1. 核心逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%B8%8D%E5%90%8C%E7%AE%97%E6%B3%95%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F"><span class="nav-number">1.4.2.</span> <span class="nav-text">2. 不同算法的处理方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="MeverikC"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">MeverikC</p>
+  <div class="site-description" itemprop="description">记录个人学习记录及一些电脑操作问题, 后续会持续更新, 敬请关注</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/meverikc" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;meverikc" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:meverlike@gmail.com" title="E-Mail → mailto:meverlike@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2024 – 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MeverikC</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+    <div id="pjax">
+  
+
+  
+
+    </div>
+</body>
+</html>
