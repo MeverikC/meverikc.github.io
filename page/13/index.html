@@ -237,7 +237,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://meverikc.github.io/2025/03/05/MySQL8-%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81/">
+    <link itemprop="mainEntityOfPage" href="https://meverikc.github.io/2025/08/02/python/Day01-20/12.%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E9%9B%86%E5%90%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -251,7 +251,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/03/05/MySQL8-%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81/" class="post-title-link" itemprop="url">MySQL8 重置密码</a>
+            <a href="/2025/08/02/python/Day01-20/12.%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E9%9B%86%E5%90%88/" class="post-title-link" itemprop="url">12. 常用数据结构之集合</a>
         </h2>
 
         <div class="post-meta">
@@ -260,10 +260,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-03-05 00:00:00 / 修改时间：17:37:04" itemprop="dateCreated datePublished" datetime="2025-03-05T00:00:00+08:00">2025-03-05</time>
+              <time title="创建时间：2025-08-02 00:00:00" itemprop="dateCreated datePublished" datetime="2025-08-02T00:00:00+08:00">2025-08-02</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-08-14 16:48:05" itemprop="dateModified" datetime="2025-08-14T16:48:05+08:00">2025-08-14</time>
+              </span>
 
           
 
@@ -276,43 +282,59 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="MySQL8-重置密码"><a href="#MySQL8-重置密码" class="headerlink" title="MySQL8 重置密码"></a>MySQL8 重置密码</h1><h2 id="前置说明"><a href="#前置说明" class="headerlink" title="前置说明"></a>前置说明</h2><p>本文使用系统为 <code>centos7</code>, MySQL版本为 8.4 (除8以下适用)</p>
-<blockquote>
-<p>ps: 该方法为忘记密码且无法使用安全方式启动mysql的情况下使用, 若能以安全方式启动则无需该方法</p>
-</blockquote>
-<h2 id="重置"><a href="#重置" class="headerlink" title="重置"></a>重置</h2><ol>
-<li><p>停止 MySQL</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl stop mysqld</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>备份数据目录</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">cp</span> -r /var/lib/mysql /var/lib/mysql_backup</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重新初始化 MySQL（会删除所有数据）</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> mysqld --initialize --user=mysql</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>启动 MySQL 并获取临时密码</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl start mysqld</span><br><span class="line"><span class="built_in">sudo</span> grep <span class="string">&#x27;temporary password&#x27;</span> /var/log/mysqld.log</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>输出行最后的<code>:</code> 后面就是临时密码了</p>
-</blockquote>
-</li>
-<li><p>使用临时密码登录</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p> 在<code>Enter Password:</code> 后输入临时密码</p>
-</blockquote>
-</li>
-<li><p>重置密码</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 把新密码替换为自己的, mysql8默认的密码检查比较严格, 不要设置的太简单</span></span><br><span class="line">ALTER USER <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED BY <span class="string">&#x27;新密码&#x27;</span>;</span><br><span class="line"><span class="comment"># 强制刷新权限</span></span><br><span class="line">FLUSH PRIVILEGES;</span><br><span class="line"><span class="comment"># 退出 mysql shell</span></span><br><span class="line">EXIT;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重启 MySQL</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl restart mysqld</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>登录 MySQL</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p<span class="string">&#x27;新密码&#x27;</span></span><br></pre></td></tr></table></figure></li>
+          <h2 id="常用数据结构之集合"><a href="#常用数据结构之集合" class="headerlink" title="常用数据结构之集合"></a>常用数据结构之集合</h2><p>在学习了列表和元组之后，我们再来学习一种容器型的数据类型，它的名字叫集合（set）。说到集合这个词大家一定不会陌生，在数学课本上就有这个概念。如果我们<strong>把一定范围的、确定的、可以区别的事物当作一个整体来看待</strong>，那么这个整体就是集合，集合中的各个事物称为集合的<strong>元素</strong>。通常，集合需要满足以下要求：</p>
+<ol>
+<li><strong>无序性</strong>：一个集合中，每个元素的地位都是相同的，元素之间是无序的。</li>
+<li><strong>互异性</strong>：一个集合中，任何两个元素都是不相同的，即元素在集合中只能出现一次。</li>
+<li><strong>确定性</strong>：给定一个集合和一个任意元素，该元素要么属这个集合，要么不属于这个集合，二者必居其一，不允许有模棱两可的情况出现。</li>
 </ol>
+<p>Python 程序中的集合跟数学上的集合没有什么本质区别，需要强调的是上面所说的无序性和互异性。无序性说明集合中的元素并不像列中的元素那样存在某种次序，可以通过索引运算就能访问任意元素，<strong>集合并不支持索引运算</strong>。另外，集合的互异性决定了<strong>集合中不能有重复元素</strong>，这一点也是集合区别于列表的地方，我们无法将重复的元素添加到一个集合中。集合类型必然是支持<code>in</code>和<code>not in</code>成员运算的，这样就可以确定一个元素是否属于集合，也就是上面所说的集合的确定性。<strong>集合的成员运算在性能上要优于列表的成员运算</strong>，这是集合的底层存储特性决定的，此处我们暂时不做讨论，大家记住这个结论即可。</p>
+<blockquote>
+<p><strong>说明</strong>：集合底层使用了哈希存储（散列存储），对哈希存储不了解的读者可以先看看“Hello 算法”网站对<a target="_blank" rel="noopener" href="https://www.hello-algo.com/chapter_hashing/">哈希表</a>的讲解，感谢作者的开源精神。</p>
+</blockquote>
+<h3 id="创建集合"><a href="#创建集合" class="headerlink" title="创建集合"></a>创建集合</h3><p>在 Python 中，创建集合可以使用<code>&#123;&#125;</code>字面量语法，<code>&#123;&#125;</code>中需要至少有一个元素，因为没有元素的<code>&#123;&#125;</code>并不是空集合而是一个空字典，字典类型我们会在下一节课中为大家介绍。当然，也可以使用 Python 内置函数<code>set</code>来创建一个集合，准确的说<code>set</code>并不是一个函数，而是创建集合对象的构造器，这个知识点会在后面讲解面向对象编程的地方为大家介绍。我们可以使用<code>set</code>函数创建一个空集合，也可以用它将其他序列转换成集合，例如：<code>set(&#39;hello&#39;)</code>会得到一个包含了<code>4</code>个字符的集合（重复的字符<code>l</code>只会在集合中出现一次）。除了这两种方式，还可以使用生成式语法来创建集合，就像我们之前用生成式语法创建列表那样。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">set1 = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">2</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(set1)</span><br><span class="line"></span><br><span class="line">set2 = &#123;<span class="string">&#x27;banana&#x27;</span>, <span class="string">&#x27;pitaya&#x27;</span>, <span class="string">&#x27;apple&#x27;</span>, <span class="string">&#x27;apple&#x27;</span>, <span class="string">&#x27;banana&#x27;</span>, <span class="string">&#x27;grape&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(set2)</span><br><span class="line"></span><br><span class="line">set3 = <span class="built_in">set</span>(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(set3)</span><br><span class="line"></span><br><span class="line">set4 = <span class="built_in">set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(set4)</span><br><span class="line"></span><br><span class="line">set5 = &#123;num <span class="keyword">for</span> num <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">20</span>) <span class="keyword">if</span> num % <span class="number">3</span> == <span class="number">0</span> <span class="keyword">or</span> num % <span class="number">7</span> == <span class="number">0</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(set5)</span><br></pre></td></tr></table></figure>
+
+<p>需要提醒大家，集合中的元素必须是<code>hashable</code>类型，所谓<code>hashable</code>类型指的是能够计算出哈希码的数据类型，通常不可变类型都是<code>hashable</code>类型，如整数（<code>int</code>）、浮点小数（<code>float</code>）、布尔值（<code>bool</code>）、字符串（<code>str</code>）、元组（<code>tuple</code>）等。可变类型都不是<code>hashable</code>类型，因为可变类型无法计算出确定的哈希码，所以它们不能放到集合中。例如：我们不能将列表作为集合中的元素；同理，由于集合本身也是可变类型，所以集合也不能作为集合中的元素。我们可以创建出嵌套列表（列表的元素也是列表），但是我们不能创建出嵌套的集合，这一点在使用集合的时候一定要引起注意。</p>
+<blockquote>
+<p><strong>温馨提示</strong>：如果不理解上面提到的哈希码、哈希存储这些概念，可以先放放，因为它并不影响你继续学习和使用 Python 语言。当然，如果是计算机专业的小伙伴，不理解哈希存储是很难被原谅的，要赶紧去补课了。</p>
+</blockquote>
+<h3 id="元素的遍历"><a href="#元素的遍历" class="headerlink" title="元素的遍历"></a>元素的遍历</h3><p>我们可以通过<code>len</code>函数来获得集合中有多少个元素，但是我们不能通过索引运算来遍历集合中的元素，因为集合元素并没有特定的顺序。当然，要实现对集合元素的遍历，我们仍然可以使用<code>for-in</code>循环，代码如下所示。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set1 = &#123;<span class="string">&#x27;Python&#x27;</span>, <span class="string">&#x27;C++&#x27;</span>, <span class="string">&#x27;Java&#x27;</span>, <span class="string">&#x27;Kotlin&#x27;</span>, <span class="string">&#x27;Swift&#x27;</span>&#125;</span><br><span class="line"><span class="keyword">for</span> elem <span class="keyword">in</span> set1:</span><br><span class="line">    <span class="built_in">print</span>(elem)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>提示</strong>：大家看看上面代码的运行结果，通过单词输出的顺序体会一下集合的无序性。</p>
+</blockquote>
+<h3 id="集合的运算"><a href="#集合的运算" class="headerlink" title="集合的运算"></a>集合的运算</h3><p>Python 为集合类型提供了非常丰富的运算，主要包括：成员运算、交集运算、并集运算、差集运算、比较运算（相等性、子集、超集）等。</p>
+<h4 id="成员运算"><a href="#成员运算" class="headerlink" title="成员运算"></a>成员运算</h4><p>可以通过成员运算<code>in</code>和<code>not in</code>检查元素是否在集合中，代码如下所示。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set1 = &#123;<span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="number">10</span> <span class="keyword">in</span> set1)      <span class="comment"># False </span></span><br><span class="line"><span class="built_in">print</span>(<span class="number">15</span> <span class="keyword">in</span> set1)      <span class="comment"># True</span></span><br><span class="line">set2 = &#123;<span class="string">&#x27;Python&#x27;</span>, <span class="string">&#x27;Java&#x27;</span>, <span class="string">&#x27;C++&#x27;</span>, <span class="string">&#x27;Swift&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Ruby&#x27;</span> <span class="keyword">in</span> set2)  <span class="comment"># False</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Java&#x27;</span> <span class="keyword">in</span> set2)  <span class="comment"># True</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="二元运算"><a href="#二元运算" class="headerlink" title="二元运算"></a>二元运算</h4><p>集合的二元运算主要指集合的交集、并集、差集、对称差等运算，这些运算可以通过运算符来实现，也可以通过集合类型的方法来实现，代码如下所示。</p>
+<p><img src="/../images/res/day12/set_operations.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">set1 = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>&#125;</span><br><span class="line">set2 = &#123;<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 交集</span></span><br><span class="line"><span class="built_in">print</span>(set1 &amp; set2)                      <span class="comment"># &#123;2, 4, 6&#125;</span></span><br><span class="line"><span class="built_in">print</span>(set1.intersection(set2))          <span class="comment"># &#123;2, 4, 6&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 并集</span></span><br><span class="line"><span class="built_in">print</span>(set1 | set2)                      <span class="comment"># &#123;1, 2, 3, 4, 5, 6, 7, 8, 10&#125;</span></span><br><span class="line"><span class="built_in">print</span>(set1.union(set2))                 <span class="comment"># &#123;1, 2, 3, 4, 5, 6, 7, 8, 10&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 差集</span></span><br><span class="line"><span class="built_in">print</span>(set1 - set2)                      <span class="comment"># &#123;1, 3, 5, 7&#125;</span></span><br><span class="line"><span class="built_in">print</span>(set1.difference(set2))            <span class="comment"># &#123;1, 3, 5, 7&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对称差</span></span><br><span class="line"><span class="built_in">print</span>(set1 ^ set2)                      <span class="comment"># &#123;1, 3, 5, 7, 8, 10&#125;</span></span><br><span class="line"><span class="built_in">print</span>(set1.symmetric_difference(set2))  <span class="comment"># &#123;1, 3, 5, 7, 8, 10&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>通过上面的代码可以看出，对两个集合求交集，<code>&amp;</code>运算符和<code>intersection</code>方法的作用是完全相同的，使用运算符的方式显然更直观且代码也更简短。需要说明的是，集合的二元运算还可以跟赋值运算一起构成复合赋值运算，例如：<code>set1 |= set2</code>相当于<code>set1 = set1 | set2</code>，跟<code>|=</code>作用相同的方法是<code>update</code>；<code>set1 &amp;= set2</code>相当于<code>set1 = set1 &amp; set2</code>，跟<code>&amp;=</code>作用相同的方法是<code>intersection_update</code>，代码如下所示。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">set1 = &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>&#125;</span><br><span class="line">set2 = &#123;<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>&#125;</span><br><span class="line">set1 |= set2</span><br><span class="line"><span class="comment"># set1.update(set2)</span></span><br><span class="line"><span class="built_in">print</span>(set1)  <span class="comment"># &#123;1, 2, 3, 4, 5, 6, 7&#125;</span></span><br><span class="line">set3 = &#123;<span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span>&#125;</span><br><span class="line">set1 &amp;= set3</span><br><span class="line"><span class="comment"># set1.intersection_update(set3)</span></span><br><span class="line"><span class="built_in">print</span>(set1)  <span class="comment"># &#123;3, 6&#125;</span></span><br><span class="line">set2 -= set1</span><br><span class="line"><span class="comment"># set2.difference_update(set1)</span></span><br><span class="line"><span class="built_in">print</span>(set2)  <span class="comment"># &#123;2, 4&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="比较运算"><a href="#比较运算" class="headerlink" title="比较运算"></a>比较运算</h4><p>两个集合可以用<code>==</code>和<code>!=</code>进行相等性判断，如果两个集合中的元素完全相同，那么<code>==</code>比较的结果就是<code>True</code>，否则就是<code>False</code>。如果集合<code>A</code>的任意一个元素都是集合<code>B</code>的元素，那么集合<code>A</code>称为集合<code>B</code>的子集，即对于 $\small{\forall{a} \in {A}}$ ，均有 <code>$\small&#123;&#123;a&#125; \in &#123;B&#125;&#125;$</code> ，则 <code>$\small&#123;&#123;A&#125; \subseteq &#123;B&#125;&#125;$</code> ，<code>A</code>是<code>B</code>的子集，反过来也可以称<code>B</code>是<code>A</code>的超集。如果<code>A</code>是<code>B</code>的子集且<code>A</code>不等于<code>B</code>，那么<code>A</code>就是<code>B</code>的真子集。Python 为集合类型提供了判断子集和超集的运算符，其实就是我们非常熟悉的<code>&lt;</code>、<code>&lt;=</code>、<code>&gt;</code>、<code>&gt;=</code>这些运算符。当然，我们也可以通过集合类型的方法<code>issubset</code>和<code>issuperset</code>来判断集合之间的关系，代码如下所示。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">set1 = &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>&#125;</span><br><span class="line">set2 = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;</span><br><span class="line">set3 = &#123;<span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(set1 &lt; set2)   <span class="comment"># True</span></span><br><span class="line"><span class="built_in">print</span>(set1 &lt;= set2)  <span class="comment"># True</span></span><br><span class="line"><span class="built_in">print</span>(set2 &lt; set3)   <span class="comment"># False</span></span><br><span class="line"><span class="built_in">print</span>(set2 &lt;= set3)  <span class="comment"># True</span></span><br><span class="line"><span class="built_in">print</span>(set2 &gt; set1)   <span class="comment"># True</span></span><br><span class="line"><span class="built_in">print</span>(set2 == set3)  <span class="comment"># True</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(set1.issubset(set2))    <span class="comment"># True</span></span><br><span class="line"><span class="built_in">print</span>(set2.issuperset(set1))  <span class="comment"># True</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>说明</strong>：上面的代码中，<code>set1 &lt; set2</code>判断<code>set1</code>是不是<code>set2</code>的真子集，<code>set1 &lt;= set2</code>判断<code>set1</code>是不是<code>set2</code>的子集，<code>set2 &gt; set1</code>判断<code>set2</code>是不是<code>set1</code>的超集。当然，我们也可以通过<code>set1.issubset(set2)</code>判断<code>set1</code>是不是<code>set2</code>的子集；通过<code>set2.issuperset(set1)</code>判断<code>set2</code>是不是<code>set1</code>的超集。</p>
+</blockquote>
+<h3 id="集合的方法"><a href="#集合的方法" class="headerlink" title="集合的方法"></a>集合的方法</h3><p>刚才我们说过，Python 中的集合是可变类型，我们可以通过集合的方法向集合添加元素或从集合中删除元素。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">set1 = &#123;<span class="number">1</span>, <span class="number">10</span>, <span class="number">100</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加元素</span></span><br><span class="line">set1.add(<span class="number">1000</span>)</span><br><span class="line">set1.add(<span class="number">10000</span>)</span><br><span class="line"><span class="built_in">print</span>(set1)  <span class="comment"># &#123;1, 100, 1000, 10, 10000&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除元素</span></span><br><span class="line">set1.discard(<span class="number">10</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="number">100</span> <span class="keyword">in</span> set1:</span><br><span class="line">    set1.remove(<span class="number">100</span>)</span><br><span class="line"><span class="built_in">print</span>(set1)  <span class="comment"># &#123;1, 1000, 10000&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 清空元素</span></span><br><span class="line">set1.clear()</span><br><span class="line"><span class="built_in">print</span>(set1)  <span class="comment"># set()</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>说明</strong>：删除元素的<code>remove</code>方法在元素不存在时会引发<code>KeyError</code>错误，所以上面的代码中我们先通过成员运算判断元素是否在集合中。集合类型还有一个<code>pop</code>方法可以从集合中随机删除一个元素，该方法在删除元素的同时会返回（获得）被删除的元素，而<code>remove</code>和<code>discard</code>方法仅仅是删除元素，不会返回（获得）被删除的元素。</p>
+</blockquote>
+<p>集合类型还有一个名为<code>isdisjoint</code>的方法可以判断两个集合有没有相同的元素，如果没有相同元素，该方法返回<code>True</code>，否则该方法返回<code>False</code>，代码如下所示。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set1 = &#123;<span class="string">&#x27;Java&#x27;</span>, <span class="string">&#x27;Python&#x27;</span>, <span class="string">&#x27;C++&#x27;</span>, <span class="string">&#x27;Kotlin&#x27;</span>&#125;</span><br><span class="line">set2 = &#123;<span class="string">&#x27;Kotlin&#x27;</span>, <span class="string">&#x27;Swift&#x27;</span>, <span class="string">&#x27;Java&#x27;</span>, <span class="string">&#x27;Dart&#x27;</span>&#125;</span><br><span class="line">set3 = &#123;<span class="string">&#x27;HTML&#x27;</span>, <span class="string">&#x27;CSS&#x27;</span>, <span class="string">&#x27;JavaScript&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(set1.isdisjoint(set2))  <span class="comment"># False</span></span><br><span class="line"><span class="built_in">print</span>(set1.isdisjoint(set3))  <span class="comment"># True</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="不可变集合"><a href="#不可变集合" class="headerlink" title="不可变集合"></a>不可变集合</h3><p>Python 中还有一种不可变类型的集合，名字叫<code>frozenset</code>。<code>set</code>跟<code>frozenset</code>的区别就如同<code>list</code>跟<code>tuple</code>的区别，<code>frozenset</code>由于是不可变类型，能够计算出哈希码，因此它可以作为<code>set</code>中的元素。除了不能添加和删除元素，<code>frozenset</code>在其他方面跟<code>set</code>是一样的，下面的代码简单的展示了<code>frozenset</code>的用法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fset1 = <span class="built_in">frozenset</span>(&#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>&#125;)</span><br><span class="line">fset2 = <span class="built_in">frozenset</span>(<span class="built_in">range</span>(<span class="number">1</span>, <span class="number">6</span>))</span><br><span class="line"><span class="built_in">print</span>(fset1)          <span class="comment"># frozenset(&#123;1, 3, 5, 7&#125;)</span></span><br><span class="line"><span class="built_in">print</span>(fset2)          <span class="comment"># frozenset(&#123;1, 2, 3, 4, 5&#125;)</span></span><br><span class="line"><span class="built_in">print</span>(fset1 &amp; fset2)  <span class="comment"># frozenset(&#123;1, 3, 5&#125;)</span></span><br><span class="line"><span class="built_in">print</span>(fset1 | fset2)  <span class="comment"># frozenset(&#123;1, 2, 3, 4, 5, 7&#125;)</span></span><br><span class="line"><span class="built_in">print</span>(fset1 - fset2)  <span class="comment"># frozenset(&#123;7&#125;)</span></span><br><span class="line"><span class="built_in">print</span>(fset1 &lt; fset2)  <span class="comment"># False</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Python 中的<strong>集合类型是一种无序容器</strong>，<strong>不允许有重复运算</strong>，由于底层使用了哈希存储，集合中的元素必须是<code>hashable</code>类型。集合与列表最大的区别在于<strong>集合中的元素没有顺序</strong>、所以<strong>不能够通过索引运算访问元素</strong>、但是集合可以执行交集、并集、差集等二元运算，也可以通过关系运算符检查两个集合是否存在超集、子集等关系。</p>
 
       
     </div>
@@ -395,13 +417,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/m.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/m.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/m.png">
+  <link rel="mask-icon" href="/images/m.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"meverikc.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="第一个Python程序在上一课中，我们对 Python 语言的过去现在有了一些了解，我们准备好了运行 Python 程序所需要的解释器环境。相信大家已经迫不及待的想开始自己的 Python 编程之旅了，但是新问题来了，我们应该在什么地方书写 Python 程序，然后又怎么运行它呢？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2. 第一个Python程序">
+<meta property="og:url" content="https://meverikc.github.io/2025/08/12/python/Day01-20/02.%E7%AC%AC%E4%B8%80%E4%B8%AAPython%E7%A8%8B%E5%BA%8F/">
+<meta property="og:site_name" content="MFIKC">
+<meta property="og:description" content="第一个Python程序在上一课中，我们对 Python 语言的过去现在有了一些了解，我们准备好了运行 Python 程序所需要的解释器环境。相信大家已经迫不及待的想开始自己的 Python 编程之旅了，但是新问题来了，我们应该在什么地方书写 Python 程序，然后又怎么运行它呢？">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meverikc.github.io/images/res/day02/visual_studio_code.png">
+<meta property="og:image" content="https://meverikc.github.io/images/res/day02/pycharm_download_page.png">
+<meta property="og:image" content="https://meverikc.github.io/images/res/day02/using_pycharm_1.png">
+<meta property="og:image" content="https://meverikc.github.io/images/res/day02/using_pycharm_2.png">
+<meta property="og:image" content="https://meverikc.github.io/images/res/day02/using_pycharm_3.png">
+<meta property="og:image" content="https://meverikc.github.io/images/res/day02/using_pycharm_4.png">
+<meta property="og:image" content="https://meverikc.github.io/images/res/day02/using_pycharm_5.png">
+<meta property="og:image" content="https://meverikc.github.io/images/res/day02/using_pycharm_6.png">
+<meta property="og:image" content="https://meverikc.github.io/images/res/day02/using_pycharm_7.png">
+<meta property="og:image" content="https://meverikc.github.io/images/res/day02/using_pycharm_8.png">
+<meta property="article:published_time" content="2025-08-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-14T08:45:58.877Z">
+<meta property="article:author" content="MeverikC">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://meverikc.github.io/images/res/day02/visual_studio_code.png">
+
+<link rel="canonical" href="https://meverikc.github.io/2025/08/12/python/Day01-20/02.%E7%AC%AC%E4%B8%80%E4%B8%AAPython%E7%A8%8B%E5%BA%8F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>2. 第一个Python程序 | MFIKC</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5NCKWQXZMW"></script>
+    <script data-pjax>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-5NCKWQXZMW');
+    </script>
+
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a9d6dfd1deeea5f7f077565d10ddd79f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">MFIKC</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-java">
+
+    <a href="/java/" rel="section"><i class="bi bi-filetype-java fa-fw"></i>Java</a>
+
+  </li>
+
+
+      
+        
+            
+  <li class="menu-item menu-item-recreation">
+
+    <a href="/recreation/" rel="section"><i class="fa fa-dice fa-fw"></i>recreation</a>
+
+  </li>
+
+
+      
+        <li class="menu-item menu-item-hello-algo">
+
+    <a href="/hello-algo/" rel="section"><i class="bi bi-cpu fa-fw"></i>hello-algo</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-other">
+
+    <a href="/other/" rel="section"><i class="bi bi-three-dots fa-fw"></i>Other</a>
+
+  </li>
+
+
+      
+        <li class="menu-item menu-item-editor">
+
+    <a href="/md_editor/" rel="section"><i class="fa fa-edit fa-fw"></i>editor</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://meverikc.github.io/2025/08/12/python/Day01-20/02.%E7%AC%AC%E4%B8%80%E4%B8%AAPython%E7%A8%8B%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="MeverikC">
+      <meta itemprop="description" content="记录个人学习记录及一些电脑操作问题, 后续会持续更新, 敬请关注">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MFIKC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2. 第一个Python程序
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-08-12 00:00:00" itemprop="dateCreated datePublished" datetime="2025-08-12T00:00:00+08:00">2025-08-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-08-14 16:45:58" itemprop="dateModified" datetime="2025-08-14T16:45:58+08:00">2025-08-14</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="第一个Python程序"><a href="#第一个Python程序" class="headerlink" title="第一个Python程序"></a>第一个Python程序</h1><p>在上一课中，我们对 Python 语言的过去现在有了一些了解，我们准备好了运行 Python 程序所需要的解释器环境。相信大家已经迫不及待的想开始自己的 Python 编程之旅了，但是新问题来了，我们应该在什么地方书写 Python 程序，然后又怎么运行它呢？</p>
+<span id="more"></span>
+
+<h3 id="编写代码的工具"><a href="#编写代码的工具" class="headerlink" title="编写代码的工具"></a>编写代码的工具</h3><p>下面我们为大家讲解几种可以编写和运行 Python 代码的工具，大家可以根据自己的需求来选择合适的工具。当然，对于初学者，我个人比较推荐使用 PyCharm，因为它不需要太多的配置也非常的强大，对新手还是很友好的。如果你也听说过或者喜欢 PyCharm，可以直接跳过下面对其他工具的介绍，直接快进到讲解 PyCharm 的地方。</p>
+<h4 id="默认的交互式环境"><a href="#默认的交互式环境" class="headerlink" title="默认的交互式环境"></a>默认的交互式环境</h4><p>我们打开 Windows 的“命令提示符”或“PowerShell”工具，输入<code>python</code>然后按下<code>Enter</code>键，这个命令会把我们带到一个交互式环境中。所谓交互式环境，就是我们输入一行代码并按下<code>Enter</code>键，代码马上会被执行，如果代码有产出结果，那么结果会被显示在窗口中，如下所示。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Python 3.10.10</span><br><span class="line">Type <span class="string">&quot;help&quot;</span>, <span class="string">&quot;copyright&quot;</span>, <span class="string">&quot;credits&quot;</span> or <span class="string">&quot;license&quot;</span> <span class="keyword">for</span> more information.</span><br><span class="line">&gt;&gt;&gt; 2 * 3</span><br><span class="line">6</span><br><span class="line">&gt;&gt;&gt; 2 + 3</span><br><span class="line">5</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>说明</strong>：使用 macOS 系统的用户需要打开“终端”工具，输入<code>python3</code>进入交互式环境。</p>
+</blockquote>
+<p>如果希望退出交互式环境，可以在交互式环境中输入<code>quit()</code>，如下所示。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; quit()</span><br></pre></td></tr></table></figure>
+
+<h4 id="更好的交互式环境-IPython"><a href="#更好的交互式环境-IPython" class="headerlink" title="更好的交互式环境 - IPython"></a>更好的交互式环境 - IPython</h4><p>上面说的交互式环境用户体验并不怎么好，大家使用一下就能感受到。我们可以用 IPython 来替换掉它，因为 IPython 提供了更为强大的编辑和交互功能。我们可以在命令提示符或终端中使用 Python 的包管理工具<code>pip</code>来安装 IPython，如下所示。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install ipython</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>提示</strong>：在使用上面的命令安装 IPython 之前，可以先通过<code>pip config set global.index-url https://pypi.doubanio.com/simple</code>命令或<code>pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple/</code>将下载源修改为国内的豆瓣镜像或清华镜像，否则下载安装的过程可能会非常的缓慢。</p>
+</blockquote>
+<p>接下来可以使用下面的命令启动 IPython，进入交互式环境。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipython</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>说明</strong>：还有一个网页版的 IPython 名叫 Jupyter，我们在用得着它的地方再为大家介绍。</p>
+</blockquote>
+<h4 id="文本编辑神器-Visual-Studio-Code"><a href="#文本编辑神器-Visual-Studio-Code" class="headerlink" title="文本编辑神器 - Visual Studio Code"></a>文本编辑神器 - Visual Studio Code</h4><p>Visual Studio Code 是由微软开发能够在 Windows、 Linux 和 macOS 等操作系统上运行的代码编辑神器。它支持语法高亮、自动补全、多点编辑、运行调试等一系列便捷功能，而且能够支持多种编程语言。如果大家要选择一款高级文本编辑工具，强烈推荐 Visual Studio Code，关于它的<a target="_blank" rel="noopener" href="https://code.visualstudio.com/">下载</a>、安装和使用，有兴趣的读者可以自行研究。</p>
+<p><img src="/../images/res/day02/visual_studio_code.png"></p>
+<h4 id="集成开发环境-PyCharm"><a href="#集成开发环境-PyCharm" class="headerlink" title="集成开发环境 - PyCharm"></a>集成开发环境 - PyCharm</h4><p>如果用 Python 语言开发商业项目，我们推荐大家使用更为专业的工具 PyCharm。PyCharm 是由捷克一家名为 <a target="_blank" rel="noopener" href="https://www.jetbrains.com/">JetBrains</a> 的公司针对 Python 语言提供的集成开发环境（IDE)。所谓集成开发环境，通常是指提供了编写代码、运行代码、调试代码、分析代码、版本控制等一系列强大功能和便捷操作的开发工具，因此特别适合用于商业项目的开发。我们可以在 JetBrains 公司的官方网站上找到 PyCharm 的<a target="_blank" rel="noopener" href="https://www.jetbrains.com/pycharm/download">下载链接</a>，如下图所示。</p>
+<p><img src="/../images/res/day02/pycharm_download_page.png"></p>
+<p>官方提供了两个 PyCharm 的版本，一个是免费的社区版（Community Edition），功能相对弱小，但对于初学者来说是完全够用的；另一个是付费的专业版（Professional Edition），功能非常强大，但需要按年或按月支付费用，新用户可以免费试用30天时间。PyCharm 的安装没有任何难度，运行下载的安装程序，几乎全部使用默认设置进行安装就可以了。对于使用 Windows 系统的小伙伴，其中有一个步骤可以按照下图所示勾选“创建桌面快捷方式”和“在右键菜单中添加”Open Folder as Project””就可以了。</p>
+<p><img src="/../images/res/day02/using_pycharm_1.png"></p>
+<p>第一次运行 PyCharm 时，在提示你导入 PyCharm 设置的界面上直接选择“Do not import settings”，然后我们就可以看到如下图所示的欢迎界面。此处，我们可以先点击“Customize”选项对 PyCharm 做一些个性化的设置。</p>
+<p><img src="/../images/res/day02/using_pycharm_2.png"></p>
+<p>接下来，我们可以在“Projects”选项中点击“New Project”来创建一个新的项目，此处还可以“打开已有项目”或“从版本控制服务器（VCS）获取项目”，如下图所示。</p>
+<p><img src="/../images/res/day02/using_pycharm_3.png"></p>
+<p>创建项目的时候需要指定项目的路径并创建”虚拟环境“，我们建议每个 Python 都在自己专属的虚拟环境中运行。如果你的系统上还没 Python 环境，那么 PyCharm 会提供官网的下载链接，当你点击“Create”按钮创建项目时，它会联网下载 Python 解释器，如下图所示。</p>
+<p><img src="/../images/res/day02/using_pycharm_4.png"></p>
+<p>当然，我们并不推荐这么做，因为我们在上一课已经安装过 Python 环境了。在系统有 Python 环境的情况下，PyCharm 通常会自动发现 Python 解释器的位置并以此为基础创建虚拟环境，所以大家看到的画面应该如下图所示。</p>
+<p><img src="/../images/res/day02/using_pycharm_5.png"></p>
+<blockquote>
+<p><strong>说明</strong>：上面的截图来自于 Windows 系统，如果使用 macOS 系统，你看到的项目路径和 Python 解释器路径会跟上面有所不同。</p>
+</blockquote>
+<p>创建好项目后会出现如下图所示的画面，我们可以通过在项目文件夹上点击鼠标右键，选择“New”菜单下的“Python File”来创建一个 Python 文件，在给文件命名时建议使用英文字母和下划线的组合，创建好的 Python 文件会自动打开，进入可编辑的状态。</p>
+<p><img src="/../images/res/day02/using_pycharm_6.png"></p>
+<p>接下来，我们可以在代码窗口编写我们的 Python 代码。写好代码后，可以在窗口中点击鼠标右键，选择“Run”菜单项来运行代码，下面的“Run”窗口会显示代码的执行结果，如下图所示。</p>
+<p><img src="/../images/res/day02/using_pycharm_7.png"></p>
+<p>到这里，我们的第一个 Python 程序已经运转起来了，很酷吧！对了，PyCharm 有一个叫“每日小贴士”的弹窗，会教给你一些使用 PyCharm 的小技巧，如下图所示。如果不需要，直接关闭就可以了；如果不希望它再次出现，在关闭前可以勾选“Don’t show tips on startup”。</p>
+<p><img src="/../images/res/day02/using_pycharm_8.png"></p>
+<h3 id="你好世界"><a href="#你好世界" class="headerlink" title="你好世界"></a>你好世界</h3><p>按照行业惯例，我们学习任何一门编程语言写的第一个程序都是输出<code>hello, world</code>，因为这段代码是伟大的丹尼斯·里奇（C 语言之父，和肯·汤普森一起开发了 Unix 操作系统）和布莱恩·柯尼汉（awk 语言的发明者）在他们的不朽著作《<em>The C Programming Language</em>》中写的第一段代码，下面是对应的 Python 语言的版本。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;hello, world&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意</strong>：上面代码中的圆括号、单引号都是在英文输入法状态下输入的，如果不小心写成了中文的圆括号或单引号，运行代码时会出现<code>SyntaxError: invalid character &#39;（&#39; (U+FF08)</code>或<code>SyntaxError: invalid character &#39;‘&#39; (U+2018)</code>这样的错误提示。</p>
+</blockquote>
+<p>上面的代码只有一个语句，在这个语句中，我们用到了一个名为<code>print</code>的函数，它可以帮助我们输出指定的内容；<code>print</code>函数圆括号中的<code>&#39;hello, world&#39;</code>是一个字符串，它代表了一段文本内容；在 Python 语言中，我们可以用单引号或双引号来表示一个字符串。不同于 C、C++ 或 Java 这样的编程语言，Python 代码中的语句不需要用分号来表示结束，也就是说，如果我们想再写一条语句，只需要回车换行即可，代码如下所示。此外，Python 代码也不需要通过编写名为<code>main</code>的入口函数来使其运行，提供入口函数是编写可执行的 C、C++ 或 Java 代码必须要做的事情，这一点很多程序员都不陌生，但是在 Python 语言中它并不是必要的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;hello, world&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;goodbye, world&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果不使用 PyCharm 这样的集成开发环境，我们也可以直接调用 Python 解释器来运行 Python 程序。我们可以将上面的代码保存成一个名为<code>example01.py</code>的文件，对于Windows 系统，我们假设该文件在<code>C:\code</code>目录下，我们打开“命令提示符”或“PowerShell”并输入下面的命令就可以运行它。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python C:\code\example01.py</span><br></pre></td></tr></table></figure>
+
+<p>对于 macOS 系统，假设我们的文件在<code>/Users/Hao</code>目录下，那么可以在终端中输入下面的命令来运行程序。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 /Users/Hao/example01.py</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>提示</strong>：如果路径比较长，不愿意手动输入，我们可以通过拖拽的方式将文件直接拖到“命令提示符”或“终端”中，这样会自动输入完整的文件路径。</p>
+</blockquote>
+<p>大家可以试着修改上面的代码，比如将单引号中的<code>hello, world</code>换成其他内容或者多写几个这样的语句，看看会运行出怎样的结果。需要提醒大家的是，写 Python 代码时，最好每一行只写一条语句。虽然，我们可以使用<code>;</code>作为分隔将多个语句写在一行中，但是这样做会让代码变得非常难看，不再具备良好的可读性。</p>
+<h3 id="注释你的代码"><a href="#注释你的代码" class="headerlink" title="注释你的代码"></a>注释你的代码</h3><p>注释是编程语言的一个重要组成部分，用于在代码中解释代码的作用，从而达到增强代码可读性的目标。当然，我们也可以将代码中暂时不需要运行的代码段通过添加注释来去掉，这样当你需要重新使用这些代码的时候，去掉注释符号就可以了。简单的说，<strong>注释会让代码更容易看懂但不会影响代码的执行结果</strong>。</p>
+<p>Python 中有两种形式的注释：</p>
+<ol>
+<li>单行注释：以<code>#</code>和空格开头，可以注释掉从<code>#</code>开始后面一整行的内容。</li>
+<li>多行注释：三个引号（通常用双引号）开头，三个引号结尾，通常用于添加多行说明性内容。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">第一个Python程序 - hello, world</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 1.0</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="comment"># print(&#x27;hello, world&#x27;)</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;你好，世界！&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>到此，我们已经把第一个 Python 程序运行起来了，是不是很有成就感？！只要你坚持学习下去，再过一段时间，我们就可以用 Python 语言做更多更酷的事情。今时今日，编程就跟英语一样，对很多人来说都是一项必须要掌握的技能。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/08/11/python/Day01-20/03.Python%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%8F%98%E9%87%8F/" rel="prev" title="3. Python语言中的变量">
+      <i class="fa fa-chevron-left"></i> 3. Python语言中的变量
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2025/08/13/python/Day01-20/01.%E5%88%9D%E8%AF%86Python/" rel="next" title="1. 初识Python">
+      1. 初识Python <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AAPython%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.</span> <span class="nav-text">第一个Python程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="nav-number">1.0.1.</span> <span class="nav-text">编写代码的工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E7%9A%84%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%8E%AF%E5%A2%83"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">默认的交互式环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%B4%E5%A5%BD%E7%9A%84%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%8E%AF%E5%A2%83-IPython"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">更好的交互式环境 - IPython</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E7%A5%9E%E5%99%A8-Visual-Studio-Code"><span class="nav-number">1.0.1.3.</span> <span class="nav-text">文本编辑神器 - Visual Studio Code</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83-PyCharm"><span class="nav-number">1.0.1.4.</span> <span class="nav-text">集成开发环境 - PyCharm</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%A0%E5%A5%BD%E4%B8%96%E7%95%8C"><span class="nav-number">1.0.2.</span> <span class="nav-text">你好世界</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E9%87%8A%E4%BD%A0%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="nav-number">1.0.3.</span> <span class="nav-text">注释你的代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.0.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="MeverikC"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">MeverikC</p>
+  <div class="site-description" itemprop="description">记录个人学习记录及一些电脑操作问题, 后续会持续更新, 敬请关注</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/meverikc" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;meverikc" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:meverlike@gmail.com" title="E-Mail → mailto:meverlike@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2024 – 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MeverikC</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+    <div id="pjax">
+  
+
+  
+
+    </div>
+</body>
+</html>

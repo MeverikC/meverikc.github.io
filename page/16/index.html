@@ -237,7 +237,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://meverikc.github.io/2024/11/01/docker%E9%95%9C%E5%83%8F%E6%8C%82%E4%BA%86%E4%B9%8B%E5%90%8E%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://meverikc.github.io/2025/07/30/python/Day01-20/15.%E5%87%BD%E6%95%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E6%88%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -251,7 +251,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2024/11/01/docker%E9%95%9C%E5%83%8F%E6%8C%82%E4%BA%86%E4%B9%8B%E5%90%8E%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">docker镜像挂了之后的解决方法</a>
+            <a href="/2025/07/30/python/Day01-20/15.%E5%87%BD%E6%95%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E6%88%98/" class="post-title-link" itemprop="url">15. 函数应用实战</a>
         </h2>
 
         <div class="post-meta">
@@ -261,14 +261,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2024-11-01 14:49:12" itemprop="dateCreated datePublished" datetime="2024-11-01T14:49:12+08:00">2024-11-01</time>
+              <time title="创建时间：2025-07-30 00:00:00" itemprop="dateCreated datePublished" datetime="2025-07-30T00:00:00+08:00">2025-07-30</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-11-26 14:50:06" itemprop="dateModified" datetime="2024-11-26T14:50:06+08:00">2024-11-26</time>
+                <time title="修改时间：2025-08-13 09:19:43" itemprop="dateModified" datetime="2025-08-13T09:19:43+08:00">2025-08-13</time>
               </span>
 
           
@@ -282,17 +282,65 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h2><p>使用Dockerfile build镜像的时候第一步的FROM全部超时, 环境都加载不了肯定就没办法运行程序了</p>
-<h2 id="解决"><a href="#解决" class="headerlink" title="解决:"></a>解决:</h2><h3 id="1-手动下载所需的环境镜像"><a href="#1-手动下载所需的环境镜像" class="headerlink" title="1. 手动下载所需的环境镜像"></a>1. 手动下载所需的环境镜像</h3><ol>
-<li>我使用的是<code>python:3.12.3-alpine</code> , 需要在科学上网的机器上下载该镜像
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/11/01/docker%E9%95%9C%E5%83%8F%E6%8C%82%E4%BA%86%E4%B9%8B%E5%90%8E%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <h2 id="函数应用实战"><a href="#函数应用实战" class="headerlink" title="函数应用实战"></a>函数应用实战</h2><h3 id="例子1：随机验证码"><a href="#例子1：随机验证码" class="headerlink" title="例子1：随机验证码"></a>例子1：随机验证码</h3><p>设计一个生成随机验证码的函数，验证码由数字和英文大小写字母构成，长度可以通过参数设置。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line">ALL_CHARS = string.digits + string.ascii_letters</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generate_code</span>(<span class="params">*, code_len=<span class="number">4</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    生成指定长度的验证码</span></span><br><span class="line"><span class="string">    :param code_len: 验证码的长度(默认4个字符)</span></span><br><span class="line"><span class="string">    :return: 由大小写英文字母和数字构成的随机验证码字符串</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(random.choices(ALL_CHARS, k=code_len))</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>说明1</strong>：<code>string</code>模块的<code>digits</code>代表0到9的数字构成的字符串<code>&#39;0123456789&#39;</code>，<code>string</code>模块的<code>ascii_letters</code>代表大小写英文字母构成的字符串<code>&#39;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</code>。</p>
+<p><strong>说明2</strong>：<code>random</code>模块的<code>sample</code>和<code>choices</code>函数都可以实现随机抽样，<code>sample</code>实现无放回抽样，这意味着抽样取出的元素是不重复的；<code>choices</code>实现有放回抽样，这意味着可能会重复选中某些元素。这两个函数的第一个参数代表抽样的总体，而参数<code>k</code>代表样本容量，需要说明的是<code>choices</code>函数的参数<code>k</code>是一个命名关键字参数，在传参时必须指定参数名。</p>
+</blockquote>
+<p>可以用下面的代码生成5组随机验证码来测试上面的函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    <span class="built_in">print</span>(generate_code()) </span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">59tZ</span><br><span class="line">QKU5</span><br><span class="line">izq8</span><br><span class="line">IBBb</span><br><span class="line">jIfX</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    <span class="built_in">print</span>(generate_code(code_len=<span class="number">6</span>))</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FxJucw</span><br><span class="line">HS4H9G</span><br><span class="line">0yyXfz</span><br><span class="line">x7fohf</span><br><span class="line">ReO22w</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>说明</strong>：我们设计的<code>generate_code</code>函数的参数是命名关键字参数，由于它有默认值，可以不给它传值，使用默认值4。如果需要给函数传入参数，必须指定参数名<code>code_len</code>。</p>
+</blockquote>
+<h3 id="例子2：判断素数"><a href="#例子2：判断素数" class="headerlink" title="例子2：判断素数"></a>例子2：判断素数</h3><p>设计一个判断给定的大于1的正整数是不是质数的函数。质数是只能被1和自身整除的正整数（大于1），如果一个大于 1 的正整数 $\small{N}$ 是质数，那就意味着在 2 到 $\small{N-1}$ 之间都没有它的因子。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">is_prime</span>(<span class="params">num: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    判断一个正整数是不是质数</span></span><br><span class="line"><span class="string">    :param num: 大于1的正整数</span></span><br><span class="line"><span class="string">    :return: 如果num是质数返回True，否则返回False</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, <span class="built_in">int</span>(num ** <span class="number">0.5</span>) + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> num % i == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>说明1</strong>：上面<code>is_prime</code>函数的参数<code>num</code>后面的<code>: int</code>用来标注参数的类型，虽然它对代码的执行结果不产生任何影响，但是很好的增强了代码的可读性。同理，参数列表后面的<code>-&gt; bool</code>用来标注函数返回值的类型，它也不会对代码的执行结果产生影响，但是却让我们清楚的知道，调用函数会得到一个布尔值，要么是<code>True</code>，要么是<code>False</code>。</p>
+<p><strong>说明2</strong>：上面的循环并不需要从 2 循环到 $\small{N-1}$ ，因为如果循环进行到 $\small{\sqrt{N}}$ 时，还没有找到$\small{N}$的因子，那么 $\small{\sqrt{N}}$ 之后也不会出现 $\small{N}$ 的因子，大家可以自己想一想这是为什么。</p>
+</blockquote>
+<h3 id="例子3：最大公约数和最小公倍数"><a href="#例子3：最大公约数和最小公倍数" class="headerlink" title="例子3：最大公约数和最小公倍数"></a>例子3：最大公约数和最小公倍数</h3><p>设计计算两个正整数最大公约数和最小公倍数的函数。 $\small{x}$ 和 $\small{y}$ 的最大公约数是能够同时整除 $\small{x}$ 和 $\small{y}$ 的最大整数，如果 $\small{x}$ 和 $\small{y}$ 互质，那么它们的最大公约数为 1； $\small{x}$ 和 $\small{y}$ 的最小公倍数是能够同时被 $\small{x}$ 和 $\small{y}$ 整除的最小正整数，如果 $\small{x}$ 和 $\small{y}$ 互质，那么它们的最小公倍数为 $\small{x \times y}$ 。需要提醒大家注意的是，计算最大公约数和最小公倍数是两个不同的功能，应该设计成两个函数，而不是把两个功能放到同一个函数中。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">lcm</span>(<span class="params">x: <span class="built_in">int</span>, y: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;求最小公倍数&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> x * y // gcd(x, y)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">gcd</span>(<span class="params">x: <span class="built_in">int</span>, y: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;求最大公约数&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> y % x != <span class="number">0</span>:</span><br><span class="line">        x, y = y % x, x</span><br><span class="line">    <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>说明</strong>：函数之间可以相互调用，上面求最小公倍数的<code>lcm</code>函数调用了求最大公约数的<code>gcd</code>函数，通过 $\frac{x \times y}{ gcd(x, y)}$ 来计算最小公倍数。</p>
+</blockquote>
+<h3 id="例子4：数据统计"><a href="#例子4：数据统计" class="headerlink" title="例子4：数据统计"></a>例子4：数据统计</h3><p>假设样本数据保存一个列表中，设计计算样本数据描述性统计信息的函数。描述性统计信息通常包括：算术平均值、中位数、极差（最大值和最小值的差）、方差、标准差、变异系数等，计算公式如下所示。</p>
+<p>样本均值（sample mean）：</p>
+<p>$$<br>\bar{x} &#x3D; \frac{\sum_{i&#x3D;1}^{n}x_{i}}{n} &#x3D; \frac{x_{1}+x_{2}+\cdots +x_{n}}{n}<br>$$</p>
+<p>样本方差（sample variance）：</p>
+<p>$$<br>s^2 &#x3D; \frac {\sum_{i&#x3D;1}^{n}(x_i - \bar{x})^2} {n-1}<br>$$</p>
+<p>样本标准差（sample standard deviation）：</p>
+<p>$$<br>s &#x3D; \sqrt{\frac{\sum_{i&#x3D;1}^{n}(x_i - \bar{x})^2}{n-1}}<br>$$</p>
+<p>变异系数（coefficient of sample variation）：</p>
+<p>$$<br>CV &#x3D; \frac{s}{\bar{x}}<br>$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">ptp</span>(<span class="params">data</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;极差（全距）&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">max</span>(data) - <span class="built_in">min</span>(data)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">mean</span>(<span class="params">data</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;算术平均&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sum</span>(data) / <span class="built_in">len</span>(data)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">median</span>(<span class="params">data</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;中位数&quot;&quot;&quot;</span></span><br><span class="line">    temp, size = <span class="built_in">sorted</span>(data), <span class="built_in">len</span>(data)</span><br><span class="line">    <span class="keyword">if</span> size % <span class="number">2</span> != <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> temp[size // <span class="number">2</span>]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> mean(temp[size // <span class="number">2</span> - <span class="number">1</span>:size // <span class="number">2</span> + <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">var</span>(<span class="params">data, ddof=<span class="number">1</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;方差&quot;&quot;&quot;</span></span><br><span class="line">    x_bar = mean(data)</span><br><span class="line">    temp = [(num - x_bar) ** <span class="number">2</span> <span class="keyword">for</span> num <span class="keyword">in</span> data]</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sum</span>(temp) / (<span class="built_in">len</span>(temp) - ddof)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">std</span>(<span class="params">data, ddof=<span class="number">1</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;标准差&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> var(data, ddof) ** <span class="number">0.5</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cv</span>(<span class="params">data, ddof=<span class="number">1</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;变异系数&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> std(data, ddof) / mean(data)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">describe</span>(<span class="params">data</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;输出描述性统计信息&quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;均值: <span class="subst">&#123;mean(data)&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;中位数: <span class="subst">&#123;median(data)&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;极差: <span class="subst">&#123;ptp(data)&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;方差: <span class="subst">&#123;var(data)&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;标准差: <span class="subst">&#123;std(data)&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;变异系数: <span class="subst">&#123;cv(data)&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>说明1</strong>：中位数是将数据按照升序或降序排列后位于中间的数，它描述了数据的中等水平。中位数的计算分两种情况：当数据体量$n$为奇数时，中位数是位于 $\frac{n + 1}{2}$ 位置的元素；当数据体量 $\small{n}$ 为偶数时，中位数是位于 $\frac{n}{2}$ 和 $\frac{n}{2} + 1$ 两个位置元素的均值。</p>
+<p><strong>说明2</strong>：计算方差和标准差的函数中有一个名为<code>ddof</code>的参数，它代表了可以调整的自由度，默认值为 1。在计算样本方差和样本标准差时，需要进行自由度校正；如果要计算总体方差和总体标准差，可以将<code>ddof</code>参数赋值为 0，即不需要进行自由度校正。</p>
+<p><strong>说明3</strong>：<code>describe</code>函数将上面封装好的统计函数组装到一起，用于输出数据的描述性统计信息。事实上，Python 标准库中有一个名为<code>statistics</code>的模块，它已经把获取描述性统计信息的函数封装好了，有兴趣的读者可以自行了解。</p>
+</blockquote>
+<h3 id="例子5：双色球随机选号"><a href="#例子5：双色球随机选号" class="headerlink" title="例子5：双色球随机选号"></a>例子5：双色球随机选号</h3><p>我们用函数重构之前讲过的双色球随机选号的例子（《第09课：常用数据结构之列表-2》），将生成随机号码和输出一组号码的功能分别封装到两个函数中，然后通过调用函数实现机选<code>N</code>注号码的功能。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">双色球随机选号程序</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 1.3</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">RED_BALLS = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">34</span>)]</span><br><span class="line">BLUE_BALLS = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">17</span>)]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">choose</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    生成一组随机号码</span></span><br><span class="line"><span class="string">    :return: 保存随机号码的列表</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    selected_balls = random.sample(RED_BALLS, <span class="number">6</span>)</span><br><span class="line">    selected_balls.sort()</span><br><span class="line">    selected_balls.append(random.choice(BLUE_BALLS))</span><br><span class="line">    <span class="keyword">return</span> selected_balls</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">display</span>(<span class="params">balls</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    格式输出一组号码</span></span><br><span class="line"><span class="string">    :param balls: 保存随机号码的列表</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> ball <span class="keyword">in</span> balls[:-<span class="number">1</span>]:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;\033[031m<span class="subst">&#123;ball:<span class="number">0</span>&gt;2d&#125;</span>\033[0m&#x27;</span>, end=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;\033[034m<span class="subst">&#123;balls[-<span class="number">1</span>]:<span class="number">0</span>&gt;2d&#125;</span>\033[0m&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">n = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&#x27;生成几注号码: &#x27;</span>))</span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">    display(choose())</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>说明</strong>：大家看看<code>display(choose())</code>这行代码，这里我们先通过<code>choose</code>函数获得一组随机号码，然后把<code>choose</code>函数的返回值作为<code>display</code>函数的参数，通过<code>display</code>函数将选中的随机号码显示出来。重构之后的代码逻辑非常清晰，代码的可读性更强了。如果有人为你封装了这两个函数，你仅仅是函数的调用者，其实你根本不用关心<code>choose</code>函数和<code>display</code>函数的内部实现，你只需要知道调用<code>choose</code>函数可以生成一组随机号码，而调用<code>display</code>函数传入一个列表，就可以输出这组号码。将来我们使用各种各样的 Python 三方库时，我们也根本不关注它们的底层实现，我们需要知道的仅仅是调用哪个函数可以解决问题。</p>
+</blockquote>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>在写代码尤其是开发商业项目的时候，一定要有意识的<strong>将相对独立且重复使用的功能封装成函数</strong>，这样不管是自己还是团队的其他成员都可以通过调用函数的方式来使用这些功能，减少工作中那些重复且乏味的劳动。</p>
+
       
     </div>
 
@@ -374,13 +422,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

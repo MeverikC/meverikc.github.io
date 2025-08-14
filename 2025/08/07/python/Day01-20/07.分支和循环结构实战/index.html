@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/m.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/m.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/m.png">
+  <link rel="mask-icon" href="/images/m.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"meverikc.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="分支和循环结构实战通过前面两节课的学习，大家对 Python 中的分支结构和循环结构已经有了初步的认知。分支结构和循环结构是构造程序逻辑的基础，它们的重要性不言而喻，但是对于初学者来说这也是比较困难的部分。很多人对分支结构和循环结构的语法是能够理解的，但是遇到实际问题的时候又无法下手；看懂别人的代码很容易，但是要自己写出类似的代码却又很难。如果你也有同样的问题和困惑，千万不要沮丧，这只是因为你的编">
+<meta property="og:type" content="article">
+<meta property="og:title" content="7. 分支和循环结构实战">
+<meta property="og:url" content="https://meverikc.github.io/2025/08/07/python/Day01-20/07.%E5%88%86%E6%94%AF%E5%92%8C%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84%E5%AE%9E%E6%88%98/">
+<meta property="og:site_name" content="MFIKC">
+<meta property="og:description" content="分支和循环结构实战通过前面两节课的学习，大家对 Python 中的分支结构和循环结构已经有了初步的认知。分支结构和循环结构是构造程序逻辑的基础，它们的重要性不言而喻，但是对于初学者来说这也是比较困难的部分。很多人对分支结构和循环结构的语法是能够理解的，但是遇到实际问题的时候又无法下手；看懂别人的代码很容易，但是要自己写出类似的代码却又很难。如果你也有同样的问题和困惑，千万不要沮丧，这只是因为你的编">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-08-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-13T01:18:12.503Z">
+<meta property="article:author" content="MeverikC">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://meverikc.github.io/2025/08/07/python/Day01-20/07.%E5%88%86%E6%94%AF%E5%92%8C%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84%E5%AE%9E%E6%88%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>7. 分支和循环结构实战 | MFIKC</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5NCKWQXZMW"></script>
+    <script data-pjax>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-5NCKWQXZMW');
+    </script>
+
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a9d6dfd1deeea5f7f077565d10ddd79f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">MFIKC</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-java">
+
+    <a href="/java/" rel="section"><i class="bi bi-filetype-java fa-fw"></i>Java</a>
+
+  </li>
+
+
+      
+        
+            
+  <li class="menu-item menu-item-recreation">
+
+    <a href="/recreation/" rel="section"><i class="fa fa-dice fa-fw"></i>recreation</a>
+
+  </li>
+
+
+      
+        <li class="menu-item menu-item-hello-algo">
+
+    <a href="/hello-algo/" rel="section"><i class="bi bi-cpu fa-fw"></i>hello-algo</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-other">
+
+    <a href="/other/" rel="section"><i class="bi bi-three-dots fa-fw"></i>Other</a>
+
+  </li>
+
+
+      
+        <li class="menu-item menu-item-editor">
+
+    <a href="/md_editor/" rel="section"><i class="fa fa-edit fa-fw"></i>editor</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://meverikc.github.io/2025/08/07/python/Day01-20/07.%E5%88%86%E6%94%AF%E5%92%8C%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84%E5%AE%9E%E6%88%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="MeverikC">
+      <meta itemprop="description" content="记录个人学习记录及一些电脑操作问题, 后续会持续更新, 敬请关注">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MFIKC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          7. 分支和循环结构实战
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-08-07 00:00:00" itemprop="dateCreated datePublished" datetime="2025-08-07T00:00:00+08:00">2025-08-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-08-13 09:18:12" itemprop="dateModified" datetime="2025-08-13T09:18:12+08:00">2025-08-13</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="分支和循环结构实战"><a href="#分支和循环结构实战" class="headerlink" title="分支和循环结构实战"></a>分支和循环结构实战</h2><p>通过前面两节课的学习，大家对 Python 中的分支结构和循环结构已经有了初步的认知。<strong>分支结构和循环结构是构造程序逻辑的基础</strong>，它们的重要性不言而喻，但是对于初学者来说这也是比较困难的部分。很多人对分支结构和循环结构的语法是能够理解的，但是遇到实际问题的时候又无法下手；<strong>看懂别人的代码很容易，但是要自己写出类似的代码却又很难</strong>。如果你也有同样的问题和困惑，千万不要沮丧，这只是因为你的编程之旅才刚刚开始，<strong>你的练习量还没有达到让你可以随心所欲写出代码的程度</strong>，只要加强编程练习，通过量的积累来产生质的变化，这个问题迟早都会解决的。</p>
+<h3 id="例子1：100以内的素数"><a href="#例子1：100以内的素数" class="headerlink" title="例子1：100以内的素数"></a>例子1：100以内的素数</h3><blockquote>
+<p><strong>说明</strong>：素数指的是只能被 1 和自身整除的正整数（不包括 1），之前我们写过判断素数的代码，这里相当于是一个升级版本。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">输出100以内的素数</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 1.0</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, <span class="number">100</span>):</span><br><span class="line">    is_prime = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, <span class="built_in">int</span>(num ** <span class="number">0.5</span>) + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> num % i == <span class="number">0</span>:</span><br><span class="line">            is_prime = <span class="literal">False</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> is_prime:</span><br><span class="line">        <span class="built_in">print</span>(num)</span><br></pre></td></tr></table></figure>
+
+<h3 id="例子2：斐波那契数列"><a href="#例子2：斐波那契数列" class="headerlink" title="例子2：斐波那契数列"></a>例子2：斐波那契数列</h3><p>要求：输出斐波那契数列中的前 20 个数。</p>
+<blockquote>
+<p><strong>说明</strong>：斐波那契数列（Fibonacci sequence），通常也被称作黄金分割数列，是意大利数学家莱昂纳多·斐波那契（Leonardoda Fibonacci）在《计算之书》中研究理想假设条件下兔子成长率问题而引入的数列，因此这个数列也常被戏称为“兔子数列”。斐波那契数列的特点是数列的前两个数都是 1，从第三个数开始，每个数都是它前面两个数的和。按照这个规律，斐波那契数列的前 10 个数是：<code>1, 1, 2, 3, 5, 8, 13, 21, 34, 55</code>。斐波那契数列在现代物理、准晶体结构、化学等领域都有直接的应用。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">输出斐波那契数列中的前20个数</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 1.0</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">a, b = <span class="number">0</span>, <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">20</span>):</span><br><span class="line">    a, b = b, a + b</span><br><span class="line">    <span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>说明</strong>：上面循环中的<code>a, b = b, a + b</code>表示将变量<code>b</code>的值赋给<code>a</code>，把<code>a + b</code>的值赋给<code>b</code>。通过这个递推公式，我们可以依次获得斐波那契数列中的数。</p>
+</blockquote>
+<h3 id="例子3：寻找水仙花数"><a href="#例子3：寻找水仙花数" class="headerlink" title="例子3：寻找水仙花数"></a>例子3：寻找水仙花数</h3><p>要求：找出 100 到 999 范围内的所有水仙花数。</p>
+<blockquote>
+<p><strong>提示</strong>：在数论中，水仙花数（narcissistic number）也被称为超完全数字不变数、自恋数、自幂数、阿姆斯特朗数，它是一个 $\small{N}$ 位非负整数，其各位数字的 $\small{N}$ 次方和刚好等于该数本身，例如： $\small{153 &#x3D; 1^{3} + 5^{3} + 3^{3}}$ ，所以 153 是一个水仙花数； $\small{1634 &#x3D; 1^{4} + 6^{4} + 3^{4} + 4^{4}}$ ，所以 1634 也是一个水仙花数。对于三位数，解题的关键是将它拆分为个位、十位、百位，再判断是否满足水仙花数的要求，这一点利用 Python 中的<code>//</code>和<code>%</code>运算符其实很容易做到。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">找出100到999范围内的水仙花数</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 1.0</span></span><br><span class="line"><span class="string">Author: 骆昊</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>, <span class="number">1000</span>):</span><br><span class="line">    low = num % <span class="number">10</span></span><br><span class="line">    mid = num // <span class="number">10</span> % <span class="number">10</span></span><br><span class="line">    high = num // <span class="number">100</span></span><br><span class="line">    <span class="keyword">if</span> num == low ** <span class="number">3</span> + mid ** <span class="number">3</span> + high ** <span class="number">3</span>:</span><br><span class="line">        <span class="built_in">print</span>(num)</span><br></pre></td></tr></table></figure>
+
+<p>上面利用<code>//</code>和<code>%</code>拆分一个数的小技巧在写代码的时候还是很常用的。我们要将一个不知道有多少位的正整数进行反转，例如将 12389 变成 98321，也可以利用这两个运算来实现，代码如下所示。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">正整数的反转</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 1.0</span></span><br><span class="line"><span class="string">Author: 骆昊</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">num = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&#x27;num = &#x27;</span>))</span><br><span class="line">reversed_num = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> num &gt; <span class="number">0</span>:</span><br><span class="line">    reversed_num = reversed_num * <span class="number">10</span> + num % <span class="number">10</span></span><br><span class="line">    num //= <span class="number">10</span></span><br><span class="line"><span class="built_in">print</span>(reversed_num)</span><br></pre></td></tr></table></figure>
+
+<h3 id="例子4：百钱百鸡问题"><a href="#例子4：百钱百鸡问题" class="headerlink" title="例子4：百钱百鸡问题"></a>例子4：百钱百鸡问题</h3><blockquote>
+<p><strong>说明</strong>：百钱百鸡是我国古代数学家张丘建在《算经》一书中提出的数学问题：鸡翁一值钱五，鸡母一值钱三，鸡雏三值钱一。百钱买百鸡，问鸡翁、鸡母、鸡雏各几何？翻译成现代文是：公鸡 5 元一只，母鸡 3 元一只，小鸡 1 元三只，用 100 块钱买一百只鸡，问公鸡、母鸡、小鸡各有多少只？</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">百钱百鸡问题</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 1.0</span></span><br><span class="line"><span class="string">Author: 骆昊</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">21</span>):</span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">34</span>):</span><br><span class="line">        <span class="keyword">for</span> z <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">100</span>, <span class="number">3</span>):</span><br><span class="line">            <span class="keyword">if</span> x + y + z == <span class="number">100</span> <span class="keyword">and</span> <span class="number">5</span> * x + <span class="number">3</span> * y + z // <span class="number">3</span> == <span class="number">100</span>:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&#x27;公鸡: <span class="subst">&#123;x&#125;</span>只, 母鸡: <span class="subst">&#123;y&#125;</span>只, 小鸡: <span class="subst">&#123;z&#125;</span>只&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>上面使用的方法叫做<strong>穷举法</strong>，也称为<strong>暴力搜索法</strong>，这种方法通过一项一项的列举备选解决方案中所有可能的候选项，并检查每个候选项是否符合问题的描述，最终得到问题的解。上面的代码中，我们使用了嵌套的循环结构，假设公鸡有<code>x</code>只，显然<code>x</code>的取值范围是 0 到 20，假设母鸡有<code>y</code>只，它的取值范围是 0 到 33，假设小鸡有<code>z</code>只，它的取值范围是 0 到 99 且取值是 3 的倍数。这样，我们设置好 100 只鸡的条件<code>x + y + z == 100</code>，设置好 100 块钱的条件<code>5 * x + 3 * y + z // 3 == 100</code>，当两个条件同时满足时，就是问题的正确答案，我们用<code>print</code>函数输出它。这种方法看起来比较笨拙，但对于运算能力非常强大的计算机来说，通常都是一个可行的甚至是不错的选择，只要问题的解存在就能够找到它。</p>
+<p>事实上，上面的代码还有更好的写法，既然我们已经假设公鸡有<code>x</code>只，母鸡有<code>y</code>只，那么小鸡的数量就应该是<code>100 - x - y</code>，这样减少一个条件，我们就可以把上面三层嵌套的<code>for-in</code>循环改写为两层嵌套的<code>for-in</code>循环。循环次数减少了，代码的执行效率就有了显著的提升，如下所示。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">百钱百鸡问题</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 1.1</span></span><br><span class="line"><span class="string">Author: 骆昊</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">21</span>):</span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">34</span>):</span><br><span class="line">        z = <span class="number">100</span> - x - y</span><br><span class="line">        <span class="keyword">if</span> z % <span class="number">3</span> == <span class="number">0</span> <span class="keyword">and</span> <span class="number">5</span> * x + <span class="number">3</span> * y + z // <span class="number">3</span> == <span class="number">100</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&#x27;公鸡: <span class="subst">&#123;x&#125;</span>只, 母鸡: <span class="subst">&#123;y&#125;</span>只, 小鸡: <span class="subst">&#123;z&#125;</span>只&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>说明</strong>：上面代码中的<code>z % 3 == 0</code>是为了确保小鸡的数量是 3 的倍数。</p>
+</blockquote>
+<h3 id="例子5：CRAPS赌博游戏"><a href="#例子5：CRAPS赌博游戏" class="headerlink" title="例子5：CRAPS赌博游戏"></a>例子5：CRAPS赌博游戏</h3><blockquote>
+<p><strong>说明</strong>：CRAPS又称花旗骰，是美国拉斯维加斯非常受欢迎的一种的桌上赌博游戏。该游戏使用两粒骰子，玩家通过摇两粒骰子获得点数进行游戏。简化后的规则是：玩家第一次摇骰子如果摇出了 7 点或 11 点，玩家胜；玩家第一次如果摇出 2 点、3 点或 12 点，庄家胜；玩家如果摇出其他点数则游戏继续，玩家重新摇骰子，如果玩家摇出了 7 点，庄家胜；如果玩家摇出了第一次摇的点数，玩家胜；其他点数玩家继续摇骰子，直到分出胜负。为了增加代码的趣味性，我们设定游戏开始时玩家有 1000 元的赌注，每局游戏开始之前，玩家先下注，如果玩家获胜就可以获得对应下注金额的奖励，如果庄家获胜，玩家就会输掉自己下注的金额。游戏结束的条件是玩家破产（输光所有的赌注）。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Craps赌博游戏</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 1.0</span></span><br><span class="line"><span class="string">Author: 骆昊</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">money = <span class="number">1000</span></span><br><span class="line"><span class="keyword">while</span> money &gt; <span class="number">0</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;你的总资产为: <span class="subst">&#123;money&#125;</span>元&#x27;</span>)</span><br><span class="line">    <span class="comment"># 下注金额必须大于0且小于等于玩家的总资产</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        debt = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&#x27;请下注: &#x27;</span>))</span><br><span class="line">        <span class="keyword">if</span> <span class="number">0</span> &lt; debt &lt;= money:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="comment"># 用两个1到6均匀分布的随机数相加模拟摇两颗色子得到的点数</span></span><br><span class="line">    first_point = random.randrange(<span class="number">1</span>, <span class="number">7</span>) + random.randrange(<span class="number">1</span>, <span class="number">7</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;\n玩家摇出了<span class="subst">&#123;first_point&#125;</span>点&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> first_point == <span class="number">7</span> <span class="keyword">or</span> first_point == <span class="number">11</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;玩家胜!\n&#x27;</span>)</span><br><span class="line">        money += debt</span><br><span class="line">    <span class="keyword">elif</span> first_point == <span class="number">2</span> <span class="keyword">or</span> first_point == <span class="number">3</span> <span class="keyword">or</span> first_point == <span class="number">12</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;庄家胜!\n&#x27;</span>)</span><br><span class="line">        money -= debt</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 如果第一次摇色子没有分出胜负，玩家需要重新摇色子</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            current_point = random.randrange(<span class="number">1</span>, <span class="number">7</span>) + random.randrange(<span class="number">1</span>, <span class="number">7</span>)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&#x27;玩家摇出了<span class="subst">&#123;current_point&#125;</span>点&#x27;</span>)</span><br><span class="line">            <span class="keyword">if</span> current_point == <span class="number">7</span>:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&#x27;庄家胜!\n&#x27;</span>)</span><br><span class="line">                money -= debt</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">elif</span> current_point == first_point:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&#x27;玩家胜!\n&#x27;</span>)</span><br><span class="line">                money += debt</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;你破产了, 游戏结束!&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>分支结构和循环结构都非常重要，是构造程序逻辑的基础，<strong>一定要通过大量的练习来达到融会贯通</strong>。我们可以用上面讲的花旗骰游戏作为一个标准，如果你能够很顺利的完成这段代码，那么分支结构和循环结构的知识你就已经很好的掌握了。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/08/06/python/Day01-20/08.%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E5%88%97%E8%A1%A8-1/" rel="prev" title="8. 常用数据结构之列表-1">
+      <i class="fa fa-chevron-left"></i> 8. 常用数据结构之列表-1
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2025/08/08/python/Day01-20/06.%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84/" rel="next" title="6. 循环结构">
+      6. 循环结构 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%94%AF%E5%92%8C%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84%E5%AE%9E%E6%88%98"><span class="nav-number">1.</span> <span class="nav-text">分支和循环结构实战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E5%AD%901%EF%BC%9A100%E4%BB%A5%E5%86%85%E7%9A%84%E7%B4%A0%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">例子1：100以内的素数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E5%AD%902%EF%BC%9A%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97"><span class="nav-number">1.2.</span> <span class="nav-text">例子2：斐波那契数列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E5%AD%903%EF%BC%9A%E5%AF%BB%E6%89%BE%E6%B0%B4%E4%BB%99%E8%8A%B1%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">例子3：寻找水仙花数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E5%AD%904%EF%BC%9A%E7%99%BE%E9%92%B1%E7%99%BE%E9%B8%A1%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.</span> <span class="nav-text">例子4：百钱百鸡问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E5%AD%905%EF%BC%9ACRAPS%E8%B5%8C%E5%8D%9A%E6%B8%B8%E6%88%8F"><span class="nav-number">1.5.</span> <span class="nav-text">例子5：CRAPS赌博游戏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.6.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="MeverikC"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">MeverikC</p>
+  <div class="site-description" itemprop="description">记录个人学习记录及一些电脑操作问题, 后续会持续更新, 敬请关注</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/meverikc" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;meverikc" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:meverlike@gmail.com" title="E-Mail → mailto:meverlike@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2024 – 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MeverikC</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+    <div id="pjax">
+  
+
+  
+
+    </div>
+</body>
+</html>

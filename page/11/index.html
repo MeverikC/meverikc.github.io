@@ -237,7 +237,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://meverikc.github.io/2025/08/04/2025-08-04-MySQL-%E5%A4%9A%E8%A1%A8%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2%E6%A0%B8%E5%BF%83%E9%80%BB%E8%BE%91%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="https://meverikc.github.io/2025/08/04/python/Day01-20/10.%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E5%85%83%E7%BB%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -251,7 +251,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/08/04/2025-08-04-MySQL-%E5%A4%9A%E8%A1%A8%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2%E6%A0%B8%E5%BF%83%E9%80%BB%E8%BE%91%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">MySQL 多表连接查询核心逻辑笔记</a>
+            <a href="/2025/08/04/python/Day01-20/10.%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E5%85%83%E7%BB%84/" class="post-title-link" itemprop="url">10. 常用数据结构之元组</a>
         </h2>
 
         <div class="post-meta">
@@ -260,10 +260,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-08-04 00:00:00 / 修改时间：17:59:54" itemprop="dateCreated datePublished" datetime="2025-08-04T00:00:00+08:00">2025-08-04</time>
+              <time title="创建时间：2025-08-04 00:00:00" itemprop="dateCreated datePublished" datetime="2025-08-04T00:00:00+08:00">2025-08-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-08-13 09:18:27" itemprop="dateModified" datetime="2025-08-13T09:18:27+08:00">2025-08-13</time>
+              </span>
 
           
 
@@ -276,79 +282,51 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="MySQL-多表连接查询核心逻辑笔记"><a href="#MySQL-多表连接查询核心逻辑笔记" class="headerlink" title="MySQL 多表连接查询核心逻辑笔记"></a>MySQL 多表连接查询核心逻辑笔记</h1><h2 id="一、背景表结构与数据"><a href="#一、背景表结构与数据" class="headerlink" title="一、背景表结构与数据"></a>一、背景表结构与数据</h2><h3 id="1-表结构创建"><a href="#1-表结构创建" class="headerlink" title="1. 表结构创建"></a>1. 表结构创建</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 双字段都有索引</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> a(a1 <span class="type">int</span> <span class="keyword">primary</span> key, a2 <span class="type">int</span> ,index(a2));  </span><br><span class="line"><span class="comment">-- 三字段，双字段有索引</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> c(c1 <span class="type">int</span> <span class="keyword">primary</span> key, c2 <span class="type">int</span> ,index(c2), c3 <span class="type">int</span>);  </span><br><span class="line"><span class="comment">-- 有主键索引</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> b(b1 <span class="type">int</span> <span class="keyword">primary</span> key, b2 <span class="type">int</span>);  </span><br><span class="line"><span class="comment">-- 无索引</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> d(d1 <span class="type">int</span>, d2 <span class="type">int</span>);  </span><br></pre></td></tr></table></figure>
+          <h2 id="常用数据结构之元组"><a href="#常用数据结构之元组" class="headerlink" title="常用数据结构之元组"></a>常用数据结构之元组</h2><p>前面的两节课，我们为大家讲解了 Python 中的列表，它是一种容器型的数据类型，通过列表类型的变量，我们可以保存多个数据并通过循环实现对数据的批量操作。当然，Python 中还有其他容器型的数据类型，接下来我们就为大家讲解另一种容器型的数据类型，它的名字叫元组（tuple）。</p>
+<h3 id="元组的定义和运算"><a href="#元组的定义和运算" class="headerlink" title="元组的定义和运算"></a>元组的定义和运算</h3><p>在 Python 语言中，元组也是多个元素按照一定顺序构成的序列。元组和列表的不同之处在于，<strong>元组是不可变类型</strong>，这就意味着元组类型的变量一旦定义，其中的元素不能再添加或删除，而且元素的值也不能修改。如果试图修改元组中的元素，将引发<code>TypeError</code>错误，导致程序崩溃。定义元组通常使用形如<code>(x, y, z)</code>的字面量语法，元组类型支持的运算符跟列表是一样的，我们可以看看下面的代码。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义一个三元组</span></span><br><span class="line">t1 = (<span class="number">35</span>, <span class="number">12</span>, <span class="number">98</span>)</span><br><span class="line"><span class="comment"># 定义一个四元组</span></span><br><span class="line">t2 = (<span class="string">&#x27;张三&#x27;</span>, <span class="number">45</span>, <span class="literal">True</span>, <span class="string">&#x27;四川成都&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看变量的类型</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(t1))  <span class="comment"># &lt;class &#x27;tuple&#x27;&gt;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(t2))  <span class="comment"># &lt;class &#x27;tuple&#x27;&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看元组中元素的数量</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(t1))  <span class="comment"># 3</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(t2))  <span class="comment"># 4</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 索引运算</span></span><br><span class="line"><span class="built_in">print</span>(t1[<span class="number">0</span>])    <span class="comment"># 35</span></span><br><span class="line"><span class="built_in">print</span>(t1[<span class="number">2</span>])    <span class="comment"># 98</span></span><br><span class="line"><span class="built_in">print</span>(t2[-<span class="number">1</span>])   <span class="comment"># 四川成都</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 切片运算</span></span><br><span class="line"><span class="built_in">print</span>(t2[:<span class="number">2</span>])   <span class="comment"># (&#x27;骆昊&#x27;, 43)</span></span><br><span class="line"><span class="built_in">print</span>(t2[::<span class="number">3</span>])  <span class="comment"># (&#x27;骆昊&#x27;, &#x27;四川成都&#x27;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 循环遍历元组中的元素</span></span><br><span class="line"><span class="keyword">for</span> elem <span class="keyword">in</span> t1:</span><br><span class="line">    <span class="built_in">print</span>(elem)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 成员运算</span></span><br><span class="line"><span class="built_in">print</span>(<span class="number">12</span> <span class="keyword">in</span> t1)         <span class="comment"># True</span></span><br><span class="line"><span class="built_in">print</span>(<span class="number">99</span> <span class="keyword">in</span> t1)         <span class="comment"># False</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Hao&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> t2)  <span class="comment"># True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 拼接运算</span></span><br><span class="line">t3 = t1 + t2</span><br><span class="line"><span class="built_in">print</span>(t3)  <span class="comment"># (35, 12, 98, &#x27;骆昊&#x27;, 43, True, &#x27;四川成都&#x27;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 比较运算</span></span><br><span class="line"><span class="built_in">print</span>(t1 == t3)            <span class="comment"># False</span></span><br><span class="line"><span class="built_in">print</span>(t1 &gt;= t3)            <span class="comment"># False</span></span><br><span class="line"><span class="built_in">print</span>(t1 &lt;= (<span class="number">35</span>, <span class="number">11</span>, <span class="number">99</span>))  <span class="comment"># False</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="2-插入数据"><a href="#2-插入数据" class="headerlink" title="2. 插入数据"></a>2. 插入数据</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> a <span class="keyword">values</span>(<span class="number">1</span>,<span class="number">1</span>),(<span class="number">2</span>,<span class="number">2</span>),(<span class="number">3</span>,<span class="number">3</span>),(<span class="number">4</span>,<span class="number">4</span>),(<span class="number">5</span>,<span class="number">5</span>),(<span class="number">6</span>,<span class="number">6</span>),(<span class="number">7</span>,<span class="number">7</span>),(<span class="number">8</span>,<span class="number">8</span>),(<span class="number">9</span>,<span class="number">9</span>),(<span class="number">10</span>,<span class="number">10</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> b <span class="keyword">values</span>(<span class="number">1</span>,<span class="number">1</span>),(<span class="number">2</span>,<span class="number">2</span>),(<span class="number">3</span>,<span class="number">3</span>),(<span class="number">4</span>,<span class="number">4</span>),(<span class="number">5</span>,<span class="number">5</span>),(<span class="number">6</span>,<span class="number">6</span>),(<span class="number">7</span>,<span class="number">7</span>),(<span class="number">8</span>,<span class="number">8</span>),(<span class="number">9</span>,<span class="number">9</span>),(<span class="number">10</span>,<span class="number">10</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> c <span class="keyword">values</span>(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>),(<span class="number">2</span>,<span class="number">4</span>,<span class="number">4</span>),(<span class="number">3</span>,<span class="number">6</span>,<span class="number">6</span>),(<span class="number">4</span>,<span class="number">5</span>,<span class="number">5</span>),(<span class="number">5</span>,<span class="number">3</span>,<span class="number">3</span>),(<span class="number">6</span>,<span class="number">3</span>,<span class="number">3</span>),(<span class="number">7</span>,<span class="number">2</span>,<span class="number">2</span>),(<span class="number">8</span>,<span class="number">8</span>,<span class="number">8</span>),(<span class="number">9</span>,<span class="number">5</span>,<span class="number">5</span>),(<span class="number">10</span>,<span class="number">3</span>,<span class="number">3</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> d <span class="keyword">values</span>(<span class="number">1</span>,<span class="number">1</span>),(<span class="number">2</span>,<span class="number">2</span>),(<span class="number">3</span>,<span class="number">3</span>),(<span class="number">4</span>,<span class="number">4</span>),(<span class="number">5</span>,<span class="number">5</span>),(<span class="number">6</span>,<span class="number">6</span>),(<span class="number">7</span>,<span class="number">7</span>),(<span class="number">8</span>,<span class="number">8</span>),(<span class="number">9</span>,<span class="number">9</span>),(<span class="number">10</span>,<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+<p>一个元组中如果有两个元素，我们就称之为二元组；一个元组中如果五个元素，我们就称之为五元组。需要提醒大家注意的是，<code>()</code>表示空元组，但是如果元组中只有一个元素，需要加上一个逗号，否则<code>()</code>就不是代表元组的字面量语法，而是改变运算优先级的圆括号，所以<code>(&#39;hello&#39;, )</code>和<code>(100, )</code>才是一元组，而<code>(&#39;hello&#39;)</code>和<code>(100)</code>只是字符串和整数。我们可以通过下面的代码来加以验证。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">a = ()</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(a))  <span class="comment"># &lt;class &#x27;tuple&#x27;&gt;</span></span><br><span class="line">b = (<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(b))  <span class="comment"># &lt;class &#x27;str&#x27;&gt;</span></span><br><span class="line">c = (<span class="number">100</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(c))  <span class="comment"># &lt;class &#x27;int&#x27;&gt;</span></span><br><span class="line">d = (<span class="string">&#x27;hello&#x27;</span>, )</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(d))  <span class="comment"># &lt;class &#x27;tuple&#x27;&gt;</span></span><br><span class="line">e = (<span class="number">100</span>, )</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(e))  <span class="comment"># &lt;class &#x27;tuple&#x27;&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="二、驱动表的选择"><a href="#二、驱动表的选择" class="headerlink" title="二、驱动表的选择"></a>二、驱动表的选择</h2><h3 id="1-驱动表概念"><a href="#1-驱动表概念" class="headerlink" title="1. 驱动表概念"></a>1. 驱动表概念</h3><p>多表关联查询时，第一个被处理的表，决定连接顺序和查询性能。</p>
-<h3 id="2-选择原则"><a href="#2-选择原则" class="headerlink" title="2. 选择原则"></a>2. 选择原则</h3><ul>
-<li>核心：在不影响最终结果集的前提下，优先选择<strong>结果集最小的表</strong>作为驱动表。</li>
-<li>限制：外连接（如 left join&#x2F;right join）中，驱动表选择可能影响结果，需谨慎。</li>
-</ul>
-<h3 id="3-结果集计算方式"><a href="#3-结果集计算方式" class="headerlink" title="3. 结果集计算方式"></a>3. 结果集计算方式</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">预估结果集 = 每行查询字节数 × 预估的行数</span><br></pre></td></tr></table></figure>
+<h3 id="打包和解包操作"><a href="#打包和解包操作" class="headerlink" title="打包和解包操作"></a>打包和解包操作</h3><p>当我们把多个用逗号分隔的值赋给一个变量时，多个值会打包成一个元组类型；当我们把一个元组赋值给多个变量时，元组会解包成多个值然后分别赋给对应的变量，如下面的代码所示。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打包操作</span></span><br><span class="line">a = <span class="number">1</span>, <span class="number">10</span>, <span class="number">100</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(a))  <span class="comment"># &lt;class &#x27;tuple&#x27;&gt;</span></span><br><span class="line"><span class="built_in">print</span>(a)        <span class="comment"># (1, 10, 100)</span></span><br><span class="line"><span class="comment"># 解包操作</span></span><br><span class="line">i, j, k = a</span><br><span class="line"><span class="built_in">print</span>(i, j, k)  <span class="comment"># 1 10 100</span></span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>每行查询字节数：select 字段的字节大小总和。</li>
-<li>预估行数规则：<ul>
-<li>无 where 筛选条件：默认全表。</li>
-<li>有 where 条件但无法用索引：默认全表。</li>
-<li>有 where 条件且可用索引：根据索引预估行数。</li>
-</ul>
-</li>
-</ul>
-<h3 id="4-案例分析"><a href="#4-案例分析" class="headerlink" title="4. 案例分析"></a>4. 案例分析</h3><h4 id="案例-1"><a href="#案例-1" class="headerlink" title="案例 1"></a>案例 1</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> a.<span class="operator">*</span>,c.c2 <span class="keyword">from</span> a <span class="keyword">join</span> c <span class="keyword">on</span> a.a2<span class="operator">=</span>c.c2 <span class="keyword">where</span> a.a1<span class="operator">&gt;</span><span class="number">5</span> <span class="keyword">and</span> c.c1<span class="operator">&gt;</span><span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+<p>在解包时，如果解包出来的元素个数和变量个数不对应，会引发<code>ValueError</code>异常，错误信息为：<code>too many values to unpack</code>（解包的值太多）或<code>not enough values to unpack</code>（解包的值不足）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span>, <span class="number">10</span>, <span class="number">100</span>, <span class="number">1000</span></span><br><span class="line"><span class="comment"># i, j, k = a             # ValueError: too many values to unpack (expected 3)</span></span><br><span class="line"><span class="comment"># i, j, k, l, m, n = a    # ValueError: not enough values to unpack (expected 6, got 4)</span></span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>explain 显示驱动表为 c（根据结果集大小选择）。</li>
-</ul>
-<h4 id="案例-2"><a href="#案例-2" class="headerlink" title="案例 2"></a>案例 2</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> a.<span class="operator">*</span>,c.<span class="operator">*</span> <span class="keyword">from</span> a <span class="keyword">join</span> c <span class="keyword">on</span> a.a2<span class="operator">=</span>c.c2 <span class="keyword">where</span> a.a1<span class="operator">&gt;</span><span class="number">5</span> <span class="keyword">and</span> c.c1<span class="operator">&gt;</span><span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+<p>有一种解决变量个数少于元素的个数方法，就是使用星号表达式。通过星号表达式，我们可以让一个变量接收多个值，代码如下所示。需要注意两点：首先，用星号表达式修饰的变量会变成一个列表，列表中有0个或多个元素；其次，在解包语法中，星号表达式只能出现一次。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span>, <span class="number">10</span>, <span class="number">100</span>, <span class="number">1000</span></span><br><span class="line">i, j, *k = a</span><br><span class="line"><span class="built_in">print</span>(i, j, k)        <span class="comment"># 1 10 [100, 1000]</span></span><br><span class="line">i, *j, k = a</span><br><span class="line"><span class="built_in">print</span>(i, j, k)        <span class="comment"># 1 [10, 100] 1000</span></span><br><span class="line">*i, j, k = a</span><br><span class="line"><span class="built_in">print</span>(i, j, k)        <span class="comment"># [1, 10] 100 1000</span></span><br><span class="line">*i, j = a</span><br><span class="line"><span class="built_in">print</span>(i, j)           <span class="comment"># [1, 10, 100] 1000</span></span><br><span class="line">i, *j = a</span><br><span class="line"><span class="built_in">print</span>(i, j)           <span class="comment"># 1 [10, 100, 1000]</span></span><br><span class="line">i, j, k, *l = a</span><br><span class="line"><span class="built_in">print</span>(i, j, k, l)     <span class="comment"># 1 10 100 [1000]</span></span><br><span class="line">i, j, k, l, *m = a</span><br><span class="line"><span class="built_in">print</span>(i, j, k, l, m)  <span class="comment"># 1 10 100 1000 []</span></span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>驱动表仍为 c：虽 c.* 数据量更大，但避免了 a 作为驱动表时的回表操作，性能更优。</li>
-<li>结论：结果集是主要因素，但非唯一（需结合回表等操作综合判断）。</li>
-</ul>
-<h2 id="三、两表关联的内在逻辑"><a href="#三、两表关联的内在逻辑" class="headerlink" title="三、两表关联的内在逻辑"></a>三、两表关联的内在逻辑</h2><p>MySQL 使用<strong>Nested-Loop join</strong>（嵌套循环连接），根据是否使用索引分为不同算法。</p>
-<h3 id="1-有索引关联（被驱动表可用索引）"><a href="#1-有索引关联（被驱动表可用索引）" class="headerlink" title="1. 有索引关联（被驱动表可用索引）"></a>1. 有索引关联（被驱动表可用索引）</h3><h4 id="（1）Index-Nested-Loop-join"><a href="#（1）Index-Nested-Loop-join" class="headerlink" title="（1）Index Nested-Loop join"></a>（1）Index Nested-Loop join</h4><ul>
-<li>流程：驱动表逐条取记录，通过索引关联被驱动表，需回表时用主键查询完整数据，结果放入 net buffer（由<code>net_buffer_length</code>控制，默认 1M）。</li>
-<li>特点：无需 join buffer，逐条处理，可能有多次随机回表查询。</li>
-</ul>
-<h4 id="（2）Batched-Key-Access-BKA-join"><a href="#（2）Batched-Key-Access-BKA-join" class="headerlink" title="（2）Batched Key Access (BKA) join"></a>（2）Batched Key Access (BKA) join</h4><ul>
-<li><p>优化点：将随机回表转为顺序查询（依赖 MRR）。</p>
-</li>
-<li><p>流程：</p>
+<p>需要说明一点，解包语法对所有的序列都成立，这就意味着我们之前讲的列表、<code>range</code>函数构造的范围序列甚至字符串都可以使用解包语法。大家可以尝试运行下面的代码，看看会出现怎样的结果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a, b, *c = <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">10</span>)</span><br><span class="line"><span class="built_in">print</span>(a, b, c)</span><br><span class="line">a, b, c = [<span class="number">1</span>, <span class="number">10</span>, <span class="number">100</span>]</span><br><span class="line"><span class="built_in">print</span>(a, b, c)</span><br><span class="line">a, *b, c = <span class="string">&#x27;hello&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(a, b, c)</span><br></pre></td></tr></table></figure>
+
+<h3 id="交换变量的值"><a href="#交换变量的值" class="headerlink" title="交换变量的值"></a>交换变量的值</h3><p>交换变量的值是写代码时经常用到的一个操作，但是在很多编程语言中，交换两个变量的值都需要借助一个中间变量才能做到，如果不用中间变量就需要使用比较晦涩的位运算来实现。在 Python 中，交换两个变量<code>a</code>和<code>b</code>的值只需要使用如下所示的代码。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a, b = b, a</span><br></pre></td></tr></table></figure>
+
+<p>同理，如果要将三个变量<code>a</code>、<code>b</code>、<code>c</code>的值互换，即<code>b</code>的值赋给<code>a</code>，<code>c</code>的值赋给<code>b</code>，<code>a</code>的值赋给<code>c</code>，也可以如法炮制。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a, b, c = b, c, a</span><br></pre></td></tr></table></figure>
+
+<p>需要说明的是，上面的操作并没有用到打包和解包语法，Python 的字节码指令中有<code>ROT_TWO</code>和<code>ROT_THREE</code>这样的指令可以直接实现这个操作，效率是非常高的。但是如果有多于三个变量的值要依次互换，这个时候是没有直接可用的字节码指令的，需要通过打包解包的方式来完成变量之间值的交换。</p>
+<h3 id="元组和列表的比较"><a href="#元组和列表的比较" class="headerlink" title="元组和列表的比较"></a>元组和列表的比较</h3><p>这里还有一个非常值得探讨的问题，Python 中已经有了列表类型，为什么还需要元组这样的类型呢？这个问题对于初学者来说似乎有点困难，不过没有关系，我们先抛出观点，大家可以一边学习一边慢慢体会。</p>
 <ol>
-<li>驱动表符合条件的记录批量放入 join buffer。</li>
-<li>关联被驱动表索引，主键存入 read_rnd_buffer。</li>
-<li>按主键排序 read_rnd_buffer，顺序回表查询。</li>
-</ol>
+<li><p>元组是不可变类型，<strong>不可变类型更适合多线程环境</strong>，因为它降低了并发访问变量的同步化开销。关于这一点，我们会在后面讲解并发编程的时候跟大家一起探讨。</p>
 </li>
-<li><p>启用方式：</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> optimizer_switch<span class="operator">=</span><span class="string">&#x27;mrr=on,mrr_cost_based=off,batched_key_access=on&#x27;</span>;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="2-无索引关联（被驱动表无可用索引）"><a href="#2-无索引关联（被驱动表无可用索引）" class="headerlink" title="2. 无索引关联（被驱动表无可用索引）"></a>2. 无索引关联（被驱动表无可用索引）</h3><h4 id="（1）Simple-Nested-Loop-join"><a href="#（1）Simple-Nested-Loop-join" class="headerlink" title="（1）Simple Nested-Loop join"></a>（1）Simple Nested-Loop join</h4><ul>
-<li>流程：驱动表逐条取记录，全表扫描被驱动表匹配，性能差（驱动表每行对应一次全表扫描）。</li>
-</ul>
-<h4 id="（2）Block-Nested-Loop-BNL-join"><a href="#（2）Block-Nested-Loop-BNL-join" class="headerlink" title="（2）Block Nested-Loop (BNL) join"></a>（2）Block Nested-Loop (BNL) join</h4><ul>
-<li>优化点：批量处理驱动表数据，减少被驱动表扫描次数。</li>
-<li>流程：<ol>
-<li>驱动表数据批量放入 join buffer（上限为 buffer 大小）。</li>
-<li>全表扫描被驱动表，与 buffer 中所有行匹配，匹配成功则放入结果集。</li>
-</ol>
-</li>
-<li>特点：无 read_rnd_buffer，依赖 join buffer 减少扫描次数。</li>
-</ul>
-<h2 id="四、多表连接的执行流程"><a href="#四、多表连接的执行流程" class="headerlink" title="四、多表连接的执行流程"></a>四、多表连接的执行流程</h2><h3 id="1-核心逻辑"><a href="#1-核心逻辑" class="headerlink" title="1. 核心逻辑"></a>1. 核心逻辑</h3><p>采用<strong>嵌套循环</strong>而非 “先两表连接再关联第三表”，形式类似：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> row1 in table1 filtered by where&#123;</span><br><span class="line">  <span class="keyword">for</span> row2 in table2 associated by table1.index1 filtered by where&#123;</span><br><span class="line">    <span class="keyword">for</span> row3 in table3 associated by table2.index2 filtered by where&#123;</span><br><span class="line">      put into net-buffer then send to client;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>元组是不可变类型，通常<strong>不可变类型在创建时间上优于对应的可变类型</strong>。我们可以使用<code>timeit</code>模块的<code>timeit</code>函数来看看创建保存相同元素的元组和列表各自花费的时间，<code>timeit</code>函数的<code>number</code>参数表示代码执行的次数。下面的代码中，我们分别创建了保存<code>1</code>到<code>9</code>的整数的列表和元组，每个操作执行<code>10000000</code>次，统计运行时间。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> timeit</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;%.3f 秒&#x27;</span> % timeit.timeit(<span class="string">&#x27;[1, 2, 3, 4, 5, 6, 7, 8, 9]&#x27;</span>, number=<span class="number">10000000</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;%.3f 秒&#x27;</span> % timeit.timeit(<span class="string">&#x27;(1, 2, 3, 4, 5, 6, 7, 8, 9)&#x27;</span>, number=<span class="number">10000000</span>))</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-不同算法的处理方式"><a href="#2-不同算法的处理方式" class="headerlink" title="2. 不同算法的处理方式"></a>2. 不同算法的处理方式</h3><ul>
-<li><strong>Index Nested-Loop</strong>：逐条处理驱动表记录，依次关联后续表，需回表时单独查询。</li>
-<li><strong>BKA&#x2F;BNL</strong>：批量处理驱动表数据（利用 join buffer），每个 join 关键字对应一个 buffer，分批次关联后续表。</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
-<li>驱动表选择：优先结果集小的表，结合回表等操作综合判断。</li>
-<li>两表关联：有索引用 Index Nested-Loop 或 BKA（优化回表），无索引用 BNL（减少扫描次数）。</li>
-<li>多表连接：嵌套循环执行，按连接顺序依次关联，批量算法利用 buffer 提升效率。</li>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0.635 秒</span><br><span class="line">0.078 秒</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>说明</strong>：上面代码的执行结果因软硬件系统而异，在我目前使用的电脑上，执行<code>10000000</code>次创建列表的操作时间是<code>0.635</code>秒，而执行<code>10000000</code>次创建元组的操作时间是<code>0.078</code>秒，显然创建元组更快且二者时间上有数量级的差别。大家可以在自己的电脑上执行这段代码，把你的执行结果放到评论区，看看谁的电脑更厉害。</p>
+</blockquote>
+</li>
 </ol>
+<p>当然，Python 中的元组和列表类型是可以相互转换的，我们可以通过下面的代码来完成该操作。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">infos = (<span class="string">&#x27;骆昊&#x27;</span>, <span class="number">43</span>, <span class="literal">True</span>, <span class="string">&#x27;四川成都&#x27;</span>)</span><br><span class="line"><span class="comment"># 将元组转换成列表</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(infos))  <span class="comment"># [&#x27;骆昊&#x27;, 43, True, &#x27;四川成都&#x27;]</span></span><br><span class="line"></span><br><span class="line">frts = [<span class="string">&#x27;apple&#x27;</span>, <span class="string">&#x27;banana&#x27;</span>, <span class="string">&#x27;orange&#x27;</span>]</span><br><span class="line"><span class="comment"># 将列表转换成元组</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">tuple</span>(frts))  <span class="comment"># (&#x27;apple&#x27;, &#x27;banana&#x27;, &#x27;orange&#x27;)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><strong>列表和元组都是容器型的数据类型</strong>，即一个变量可以保存多个数据，而且它们都是按一定顺序组织元素的有序容器。<strong>列表是可变数据类型</strong>，<strong>元组是不可变数据类型</strong>，所以列表可以添加元素、删除元素、清空元素、排序反转，但这些操作对元组来说是不成立的。列表和元组都可以支持<strong>拼接运算</strong>、<strong>成员运算</strong>、<strong>索引运算</strong>、<strong>切片运算</strong>等操作，后面我们要讲到的字符串类型也支持这些运算，因为字符串就是字符按一定顺序构成的序列，在这一点上三者并没有什么区别。我们<strong>推荐大家使用列表的生成式语法来创建列表</strong>，它不仅好用而且效率很高，是 Python 语言中非常有特色的语法。</p>
 
       
     </div>
@@ -431,13 +409,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
